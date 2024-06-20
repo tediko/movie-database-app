@@ -7,12 +7,10 @@
     padding-inline: 2rem;
 
     @include breakpoint('md') {
-        transition: background-color 350ms ease-in-out,
-                    color 350ms ease-in-out;
+        transition: background-color 350ms ease-in-out;
 
         &:hover {
-            background-color: hsl(var(--c-white));
-            color: hsl(var(--c-blue-dark));
+            background-color: hsl(var(--c-red-dark));
         }
     }
 }
