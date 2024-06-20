@@ -1,6 +1,13 @@
 @use './variables' as *;
 @use './mixins' as *;
 
+/* Container */
+.container {
+	max-width: 95rem;
+	padding-inline: clamp(1.5rem, 0.548rem + 4.061vw, 2.5rem);
+	margin-inline: auto;
+}
+
 /* Typography */
 /* font-family */
 .ff-primary {font-family: var(--ff-primary);}
