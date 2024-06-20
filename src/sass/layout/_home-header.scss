@@ -2,7 +2,7 @@
 
 .home-header {
     $root: &;
-    position: fixed;
+    position: absolute;
     width: 100%;
     top: clamp(1.5rem, 0.548rem + 4.061vw, 2.5rem);
 
