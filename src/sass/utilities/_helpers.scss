@@ -28,6 +28,10 @@
 /* text uppercase */
 .text-uc {text-transform: uppercase;}
 
+/* text decoration */
+
+.text-dc-none {text-decoration: none;}
+
 /* text colors */ 
 .text-white {color: hsl(var(--c-white));}
 .text-white50 {color: hsl(var(--c-white) / 0.5);}
