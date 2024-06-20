@@ -1,0 +1,31 @@
+:root {
+    /* Colors */
+    --c-white: 0 0% 100%;
+    --c-red: 0 97% 63%;
+    --c-blue-dark: 223 30% 9%;
+    --c-blue-grayish: 223 23% 46%;
+    --c-blue-dark-semi: 223 36% 14%;
+    
+    /* Backgrounds */
+    --bg-primary: 223 30% 9%;
+
+    /* Typography */
+    --ff-primary: "Outfit", sans-serif;
+
+    --fs-800: 3rem;
+    --fs-700: 2.5rem;
+    --fs-600: 2rem;
+    --fs-500: 1.5rem;
+    --fs-400: 1.125rem;
+    --fs-300: 0.9375rem;
+    --fs-200: 0.8125rem;
+}
+
+/* Media query breakpoints */
+$breakpoints: (
+    xs: 23.5rem,
+    sm: 30.0625rem,
+    md: 48.0625rem,
+    lg: 64rem,
+    xlg: 75rem
+);

@@ -1,0 +1,7 @@
+@use '../utilities' as *;
+
+body {
+    min-height: 100vh;
+    font-family: var(--ff-primary);
+    background-color: hsl(var(--bg-primary));
+}
