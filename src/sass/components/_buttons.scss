@@ -1,0 +1,18 @@
+@use '../utilities' as *;
+
+.cta-signin-sm {
+    background-color: hsl(var(--c-red));
+    border-radius: 6px;
+    padding-block: 0.5rem;
+    padding-inline: 2rem;
+
+    @include breakpoint('md') {
+        transition: background-color 350ms ease-in-out,
+                    color 350ms ease-in-out;
+
+        &:hover {
+            background-color: hsl(var(--c-white));
+            color: hsl(var(--c-blue-dark));
+        }
+    }
+}
