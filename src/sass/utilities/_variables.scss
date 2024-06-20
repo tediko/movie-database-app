@@ -13,7 +13,7 @@
     /* Typography */
     --ff-primary: "Outfit", sans-serif;
 
-    --fs-800: 3rem;
+    --fs-800: clamp(2rem, 0.216rem + 3.712vw, 3rem);
     --fs-700: 2.5rem;
     --fs-600: 2rem;
     --fs-500: 1.5rem;
