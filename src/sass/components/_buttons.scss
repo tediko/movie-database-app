@@ -14,3 +14,25 @@
         }
     }
 }
+
+.cta-start {
+    background-color: hsl(var(--c-red));
+    border-radius: 8px;
+    padding-block: 0.85rem;
+    padding-inline: 2rem;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    
+    @include breakpoint('sm') {
+        border-radius: 0 8px 8px 0;
+    }
+
+    @include breakpoint('md') {
+        transition: background-color 350ms ease-in-out;
+
+        &:hover {
+            background-color: hsl(var(--c-red-dark));
+        }
+    }
+}
