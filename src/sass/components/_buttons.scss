@@ -27,13 +27,24 @@
     border: none;
     cursor: pointer;
     white-space: nowrap;
+
+    &:focus {
+        border: none;
+        outline: none;
+    }
+
+    &:focus-visible {
+        background-color: hsl(var(--c-red-dark));
+        font-weight: 600;
+    }
     
     @include breakpoint('sm') {
         border-radius: 0 8px 8px 0;
     }
 
     @include breakpoint('md') {
-        transition: background-color 350ms ease-in-out;
+        transition: background-color 350ms ease-in-out,
+                    font-weight 350ms ease-in-out;
 
         &:hover {
             background-color: hsl(var(--c-red-dark));
