@@ -12,6 +12,12 @@
         align-items: center;
     }
 
+    &__logo-cta {
+        &:focus-visible {
+            @extend %focus-visible;
+        }
+    }
+
     &__logo {
         width: 60px;
     }
