@@ -1,0 +1,46 @@
+@use '../utilities' as *;
+
+.home-devices {
+    $root: &;
+    
+    &__container {
+        display: grid;
+        justify-content: center;
+        text-align: center;
+        padding-block: 6.5625rem;
+    }
+
+    &__title {
+        margin-bottom: 1rem;
+    }
+
+    &__desc {
+        margin-bottom: 3.5rem;
+
+        br {
+            display: none;
+
+            @include breakpoint('sm') {
+                display: block;
+            }
+        }
+    }
+
+    &__mockup-wrapper {
+        position: relative;
+    }
+
+    &__mockup-video-wrapper {
+        position: absolute;
+        top: 2%;
+        left: 33.5%;
+        width: 56.5%;
+        height: 67%;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    &__mockup-video {
+        width: 120%;
+    }
+}
