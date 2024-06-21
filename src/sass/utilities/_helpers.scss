@@ -15,6 +15,12 @@
 	background-color: hsl(var(--c-blue-grayish) / 0.2);
 }
 
+/* Focus-visible styles */
+%focus-visible {
+	outline: 2px dashed hsl(var(--c-red));
+	outline-offset: 2px;
+}
+
 /* Typography */
 /* font-family */
 .ff-primary {font-family: var(--ff-primary);}
