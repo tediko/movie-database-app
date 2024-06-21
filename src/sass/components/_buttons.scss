@@ -6,6 +6,10 @@
     padding-block: 0.5rem;
     padding-inline: 2rem;
 
+    &:focus-visible {
+        @extend %focus-visible;
+    }
+
     @include breakpoint('md') {
         transition: background-color 350ms ease-in-out;
 
