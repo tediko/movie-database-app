@@ -1,0 +1,95 @@
+@use '../utilities' as *;
+
+.home-hero {
+    $root: &;
+
+    height: 46.875rem;
+    background-image: url('/assets/home-hero.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @include breakpoint('lg') {
+        height: 56.25rem;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        height: 100%;
+        
+        
+        @media (max-width: 64rem) and (orientation: landscape) {
+            justify-content: center;
+            padding-bottom: 0;
+        }
+
+        @include breakpoint('lg') {
+            padding-bottom: 8.5rem;
+            justify-content: end;
+        }
+    }
+
+    &__title, &__desc {
+        text-align: center;
+    }
+
+    &__title {
+        max-width: 30ch;
+    }
+
+    &__signup-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        max-width: 31.9375rem;
+    }
+
+    &__input-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        gap: 1rem;
+
+        &:has(:focus-visible) {
+            @extend %focus-visible;
+        }
+        
+        @include breakpoint('sm') {
+            flex-direction: row;
+            gap: unset;
+            background: hsl(var(--c-white));
+            border-radius: 8px;
+        }
+    }
+
+    &__input {
+        flex: 1;
+        border: none;
+        border-radius: 8px;
+        padding-left: 20px;
+        padding-block: 0.85rem;
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+
+        @include breakpoint('sm') {
+            padding-block: unset;
+        }
+    }
+
+    &__error {
+        visibility: hidden;
+
+        &.active {
+            animation: error-email 350ms ease-in-out forwards;
+        }
+    }
+}
