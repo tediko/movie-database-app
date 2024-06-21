@@ -1,0 +1,48 @@
+@use '../utilities' as *;
+
+.footer {
+    $root: &;
+    padding-block: 3.3125rem;
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo {
+        width: 60px;
+    }
+
+    &__socials-link {
+        color: hsl(var(--c-red));
+        font-size: 1.35rem;
+        transition: color 350ms ease-in-out;
+        
+        @include breakpoint('md') {
+            i {
+                transition: transform 350ms ease-in-out;
+            }
+            
+            &:hover {
+                color: hsl(var(--c-red-dark));
+                
+                i {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+
+    &__info {
+        display: grid;
+        gap: 1rem;
+    }
+
+    &__list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
