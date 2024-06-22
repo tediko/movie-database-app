@@ -5,8 +5,10 @@
     margin-top: 6px;
 
     &__wrapper {
-        background-image: url('https://media.themoviedb.org/t/p/w1920_and_h427_multi_faces/zB0g0VaRKHfRrvBT4ouHK5W967W.jpg');
+        background-image: url('https://media.themoviedb.org/t/p/original/zB0g0VaRKHfRrvBT4ouHK5W967W.jpg');
         background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
     }
 
     &__wrapper-gradient {
@@ -14,11 +16,19 @@
     }
 
     &__container {
-        padding-block: 4rem;
+        padding-block: 9rem;
+    }
+
+    &__title, &__desc {
+        text-align: center;
     }
 
     &__title {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    &__desc {
+        margin-bottom: 3.5rem;
     }
 
     &__list {
