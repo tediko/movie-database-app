@@ -10,6 +10,12 @@
         align-items: center;
     }
 
+    &__logo-cta {
+        &:focus-visible {
+            @extend %focus-visible;
+        }
+    }
+
     &__logo {
         width: 60px;
     }
@@ -18,6 +24,10 @@
         color: hsl(var(--c-red));
         font-size: 1.35rem;
         transition: color 350ms ease-in-out;
+
+        &:focus-visible {
+            @extend %focus-visible;
+        }
         
         @include breakpoint('md') {
             i {
