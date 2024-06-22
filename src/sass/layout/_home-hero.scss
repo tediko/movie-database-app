@@ -7,6 +7,7 @@
     background-image: url('/assets/home-hero.png');
     background-repeat: no-repeat;
     background-size: cover;
+    background-position-x: 40%;
     min-height: 100vh;
 
     @include breakpoint('lg') {
