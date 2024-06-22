@@ -1,0 +1,101 @@
+@use '../utilities' as *;
+
+.home-trailers {
+    $root: &;
+    margin-top: 6px;
+
+    &__wrapper {
+        background-image: url('https://media.themoviedb.org/t/p/w1920_and_h427_multi_faces/zB0g0VaRKHfRrvBT4ouHK5W967W.jpg');
+        background-repeat: no-repeat;
+    }
+
+    &__wrapper-gradient {
+        background: linear-gradient(to right,rgba(3, 37, 65, 0.75) 0%,rgba(3, 37, 65, 0.75) 100%);
+    }
+
+    &__container {
+        padding-block: 4rem;
+    }
+
+    &__title {
+        margin-bottom: 1.5rem;
+    }
+
+    &__list {
+        padding-top: 0.625rem;
+    }
+
+    &__item {
+        max-width: 19.6875rem;
+
+        &:has(:focus-visible) {
+            #{$root}__play {
+                width: 100px;
+
+                img {
+                    filter: brightness(0) saturate(100%) invert(10%) sepia(96%) saturate(7262%) hue-rotate(6deg) brightness(97%) contrast(92%);
+                }
+            }
+
+            #{$root}__trailer-preview {
+                transform: scale(1.05);
+            }
+
+            #{$root}__trailer-title {
+                color: hsl(var(--c-red))
+            }
+            #{$root}__trailer-title {
+                color: hsl(var(--c-red))
+            }
+        }
+    }
+
+    &__cta {
+        text-decoration: none;
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+
+        &:hover {
+            #{$root}__play {
+                width: 100px;
+            }
+
+            #{$root}__trailer-preview {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    &__trailer-preview {
+        position: relative;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        transition: transform 350ms ease-in-out;
+    }
+
+    &__play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80px;
+        transform: translate(-50%, -50%);
+        transition: width 350ms ease-in-out;
+
+        img {
+            filter: invert(1);
+        }
+    }
+
+    &__trailer-title {
+        transition: color 350ms ease-in-out;
+    }
+
+    &__trailer-title, &__trailer-desc {
+        text-align: center;
+    }
+}
