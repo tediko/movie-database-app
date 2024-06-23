@@ -12,7 +12,7 @@
     }
 
     &__wrapper-gradient {
-        background: linear-gradient(to right,rgba(3, 37, 65, 0.75) 0%,rgba(3, 37, 65, 0.75) 100%);
+        background: linear-gradient(to right,hsl(var(--bg-blue-navy) / 0.75) 0%,hsl(var(--bg-blue-navy) / 0.75) 100%);
     }
 
     &__container {
