@@ -50,6 +50,7 @@
         display: flex;
         justify-content: center;
         box-shadow: 0px 0px 111px -23px hsl(var(--c-blue-light));
+        background-color: hsl(var(--c-blue-dark));
 
         iframe {
             width: 100%;
