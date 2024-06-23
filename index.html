@@ -25,13 +25,13 @@
         <div class="home-hero__container container">
           <h1 class="home-hero__title fs-800 ls-500 lh-600 fw-700 text-white">Millions of movies, binge-worthy series and TV shows to discover. Explore now.</h1>
           <p class="home-hero__desc fs-500 fw-300 text-white">Ready to explore? Enter your email to create your account.</p>
-          <form class="home-hero__signup-form">
+          <form class="home-hero__signup-form" data-home-signup novalidate>
             <div class="home-hero__input-wrapper">
               <label class="sr-only" for="email">Email address</label>
               <input class="home-hero__input fs-400" type="email" name="email" id="email" placeholder="Email address">
               <button class="home-hero__cta cta-start fs-400 text-dc-none text-white" type="submit">Get Started</button>
             </div>
-            <p class="home-hero__error fs-300 fw-300 text-red">Valid email required</p>
+            <p class="home-hero__error fs-300 fw-300 text-red" aria-hidden="true" aria-live="polite" data-home-signup-error>error message</p>
           </form>
         </div>
         <div class="home-hero__separator separator"></div>
