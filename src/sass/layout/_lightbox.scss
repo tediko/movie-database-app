@@ -37,6 +37,10 @@
         cursor: pointer;
         font-size: 1.5rem;
         
+        &:focus-visible {
+            @extend %focus-visible;
+        }
+
         @include breakpoint('md') {
             transition: color 350ms ease-in-out;
             
