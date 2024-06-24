@@ -60,6 +60,26 @@
         }
     }
 
+    &__error {
+        display: grid;
+        gap: 0.5rem;
+        margin: 0 auto;
+        text-align: center;
+
+        i {
+            font-size: 3rem;
+            color: hsl(var(--c-red));
+        }
+
+        br {
+            display: none;
+
+            @include breakpoint('sm') {
+                display: block;
+            }
+        }
+    }
+
     &__cta {
         text-decoration: none;
 
