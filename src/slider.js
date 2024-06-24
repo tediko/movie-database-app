@@ -14,25 +14,19 @@ const initSlider = (containerSelector, options = {}) => {
         console.error(`Slider container not found: ${sliderContainer}`);
         return null;
     }
-
-    try {
-        // default Swiper options
-        const defaultOptions = {
-            loop: false,
-            slidesPerView: "auto",
-            spaceBetween: 24,
-            speed: 600,
-            centeredSlides: false,
-        }
-        // Merge default options with custom options
-        const sliderOptions = { ...defaultOptions, ...options };
-
-        // Initialize and return the Swiper instance
-        return new Swiper(sliderContainer, sliderOptions);
-    } catch(error) {
-        console.error(`Error initializing slider: ${error}`);
-        return null;
+    // default Swiper options
+    const defaultOptions = {
+        loop: false,
+        slidesPerView: "auto",
+        spaceBetween: 24,
+        speed: 600,
+        centeredSlides: false,
     }
+    // Merge default options with custom options
+    const sliderOptions = { ...defaultOptions, ...options };
+
+    // Initialize and return the Swiper instance
+    return new Swiper(sliderContainer, sliderOptions);
 };
 
 export default initSlider;
