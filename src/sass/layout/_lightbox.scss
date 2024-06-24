@@ -61,4 +61,19 @@
             aspect-ratio: 16 / 9;
         }
     }
+
+    &__error {
+        display: grid;
+        place-items: center;
+        gap: 0.5rem;
+        box-shadow: 0px 0px 111px -23px hsl(var(--c-blue-light));
+        background-color: hsl(var(--c-blue-dark));
+        padding-block: 5rem;
+        padding-inline: 1.5rem;
+
+        i {
+            color: hsl(var(--c-red));
+            font-size: 3rem;
+        }
+    }
 }
