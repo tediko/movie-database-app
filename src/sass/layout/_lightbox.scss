@@ -62,6 +62,22 @@
         }
     }
 
+    &__cta {
+        display: inline-block;
+        width: 100%;
+        text-decoration: none;
+        text-align: right;
+
+        &:focus-visible {
+            text-decoration: underline;
+        }
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+    }
+
     &__error {
         display: grid;
         place-items: center;
