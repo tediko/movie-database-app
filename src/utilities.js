@@ -12,4 +12,39 @@ const createHtmlElement = (tag, classes, content) => {
     return element;
 }
 
-export { createHtmlElement };
+/**
+ * Creates a focus-trap within a specified container element.
+ * Ensures that the user's focus remains within that container
+ * preventing it moving outside the trap.
+ * @param {HTMLElement} container - The container element to create the focus trap within.
+ */
+const focusTrap = (container) => {
+    const focusableElements = container.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
+    const firstFocusableElement = focusableElements[0];
+    const lastFocusableElement = focusableElements[focusableElements.length - 1];
+    const tabKey = 'Tab';
+
+    container.setAttribute('tabindex', '-1');
+    container.focus();
+
+    container.addEventListener('keydown', (event) => {
+        const pressedKey = event.key;
+        const isTabPressed = pressedKey === tabKey;
+        
+        if (!isTabPressed) return;
+        
+        if (event.shiftKey) {
+            if (document.activeElement === firstFocusableElement) {
+                event.preventDefault();
+                lastFocusableElement.focus();
+            }
+        } else {
+            if (document.activeElement === lastFocusableElement) {
+                event.preventDefault();
+                firstFocusableElement.focus();
+            }
+        }
+    })
+}
+
+export { createHtmlElement, focusTrap };
