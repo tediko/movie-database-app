@@ -13,6 +13,11 @@
     visibility: hidden;
     z-index: 1000;
 
+    &:focus {
+        border: none;
+        outline: none;
+    }
+
     &.active {
         opacity: 1;
         transform: translateY(-50%) scale(1);
