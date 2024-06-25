@@ -21,12 +21,36 @@ const initSlider = (containerSelector, options = {}) => {
         spaceBetween: 24,
         speed: 600,
         centeredSlides: false,
+        on: {
+            init: (swiper) => {
+                // Add data-slide-index attribute to each slide
+                swiper.slides.forEach((slide, index) => {
+                    slide.setAttribute('data-slide-index', index);
+                });
+            }
+        }
     }
     // Merge default options with custom options
     const sliderOptions = { ...defaultOptions, ...options };
 
-    // Initialize and return the Swiper instance
-    return new Swiper(sliderContainer, sliderOptions);
+    // Initialize Swiper instance
+    const swiper = new Swiper(sliderContainer, sliderOptions);
+
+    // Add event listener for focus events
+    // When user use keyboard to navigate through swiper slides it will 
+    // change sliderWrapper transform value to match focused slide
+    // and prevent bug where slider is stuck.
+    sliderContainer.addEventListener('focusin', (event) => {
+        const focusedElement = event.target.parentElement;
+
+        if (focusedElement) {
+            const slideIndex = focusedElement.dataset.slideIndex;
+            swiper.slideTo(slideIndex);
+        }
+    });
+
+    // Return Swiper instance
+    return swiper;
 };
 
 export default initSlider;
