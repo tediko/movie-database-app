@@ -1,4 +1,4 @@
 import './sass/main.scss';
-import initSlider from './slider';
+import { fetchUpcomingMovies } from './fetchUpcomingMovies';
 
-initSlider('[data-trailers-swiper]');
+fetchUpcomingMovies();
