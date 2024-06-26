@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/favicon-32x32.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b961f1cbcd.js" crossorigin="anonymous"></script>
+    <title>MovieDB - Login</title>
+  </head>
+  <body>
+    <div class="access__wrapper">
+      <header class="access__header">
+        <a href="/index.html" class="access__logo-cta" aria-label="MovieDB - Home Page">
+            <img src="/assets/logo.svg" alt="" class="access__logo">
+        </a>
+      </header>
+      <main>
+        <section class="access__register">
+          <div class="access__container">
+            <h1 class="access__title fs-600 fw-300 text-white">Login</h1>
+            <form action="" class="access__form" novalidate data-signin>
+              <label class="sr-only" for="access-email">Email address</label>
+              <input class="access__input fs-300 fw-300 text-white" type="email" name="access-email" id="access-email" placeholder="Email address">
+              <label class="sr-only" for="access-email">Password</label>
+              <input class="access__input fs-300 fw-300 text-white" type="password" name="access-password" id="access-password" placeholder="Password">
+              <p class="access__error active fs-300 fw-300 text-red" aria-hidden="true" aria-live="polite" data-signin-error>
+                <span><i class="fa-solid fa-circle-exclamation"></i> Invalid email</span>
+                <span><i class="fa-solid fa-circle-exclamation"></i> Invalid password</span>
+              </p>
+              <button class="access__submit cta-access" type="submit">Login to your account</button>
+            </form>
+            <p class="access__info fs-300 fw-300 text-white">
+              Don't have an account?
+              <a class="access__info-link text-red" href="register.html">Sign Up</a>
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
