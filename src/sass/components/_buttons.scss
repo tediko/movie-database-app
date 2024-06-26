@@ -51,3 +51,28 @@
         }
     }
 }
+
+.cta-access {
+    padding: 1rem;
+    background-color: hsl(var(--c-red));
+    color: hsl(var(--c-white));
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:focus-visible {
+        @extend %focus-visible;
+        background-color: hsl(var(--c-white));
+        color: hsl(var(--c-blue-dark));
+    }
+
+    @include breakpoint('md') {
+        transition: background-color 350ms ease-in-out,
+                    color 350ms ease-in-out;
+
+        &:hover {
+            background-color: hsl(var(--c-white));
+            color: hsl(var(--c-blue-dark));
+        }
+    }
+}
