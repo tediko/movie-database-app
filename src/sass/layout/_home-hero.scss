@@ -89,6 +89,10 @@
     &__error {
         visibility: hidden;
 
+        i {
+            padding-right: 0.1rem;
+        }
+
         &.active {
             animation: error-email 350ms ease-in-out forwards;
         }
