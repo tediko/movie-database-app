@@ -36,6 +36,32 @@ async function signInWithPassword(email, password) {
 }
 
 /**
+ * Asynchronously signs up new user with their email and password using Supabase authentication.
+ * (there are no documented error codes like in sign-in)
+ * @async
+ * @param {string} email - User's email address.
+ * @param {string} password - User's password.
+ * @throws {Error} Throws an error with a specific message if the sign-up process fails.
+ * @returns {Promise<void>} A promise that resolves if the sign-up is successful.
+ */
+async function signUp(email, password) {
+    try {
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+        })
+
+        if (error) {
+            throw new Error(error);
+        }
+
+        return data;
+    } catch(error) {
+        throw error;
+    }
+}
+
+/**
  * Gets the current user details if there is an existing session. This method
  * performs a network request to the Supabase Auth server, so the returned
  * value is authentic and can be used to base authorization rules on.
@@ -46,4 +72,4 @@ async function getUser() {
     return user;
 }
 
-export  { signInWithPassword, getUser };
+export  { signInWithPassword, getUser, signUp };
