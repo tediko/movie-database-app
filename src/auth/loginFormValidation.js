@@ -1,5 +1,5 @@
 import { signIn, getUser } from "./authentication";
-import { emailValidation, passwordValidation, showFormErrorMessage, showRedirectSuccessMessage } from "../utilities";
+import { emailValidation, passwordValidation, showFormErrorMessage, showRedirectSuccessMessage, redirectToNewLocation } from "../utilities";
 
 // Flags
 const appPageUrl = '/app/index.html';
@@ -52,20 +52,10 @@ async function login(email, password, loginFormContrainer) {
     try {
         await signIn(email, password);
         showRedirectSuccessMessage(loginContainerSelector, 'You are successfully logged in!')
-        redirectToApp();
+        redirectToNewLocation(appPageUrl);
     } catch(error) {
         showFormErrorMessage(loginFormContrainer, [`${error.message}`]);
     }
-}
-
-/**
- * Redirects the user to the app page after a specified delay.
- * @param {number} [timeoutDuration=1000] - The delay in milliseconds before redirecting. Defaults to 1000ms.
- */
-const redirectToApp = (timeoutDuration = 1000) => {
-    setTimeout(() => {
-        window.location.href = appPageUrl;
-    }, timeoutDuration)
 }
 
 /**
