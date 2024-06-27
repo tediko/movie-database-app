@@ -127,11 +127,23 @@ const showRedirectSuccessMessage = (msgContainerSelector, message) => {
     msgContainerEl.classList.add(activeClass);
 }
 
+/**
+ * Redirects the user to the specified page after a specified delay.
+ * @param {string} newLocationUrl - The string with new location url.
+ * @param {number} [timeoutDuration=1000] - The delay in milliseconds before redirecting. Defaults to 1000ms.
+ */
+const redirectToNewLocation = (newLocationUrl, timeoutDuration = 1000) => {
+    setTimeout(() => {
+        window.location.href = newLocationUrl;
+    }, timeoutDuration)
+}
+
 export { 
     createHtmlElement,
     focusTrap,
     emailValidation,
     passwordValidation,
     showFormErrorMessage,
-    showRedirectSuccessMessage
+    showRedirectSuccessMessage,
+    redirectToNewLocation
 };
