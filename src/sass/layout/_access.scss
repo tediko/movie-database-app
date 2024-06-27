@@ -59,6 +59,10 @@
         padding: 2rem;
         box-shadow: 0px 0px 111px -23px hsl(var(--c-blue-light) / 0.6);
         z-index: 1;
+
+        &.active {
+            border: 1px solid hsl(var(--c-green));
+        }
     }
 
     &__title {
@@ -141,7 +145,7 @@
         text-align: center;
         
         .fa-check {
-            color: hsl(var(--c-blue-light));
+            color: hsl(var(--c-green));
             font-size: 3rem;
         }
     }
