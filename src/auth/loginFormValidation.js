@@ -44,7 +44,7 @@ const handleFormSubmit = (event, loginFormContrainer) => {
  * @async
  * @param {string} email - User's email address.
  * @param {string} password - User's password.
- * @param {HTMLElement|string} loginFormContainer - Container element for the login form.
+ * @param {HTMLElement} loginFormContainer - Container element for the login form.
  * @throws {Error} If the login attempt fails, the error is caught and displayed in the form container.
  * @returns {Promise<void>}
  */
