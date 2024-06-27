@@ -99,10 +99,39 @@ const showFormErrorMessage = (formContainer, messages) => {
     }, { once: true})
 }
 
+/**
+ * Displays a redirect success message in a specified container.
+ * @param {string} msgContainerSelector - CSS selector for the message container element.
+ * @param {string} message - The success message to display. 
+ */
+const showRedirectSuccessMessage = (msgContainerSelector, message) => {
+    const msgContainerEl = document.querySelector(msgContainerSelector);
+
+    // Early return if container element or message doesn't exists
+    if (!msgContainerEl || !message) return;
+
+    // Flags
+    const activeClass = 'active';
+    const successIcon = '<i class="fa-solid fa-check" aria-hidden="true"></i>';
+
+    // Create HTML string for success message
+    const successMsg = `
+    <p class="access__success-msg fs-400 fw-300 text-white">
+        ${successIcon}
+        ${message}
+        <span class="fs-300">Please wait while redirecting...</span>
+    </p>
+    `
+
+    msgContainerEl.innerHTML = successMsg;
+    msgContainerEl.classList.add(activeClass);
+}
+
 export { 
     createHtmlElement,
     focusTrap,
     emailValidation,
     passwordValidation,
-    showFormErrorMessage
+    showFormErrorMessage,
+    showRedirectSuccessMessage
 };
