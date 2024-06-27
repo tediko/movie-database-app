@@ -20,23 +20,22 @@ const handleFormSubmit = (event, registerFormContainer) => {
     const passwordValue = passwordInputElement[0].value;
     const secondPasswordValue = passwordInputElement[1].value;
 
-    if (!emailValidation(emailValue) && !passwordValidation(passwordValue) || !passwordValidation(secondPasswordValue)) {
-        showFormErrorMessage(registerFormContainer, ['Invalid email address', 'Incorrect password (min. 6 characters)'])
-        return;
-    }
+    let errors = [];
 
     if (!emailValidation(emailValue)) {
-        showFormErrorMessage(registerFormContainer, ['Invalid email address'])
-        return;
+        errors.push('Invalid email address');
     }
 
     if (!passwordValidation(passwordValue) || !passwordValidation(secondPasswordValue)) {
-        showFormErrorMessage(registerFormContainer, ['Incorrect password (min. 6 characters)'])
-        return;
+        errors.push('Incorrect password (min. 6 characters)');
     }
 
     if (passwordValue !== secondPasswordValue) {
-        showFormErrorMessage(registerFormContainer, ['Passwords must be the same'])
+        errors.push('Passwords must be the same');
+    }
+
+    if (errors.length > 0) {
+        showFormErrorMessage(registerFormContainer, errors);
         return;
     }
 
