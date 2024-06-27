@@ -1,4 +1,4 @@
-import { signInWithPassword, getUser } from "./authentication";
+import { signIn, getUser } from "./authentication";
 import { emailValidation, passwordValidation, showFormErrorMessage, showRedirectSuccessMessage } from "../utilities";
 
 // Flags
@@ -50,7 +50,7 @@ const handleFormSubmit = (event, loginFormContrainer) => {
  */
 async function login(email, password, loginFormContrainer) {
     try {
-        await signInWithPassword(email, password);
+        await signIn(email, password);
         showRedirectSuccessMessage(loginContainerSelector, 'You are successfully logged in!')
         redirectToApp();
     } catch(error) {

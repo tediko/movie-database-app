@@ -12,7 +12,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
  * @throws {Error} Throws an error with a specific message if the sign-in process fails.
  * @returns {Promise<void>} A promise that resolves if the sign-in is successful.
  */
-async function signInWithPassword(email, password) {
+async function signIn(email, password) {
     try {
         const { error } = await supabase.auth.signInWithPassword({
             email: email,
@@ -72,4 +72,4 @@ async function getUser() {
     return user;
 }
 
-export  { signInWithPassword, getUser, signUp };
+export  { signIn, getUser, signUp };
