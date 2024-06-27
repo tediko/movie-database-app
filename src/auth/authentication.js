@@ -7,9 +7,8 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 /**
  * Asynchronously signs in a user with their email and password using Supabase authentication.
  * @async
- * @function signInWithPassword
- * @param {string} email - The email address of the user.
- * @param {string} password - The password of the user.
+ * @param {string} email - User's email address.
+ * @param {string} password - User's password.
  * @throws {Error} Throws an error with a specific message if the sign-in process fails.
  * @returns {Promise<void>} A promise that resolves if the sign-in is successful.
  */
