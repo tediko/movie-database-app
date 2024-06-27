@@ -137,17 +137,12 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        gap: 1rem;
         padding-block: 2rem;
         text-align: center;
         
         .fa-check {
             color: hsl(var(--c-blue-light));
-            font-size: 2rem;
-        }
-
-        @include breakpoint('md') {
-            flex-direction: row;
+            font-size: 3rem;
         }
     }
 }
