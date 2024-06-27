@@ -1,3 +1,5 @@
+import { showFormErrorMessage } from "./utilities";
+
 // Flags
 const activeClass = 'active';
 
@@ -7,7 +9,7 @@ const activeClass = 'active';
  */
 const handleValidationOnSubmit = (event) => {
     event.preventDefault();
-    
+
     const eventTarget = event.target;
     const inputElement = eventTarget.querySelector('input');
     const inputValue = inputElement.value.trim().toLowerCase();
@@ -15,29 +17,9 @@ const handleValidationOnSubmit = (event) => {
     if (emailValidation(inputValue)) {
         window.location.href = `access/register.html?email=${inputValue}`;
     } else {
-        showErrorMessage(eventTarget, inputElement);
+        showFormErrorMessage(eventTarget, ['Please enter a valid email address.']);
     }
 }
-
-/**
- * Displays error message for invalid email input and sets up event listener to hide it when user
- * starts typing within input. 
- * @param {HTMLElement} container - The container element where error message is located.
- * @param {HTMLElement} inputElement - The input element associated with the error.
- */
-const showErrorMessage = (container, inputElement) => {
-    const errorElement = container.querySelector('[data-home-signup-error]');
-
-    errorElement.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Please enter a valid email address`;
-    errorElement.classList.add(activeClass);
-    errorElement.setAttribute('aria-hidden', 'false');
-    
-    inputElement.addEventListener('input', () => {
-        errorElement.classList.remove(activeClass);
-        errorElement.setAttribute('aria-hidden', 'true');
-    }, { once: true})
-}
-
 
 /**
  * Validates an email address using a regular expression.
