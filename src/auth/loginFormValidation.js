@@ -21,18 +21,18 @@ const handleFormSubmit = (event, loginFormContrainer) => {
     const emailValue = emailInputElement.value;
     const passwordValue = passwordInputElement.value;
 
-    if (!emailValidation(emailValue) && !passwordValidation(passwordValue)) {
-        showFormErrorMessage(loginFormContrainer, ['Invalid email address', 'Incorrect password (min. 6 characters)'])
-        return;
-    }
+    let errors = [];
 
     if (!emailValidation(emailValue)) {
-        showFormErrorMessage(loginFormContrainer, ['Invalid email address'])
-        return;
+        errors.push('Invalid email address');
     }
 
     if (!passwordValidation(passwordValue)) {
-        showFormErrorMessage(loginFormContrainer, ['Incorrect password (min. 6 characters)'])
+        errors.push('Incorrect password (min. 6 characters)');
+    }
+
+    if (errors.length > 0) {
+        showFormErrorMessage(loginFormContrainer, errors);
         return;
     }
 
