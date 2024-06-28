@@ -5,6 +5,7 @@ import { emailValidation, passwordValidation, showFormErrorMessage, showRedirect
 const loginPageUrl = '/access/login.html';
 const registerFormSelector = '[data-access-signup]';
 const registerContainerSelector = '[data-access-container]';
+const emailQueryParameter = 'email';
 
 /**
  * Handles form submission, performs validation and initiates sign-up process.
@@ -64,12 +65,28 @@ async function register(email, password, registerFormContainer) {
 }
 
 /**
- * Initializes the register form validation by setting up the submit event listener.
+ * Retrieves the value of a specified query parameter from the current URL.
+ * from the query string of a URL.
+ * @param {string} name - The name of the query parameter to retrieve.
+ * @returns {string|null} The value of the specified query parameter, or null if not found.
+ */
+const getUrlQueryParameters = (name) => {
+    const newParams = new URLSearchParams(window.location.search);
+    return newParams.get(name);
+}
+
+/**
+ * Initializes the registration form validation and pre-fills the email field if provided in URL.
  */
 const initRegisterFormValidation = () => {
     const registerFormElement = document.querySelector(registerFormSelector);
-
     if (!registerFormElement) return;
+
+    const searchParam = getUrlQueryParameters(emailQueryParameter);
+    if (searchParam) {
+        const emailInputElement = registerFormElement.querySelector('input[type="email"]');
+        emailInputElement.value = searchParam;
+    }
 
     registerFormElement.addEventListener('submit', (event) => handleFormSubmit(event, registerFormElement));
 }
