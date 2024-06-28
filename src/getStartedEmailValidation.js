@@ -1,8 +1,5 @@
 import { showFormErrorMessage } from "./utilities";
 
-// Flags
-const activeClass = 'active';
-
 /**
  * Handles form submission and email validation.
  * @param {Event} event - The submit event object
