@@ -7,6 +7,7 @@ const loginPageUrl = '/access/login.html';
 const loginFormSelector = '[data-access-signin]';
 const loginCtaSelector = '[data-login-cta]';
 const loginContainerSelector = '[data-access-container]';
+const loginTestAccountCtaSelector = '[data-access-test]';
 
 /**
  * Handles form submission, performs validation and initiates login process.
@@ -85,11 +86,30 @@ const handleLoginButtonClick = () => {
 }
 
 /**
- * Initializes the login form validation by setting up the submit event listener.
+ * Sets up the test account button cta event listener to handle login to test account
+ */
+const handleTestAccountLogin = (event, loginFormElement) => {
+    event.preventDefault();
+    
+    // Test account credentials.
+    // No need to hide or secure these credentials as they are meant for public use
+    const testAccount = {
+        email: 'test@example.com',
+        password: 'test123'
+    }
+
+    login(testAccount.email, testAccount.password, loginFormElement);
+}
+
+/**
+ * Initializes the login form validation by setting up the submit event listeners.
  */
 const initLoginFormValidation = () => {
     const loginFormElement = document.querySelector(loginFormSelector);
     if (!loginFormElement) return;
+
+    const testAccountCta = document.querySelector(loginTestAccountCtaSelector);
+    testAccountCta.addEventListener('click', () => handleTestAccountLogin(event, loginFormElement));
 
     loginFormElement.addEventListener('submit', (event) => handleFormSubmit(event, loginFormElement));
 }
