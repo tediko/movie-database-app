@@ -69,7 +69,7 @@ I used the **Supabase** *client library* for authentication process. I've start 
 ```js
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://ddjybinwcsbmxniubgqr.supabase.co';
+const supabaseUrl = 'https://XXX.supabase.co';
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 ```
