@@ -1,4 +1,4 @@
-import { showFormErrorMessage } from "./utilities";
+import { showFormErrorMessage, emailValidation } from "./utilities";
 
 /**
  * Handles form submission and email validation.
@@ -16,16 +16,6 @@ const handleValidationOnSubmit = (event) => {
     } else {
         showFormErrorMessage(eventTarget, ['Please enter a valid email address.']);
     }
-}
-
-/**
- * Validates an email address using a regular expression.
- * @param {string} email - The email address to validate.
- * @returns {Boolean} - Returns true if the email is valid or false otherwise.
- */
-const emailValidation = (email) => {
-    const emailRegex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
-    return emailRegex.test(email);
 }
 
 /**
