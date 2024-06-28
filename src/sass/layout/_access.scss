@@ -100,6 +100,12 @@
 
     &__info {
         text-align: center;
+
+        br {
+            @include breakpoint('sm') {
+                display: none;
+            }
+        }
     }
 
     &__info-link {
