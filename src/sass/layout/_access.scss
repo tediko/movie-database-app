@@ -79,6 +79,7 @@
         background-color: transparent;
         border: none;
         padding: 1rem;
+        caret-color: hsl(var(--c-red));
         border-bottom: 1px solid hsl(var(--c-blue-grayish) / 0.5);
 
         @include breakpoint('md') {
