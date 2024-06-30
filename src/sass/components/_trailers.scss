@@ -1,0 +1,142 @@
+@use '../utilities' as *;
+
+.trailers {
+    $root: &;
+    margin-top: 6px;
+
+    &--small {
+        @extend .trailers;
+        margin-top: 3rem;
+    }
+
+    &__wrapper {
+        background-image: url('https://media.themoviedb.org/t/p/original/zB0g0VaRKHfRrvBT4ouHK5W967W.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    &__wrapper-gradient {
+        background: linear-gradient(to right,hsl(var(--bg-blue-navy) / 0.75) 0%,hsl(var(--bg-blue-navy) / 0.75) 100%);
+    }
+
+    &__container {
+        padding-block: 9rem;
+
+        &--small {
+            @extend .trailers__container;
+            padding-block: 3rem;
+            padding-inline: 1rem;
+        }
+    }
+
+    &__title, &__desc {
+        text-align: center;
+    }
+
+    &__title {
+        margin-bottom: 1rem;
+    }
+
+    &__desc {
+        margin-bottom: 3.5rem;
+    }
+
+    &__list {
+        padding-top: 0.625rem;
+    }
+
+    &__item {
+        max-width: 19.6875rem;
+
+        &:has(:focus-visible) {
+            #{$root}__play {
+                width: 100px;
+
+                img {
+                    filter: brightness(0) saturate(100%) invert(10%) sepia(96%) saturate(7262%) hue-rotate(6deg) brightness(97%) contrast(92%);
+                }
+            }
+
+            #{$root}__trailer-preview {
+                transform: scale(1.05);
+            }
+
+            #{$root}__trailer-title {
+                color: hsl(var(--c-red))
+            }
+            #{$root}__trailer-title {
+                color: hsl(var(--c-red))
+            }
+        }
+    }
+
+    &__error {
+        display: grid;
+        gap: 0.5rem;
+        margin: 0 auto;
+        text-align: center;
+
+        i {
+            font-size: 3rem;
+            color: hsl(var(--c-red));
+        }
+
+        br {
+            display: none;
+
+            @include breakpoint('sm') {
+                display: block;
+            }
+        }
+    }
+
+    &__cta {
+        text-decoration: none;
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+
+        &:hover {
+            #{$root}__play {
+                width: 100px;
+            }
+
+            #{$root}__trailer-preview {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    &__trailer-preview {
+        position: relative;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        transition: transform 350ms ease-in-out;
+    }
+
+    &__play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80px;
+        transform: translate(-50%, -50%);
+        transition: width 350ms ease-in-out;
+
+        img {
+            filter: invert(1);
+        }
+    }
+
+    &__trailer-title {
+        transition: color 350ms ease-in-out;
+    }
+
+    &__trailer-title, &__trailer-desc {
+        text-align: center;
+    }
+}
