@@ -10,7 +10,7 @@ let trendingList;
 const posterBackgroundUrl = 'https://image.tmdb.org/t/p/w342/';
 const wrapperSelector = '[data-trending-wrapper]';
 const listSelector = '[data-trending-list]';
-const swiperContainerSelector = '[data-trending-swiper]';
+const swiperSelector = '[data-trending-swiper]';
 const bookmarkCtaSelector = '[data-trending-bookmark-cta]';
 const bookmarkCtaAttribute = 'data-trending-bookmark-cta';
 
@@ -77,7 +77,7 @@ const displayTrending = (data, numOfMediaToDisplay = 12) => {
     // Initializes a slider for the trending movies/TVseries and attaches event listener to list container.
     trendingList.innerHTML = '';
     trendingList.appendChild(fragment);
-    initSlider(swiperContainerSelector, {spaceBetween: 32});
+    initSlider(swiperSelector, {spaceBetween: 32});
     attachEventListener(trendingList);
 }
 
