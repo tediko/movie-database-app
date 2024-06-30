@@ -1,14 +1,34 @@
 import fetchTrailerAndDisplayLightbox from './displayLightbox';
+import { fetchUpcomingMovies } from './fetchData';
 import initSlider from './slider';
-import { createHtmlElement } from './utilities';
+import { createHtmlElement, displayDataError } from './utilities';
 
 // Selectors
-const trailersWrapper = document.querySelector('[data-trailers-wrapper]');
-const trailersList = document.querySelector('[data-trailers-list]');
+let trailersWrapper;
+let trailersList;
 
 // Flags
+const wrapperSelector = '[data-trailers-wrapper]';
+const listSelector = '[data-trailers-list]';
 const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w355_and_h200_multi_faces`;
 const bigBackgroundUrl = `https://media.themoviedb.org/t/p/original/`;
+
+/**
+ * Initializes the trailers content section.
+ */
+async function initTrailers() {
+    trailersWrapper = document.querySelector(wrapperSelector);
+    trailersList = document.querySelector(listSelector);
+
+    if (!trailersWrapper || !trailersList) return;
+
+    try {
+        const data = await fetchUpcomingMovies();
+        displayTrailers(data);
+    } catch (error) {
+        displayDataError(trailersList);
+    }
+}
 
 /**
  * Displays a list of movie trailers in the DOM.
@@ -118,4 +138,4 @@ const attachTrailersListItemListeners = (moviesList, trailersListElement) => {
     })
 }
 
-export { displayTrailersErrors, displayTrailers };
+export default initTrailers;

@@ -1,5 +1,3 @@
-import { displayTrailersErrors, displayTrailers } from './displayTrailers';
-
 // Flags
 const apiMovieUrl = 'https://api.themoviedb.org/3/movie/';
 const apiTrendingUrl = 'https://api.themoviedb.org/3/trending/all/week';
@@ -37,10 +35,10 @@ async function fetchUpcomingMovies() {
             }
         });
 
-        displayTrailers(moviesList);
+        return moviesList;
     } catch (error) {
         console.error(`Error fetching upcoming movies: ${error}`);
-        displayTrailersErrors();
+        throw error;
     }
 }
 
