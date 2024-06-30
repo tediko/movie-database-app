@@ -1,0 +1,149 @@
+@use '../utilities' as *;
+
+.app-header {
+    $root: &;
+    
+    @include breakpoint('md') {
+        display: flex;
+        max-height: 50rem;
+    }
+
+    &__container {
+        display: flex;
+        padding: clamp(1.125rem, 0.825rem + 1.279vw, 1.44rem);
+        background-color: hsl(var(--c-blue-dark-semi));
+        
+        @include breakpoint('md') {
+            flex-direction: column;
+            gap: 5rem;
+            border-radius: 20px;
+        }
+    }
+
+    &__logo-cta {
+        &:focus-visible {
+            @extend %focus-visible;
+        }
+    }
+
+    &__logo {
+        width: clamp(40px, 1.905rem + 2.538vw, 50px)
+    }
+
+    &__nav {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include breakpoint('md') {
+            align-items: unset;
+        }
+    }
+
+    &__list {
+        display: flex;
+        gap: clamp(1.5rem, 0.548rem + 4.061vw, 2.5rem);
+
+        @include breakpoint('md') {
+            flex-direction: column;
+        }
+    }
+
+    &__item {
+        text-align: center;
+
+        &:has(:focus-visible) {
+            @extend %focus-visible;
+        }
+
+        &.active {
+            #{$root}__link {
+                color: hsl(var(--c-white));
+            }
+        }
+    }
+
+    &__link {
+        transition: color 350ms ease-in-out;
+
+        &:focus-visible {
+            border: none;
+            outline: none;
+            color: hsl(var(--c-red));
+        }
+
+        @include breakpoint('md') {
+            &:hover {
+                color: hsl(var(--c-red));
+            }
+        }
+    }
+
+    &__profile {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(0.5rem, 0.024rem + 2.03vw, 1rem);
+        align-items: center;
+        
+        @include breakpoint('md') {
+            grid-template-columns: 1fr;
+            justify-items: center;
+        }
+    }
+
+    &__profile-cta {
+        position: relative;
+
+        &::before {
+            position: absolute;
+            content: '';
+            inset: -2px;
+            background-color: hsl(var(--c-white));
+            border-radius: 50%;
+            transition: background-color 350ms ease-in-out;
+        }
+
+        &:focus-visible {
+            @extend %focus-visible;
+            outline-offset: 3px;
+            
+            &::before {
+                background-color: hsl(var(--c-red));
+            }
+        }
+
+        @include breakpoint('md') {
+            &:hover {
+                &::before {
+                    background-color: hsl(var(--c-red));
+                }
+            }
+        }
+    }
+
+    &__profile-image {
+        position: relative;
+        width: clamp(24px, 0.06rem + 5.076vw, 40px);
+    }
+
+    &__logout-cta {
+        border: none;
+        background-color: transparent;
+        text-align: center;
+        width: 100%;
+        cursor: pointer;
+        transition: color 350ms ease-in-out;
+
+        &:focus-visible {
+            @extend %focus-visible;
+            color: hsl(var(--c-red));
+        }
+
+        @include breakpoint('md') {
+            &:hover {
+                color: hsl(var(--c-red));
+            }
+        }
+    }
+}
