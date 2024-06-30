@@ -11,6 +11,7 @@ let trailersList;
 const wrapperSelector = '[data-trailers-wrapper]';
 const listSelector = '[data-trailers-list]';
 const ctaSelector = '[data-trailers-cta]';
+const swiperContainerSelector = '[data-trending-swiper]';
 const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w355_and_h200_multi_faces`;
 const bigBackgroundUrl = `https://media.themoviedb.org/t/p/original/`;
 
@@ -70,7 +71,7 @@ const displayTrailers = (moviesList, numOfMoviesToDisplay = 10) => {
     trailersList.innerHTML = '';
     trailersList.appendChild(fragment);
     trailersWrapper.style.backgroundImage = `url('${bigBackgroundUrl}${moviesList[0].background}')`;
-    initSlider('[data-trailers-swiper]');
+    initSlider(swiperContainerSelector);
     attachTrailersListItemListeners(moviesList, trailersList);
 }
 
