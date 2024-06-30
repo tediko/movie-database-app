@@ -3,6 +3,23 @@
 .trending {
     $root: &;
 
+    &__container {
+        position: relative;
+
+        &::after {
+            position: absolute;
+            display: block;
+            content: "";
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 100%;
+            background-image: linear-gradient(to right,rgba(255, 0, 0, 0)0,hsl(var(--c-blue-dark)) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+    }
+
     &__title {
         margin-bottom: 1.5rem;
     }
