@@ -2,6 +2,7 @@ import { displayTrailersErrors, displayTrailers } from './displayTrailers';
 
 // Flags
 const apiMovieUrl = 'https://api.themoviedb.org/3/movie/';
+const apiTrendingUrl = 'https://api.themoviedb.org/3/trending/all/week';
 
 // Fetch options
 const options = {
@@ -76,4 +77,38 @@ async function fetchTrailerSrcKey(movieId) {
     }
 }
 
-export { fetchUpcomingMovies, fetchTrailerSrcKey };
+/**
+ * Fetches the latest trending movies and TV series from the API.
+ * @async
+ * @throws {Error} If there's an issue with the API request or response parsing.
+ * @returns {Object<Array>} An array of objects containing the trending movies and TV series data.
+ */
+async function fetchTrending() {
+    try {
+        const response = await fetch(apiTrendingUrl, options);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const filteredData = data.results.filter((item) => {
+            return item.media_type == 'movie' || item.media_type == 'tv';
+        }).map((item) => {
+            return {
+                id: item.id,
+                title: item.title || item.name,
+                posterPath: item.poster_path,
+                type: item.media_type,
+                releaseData: item.release_date || item.first_air_date,
+                ratingAverage: item.vote_average
+            }
+        })
+
+        return filteredData;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export { fetchUpcomingMovies, fetchTrailerSrcKey, fetchTrending };
