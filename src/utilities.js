@@ -138,6 +138,22 @@ const redirectToNewLocation = (newLocationUrl, timeoutDuration = 1000) => {
     }, timeoutDuration)
 }
 
+/**
+ * Displays a error in the DOM within list container.
+ */
+const displayDataError = (listContainer) => {
+    const fragment = new DocumentFragment();
+
+    const listItem = createHtmlElement('li', ['data-error'], `
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <p class="fs-400 fw-700 text-white">It seems like our data unicorns have gone on strike.<br>Try again later!</p>    
+    `);
+
+    listContainer.innerHTML = '';
+    fragment.appendChild(listItem);
+    listContainer.appendChild(fragment);
+}
+
 export { 
     createHtmlElement,
     focusTrap,
@@ -145,5 +161,6 @@ export {
     passwordValidation,
     showFormErrorMessage,
     showRedirectSuccessMessage,
-    redirectToNewLocation
+    redirectToNewLocation,
+    displayDataError
 };
