@@ -74,22 +74,6 @@ const displayTrailers = (moviesList, numOfMoviesToDisplay = 10) => {
 }
 
 /**
- * Displays a error in the DOM within trailersList list element.
- */
-const displayTrailersErrors = () => {
-    const fragment = new DocumentFragment();
-
-    const listItem = createHtmlElement('li', ['trailers__error'], `
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        <p class="fs-400 fw-700 text-white">It seems like our data unicorns have gone on strike.<br>Try again later!</p>    
-    `);
-
-    trailersList.innerHTML = '';
-    fragment.appendChild(listItem);
-    trailersList.appendChild(fragment);
-}
-
-/**
  * Handles the hover event for a trailer item. Updates the background image of 
  * the trailersWrapper based on the hovered item's data attribute.
  * @param {HTMLElement} element - The DOM element being hovered over.
