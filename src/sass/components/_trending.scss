@@ -1,0 +1,136 @@
+@use '../utilities' as *;
+
+.trending {
+    $root: &;
+
+    &__title {
+        margin-bottom: 1.5rem;
+    }
+
+    &__item {
+        position: relative;
+        width: 100%;
+        max-width: 12rem;
+    }
+    
+    &__item-cta {
+        text-decoration: none;
+
+        @include breakpoint('md') {
+            &:hover {
+                #{$root}__item-bg {
+                    background-size: 110%;
+                }
+            }
+        }
+
+        &:focus-visible {
+            outline: none;
+
+            #{$root}__item-bg {
+                background-size: 110%;
+            }
+
+            #{$root}__details-title {
+                color: hsl(var(--c-red));
+            }
+        }
+    }
+
+    &__item-bg {
+        background-image: url("https://image.tmdb.org/t/p/w342/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg");
+        background-size: 100%;
+        background-position: center;
+        aspect-ratio: 4/6;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        transition: background-size 350ms ease-in-out;
+    }
+
+    &__user-score {
+        --progress: 70;
+        --progress-percentage: calc(var(--progress) * 1%); // convert to percentage
+
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom: 2.4rem;
+        right: -0.5rem;
+        width: 45px;
+        height: 45px;
+        background: 
+            radial-gradient(closest-side, hsl(var(--c-blue-dark-semi)) 79%, transparent 80% 100%),
+            conic-gradient(hsl(var(--progress), 100%, 50%) var(--progress-percentage), hsl(var(--c-blue-dark-semi)) 0);
+        border-radius: 50%;
+        outline: 4px solid hsl(var(--c-blue-dark));
+        outline-offset: -1px;
+        counter-reset: progress var(--progress); // Workaround to create the text variable directly from the number. 
+
+        &::before {
+            /* Empty string after slash means alternative text for screen readers.
+               We want it empty since in HTML we're providing that information using <meter> tag */
+            content: counter(progress) "%"; // fallback
+            content: counter(progress) "%" / "";
+        }
+    }
+
+    &__details {
+        display: grid;
+        gap: 0.1rem;
+    }
+    
+    &__details-desc {
+        display: flex;
+        
+        span {
+            display: inline-flex;
+            align-items: center;
+            
+            &:not(:last-of-type) {
+                &::after {
+                    position: relative;
+                    display: inline-block;
+                    content: '';
+                    width: 3px;
+                    height: 3px;
+                    background-color: hsl(var(--c-white) / 0.75);
+                    margin-inline: 0.5rem;
+                    border-radius: 50%;
+                }
+            }
+            
+            img {
+                padding-right: 0.375rem;
+            }
+        }
+    }
+
+    &__bookmark-cta {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        top: 1rem;
+        right: 1rem;
+        width: 2rem;
+        height: 2rem;
+        background-color: hsl(var(--c-blue-dark) / 0.5);
+        border: none;
+        border-radius: 50%;
+        z-index: 1;
+        cursor: pointer;
+        transition: color 350ms ease-in-out,
+                    background-color 350ms ease-in-out;
+    
+        &:hover {
+            color: hsl(var(--c-blue-dark));
+            background-color: hsl(var(--c-white));
+        }
+    
+        &:focus-visible {
+            outline: none;
+            color: hsl(var(--c-blue-dark));
+            background-color: hsl(var(--c-white));
+        }
+    }
+}
