@@ -1,4 +1,4 @@
-import { fetchTrailerSrcKey } from './fetchUpcomingMovies';
+import { fetchTrailerSrcKey } from './fetchData';
 import { createHtmlElement, focusTrap } from "./utilities";
 
 // Selectors
