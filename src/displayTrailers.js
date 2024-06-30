@@ -25,17 +25,17 @@ const displayTrailers = (moviesList, numOfMoviesToDisplay = 10) => {
 
     // For each movie, creates a list item with movie details and appends it to the fragment.
     slicedMoviesList.forEach(({id, title, background, releaseDate}) => {
-        const listItem = createHtmlElement('li', ['home-trailers__item', 'swiper-slide'],
+        const listItem = createHtmlElement('li', ['trailers__item', 'swiper-slide'],
             `
-            <a href="#" class="home-trailers__cta" data-trailers-cta data-trailers-bg="${background}" data-trailers-id="${id}" data-trailers-title="${title}">
-                <div class="home-trailers__trailer-preview">
+            <a href="#" class="trailers__cta" data-trailers-cta data-trailers-bg="${background}" data-trailers-id="${id}" data-trailers-title="${title}">
+                <div class="trailers__trailer-preview">
                     <img src="${smallBackgroundUrl}${background}" alt="${title}">
-                    <div class="home-trailers__play">
+                    <div class="trailers__play">
                         <img src="/assets/icon-play-simple.svg" alt="">
                     </div>
                 </div>
-                <h3 class="home-trailers__trailer-title fs-400 fw-500 text-white">${title}</h3>
-                <p class="home-trailers__trailer-desc fs-200 fw-400 text-white">Release date: ${releaseDate}</p>
+                <h3 class="trailers__trailer-title fs-400 fw-500 text-white">${title}</h3>
+                <p class="trailers__trailer-desc fs-200 fw-400 text-white">Release date: ${releaseDate}</p>
             </a>
             `
         );
@@ -59,7 +59,7 @@ const displayTrailers = (moviesList, numOfMoviesToDisplay = 10) => {
 const displayTrailersErrors = () => {
     const fragment = new DocumentFragment();
 
-    const listItem = createHtmlElement('li', ['home-trailers__error'], `
+    const listItem = createHtmlElement('li', ['trailers__error'], `
         <i class="fa-solid fa-triangle-exclamation"></i>
         <p class="fs-400 fw-700 text-white">It seems like our data unicorns have gone on strike.<br>Try again later!</p>    
     `);
