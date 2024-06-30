@@ -10,6 +10,7 @@ let trailersList;
 // Flags
 const wrapperSelector = '[data-trailers-wrapper]';
 const listSelector = '[data-trailers-list]';
+const ctaSelector = '[data-trailers-cta]';
 const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w355_and_h200_multi_faces`;
 const bigBackgroundUrl = `https://media.themoviedb.org/t/p/original/`;
 
@@ -107,7 +108,7 @@ const handleTrailersItemClick = (moviesList, event) => {
  * @param {HTMLElement} trailersListElement - The DOM element containing the list of trailers.
  */
 const attachTrailersListItemListeners = (moviesList, trailersListElement) => {
-    const sliderItemCtas = trailersListElement.querySelectorAll('[data-trailers-cta]');
+    const sliderItemCtas = trailersListElement.querySelectorAll(ctaSelector);
 
     sliderItemCtas.forEach(item => {
         item.addEventListener('mouseenter', () => {
