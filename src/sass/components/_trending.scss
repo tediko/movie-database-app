@@ -38,6 +38,7 @@
     }
 
     &__item-bg {
+        position: relative;
         background-image: url("https://image.tmdb.org/t/p/w342/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg");
         background-size: 100%;
         background-position: center;
@@ -55,7 +56,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        bottom: 2.4rem;
+        bottom: -0.8rem;
         right: -0.5rem;
         width: 45px;
         height: 45px;
