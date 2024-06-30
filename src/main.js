@@ -1,5 +1,5 @@
 import './sass/main.scss';
-import { fetchUpcomingMovies } from './fetchUpcomingMovies';
+import { fetchUpcomingMovies } from './fetchData';
 import initGetStartedEmailValidation from './getStartedEmailValidation';
 import { initLoginFormValidation, handleLoginButtonClick } from './auth/loginFormValidation';
 import { initRegisterFormValidation } from './auth/registerFormValidation';
