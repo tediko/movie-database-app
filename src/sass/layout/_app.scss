@@ -1,0 +1,74 @@
+@use '../utilities' as *;
+
+.app {
+    $root: &;
+
+    @include breakpoint('md') {
+        padding-block: 2rem;
+        padding-left: 2.5rem;
+    }
+
+    &__layout-grid {
+        display: grid;
+        gap: 2.25rem;
+
+        @include breakpoint('md') {
+            grid-template-columns: max-content 1fr;
+            min-height: 100vh;
+        }
+    }
+
+    &__main {
+        overflow: hidden;
+        max-width: 120rem;
+        padding-inline: clamp(1rem, -0.428rem + 6.091vw, 2.5rem);
+
+        @include breakpoint('md') {
+            padding-right: 0;
+        }
+    }
+
+    &__search {
+        display: flex;
+        align-items: start;
+        gap: 1.5rem;
+        margin-top: 1.8rem;
+        margin-bottom: 1.25rem;
+    }
+
+    &__search-submit {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transition: color 350ms ease-in-out;
+
+        &:focus-visible {
+            @extend %focus-visible;
+            color: hsl(var(--c-red));
+        }
+        
+        @include breakpoint('md') {
+            &:hover {
+                color: hsl(var(--c-red));
+            }
+        }
+    }
+    
+    &__search-input {
+        background-color: transparent;
+        border: none;
+        width: 100%;
+        padding-bottom: 1rem;
+        caret-color: hsl(var(--c-red));
+        
+        &:focus {
+            border: none;
+            outline: none;
+        }
+        
+        &:focus-visible {
+            border-bottom: 1px solid hsl(var(--c-blue-grayish));
+            margin-bottom: -1px;
+        }
+    }
+}
