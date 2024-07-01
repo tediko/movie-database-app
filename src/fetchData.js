@@ -1,6 +1,8 @@
 // Flags
 const apiMovieUrl = 'https://api.themoviedb.org/3/movie/';
 const apiTrendingUrl = 'https://api.themoviedb.org/3/trending/all/week';
+const shawshankMovieId = 278;
+const breakingBadSeriesId = 1396;
 
 // Fetch options
 const options = {
@@ -109,4 +111,40 @@ async function fetchTrending() {
     }
 }
 
-export { fetchUpcomingMovies, fetchTrailerSrcKey, fetchTrending };
+/**
+ * Fetches movie and TV series recommendations based on the provided IDs.
+ * If no IDs are provided, it uses default IDs for Shawshank Redemption and Breaking Bad.
+ * @async
+ * @param {number|string} [movieId=shawshankMovieId] - The ID of the movie to fetch recommendations for.
+ * @param {number|string} [seriesId=breakingBadSeriesId] - The ID of the TV series to fetch recommendations for.
+ * @throws {Error} If there's an issue with the API request or response parsing.
+ * @returns {Promise<{movies: any[], tvSeries: any[]}>} A promise that resolves with an object containing movie and TVseries recommendations.
+ */
+async function fetchRecommended(movieId = shawshankMovieId, seriesId = breakingBadSeriesId) {
+    const urls = [
+        `https://api.themoviedb.org/3/movie/${movieId}/recommendations`,
+        `https://api.themoviedb.org/3/tv/${seriesId}/recommendations`
+    ];
+
+    try {
+        // Takes an iterable of promises and returns a single Promise.
+        const responses = await Promise.all(urls.map(url => fetch(url, options)));
+
+        responses.forEach(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP Error! Status: ${response.status}`)
+            }
+        })
+        
+        const data = await Promise.all(responses.map(res => res.json()));
+    
+        return {
+            movies: data[0].results,
+            tvSeries: data[1].results
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+export { fetchUpcomingMovies, fetchTrailerSrcKey, fetchTrending, fetchRecommended };
