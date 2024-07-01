@@ -1,6 +1,6 @@
-import { fetchTrending } from "./api/fetchData";
-import initSlider from "./slider";
-import { createHtmlElement, displayDataError } from "./utilities";
+import { fetchTrending } from "../api/fetchData";
+import initSlider from "../slider";
+import { createHtmlElement, displayDataError } from "../utilities";
 
 // Selectors
 let trendingWrapper;

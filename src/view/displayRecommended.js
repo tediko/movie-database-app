@@ -1,5 +1,5 @@
-import { fetchRecommendations } from "./api/fetchData";
-import { createHtmlElement, displayDataError } from "./utilities";
+import { fetchRecommendations } from "../api/fetchData";
+import { createHtmlElement, displayDataError } from "../utilities";
 
 // Selectors
 let recommendedList;

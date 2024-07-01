@@ -1,5 +1,5 @@
-import { fetchTrailerSrcKey } from './api/fetchData';
-import { createHtmlElement, focusTrap } from "./utilities";
+import { fetchTrailerSrcKey } from '../api/fetchData';
+import { createHtmlElement, focusTrap } from "../utilities";
 
 // Selectors
 const lightboxElement = document.querySelector('[data-lightbox]');
