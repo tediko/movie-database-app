@@ -1,11 +1,15 @@
 @use '../utilities' as *;
 
 .app-header {
+    position: sticky;
+    top: 0;
     $root: &;
+    z-index: 999;
     
     @include breakpoint('md') {
         display: flex;
-        max-height: 50rem;
+        position: static;
+        top: unset;
     }
 
     &__container {
@@ -14,6 +18,9 @@
         background-color: hsl(var(--c-blue-dark-semi));
         
         @include breakpoint('md') {
+            position: sticky;
+            top: 2rem;
+            max-height: 50rem;
             flex-direction: column;
             gap: 5rem;
             border-radius: 20px;
