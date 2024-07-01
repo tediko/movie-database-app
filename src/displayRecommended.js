@@ -60,9 +60,7 @@ const displayRecommended = (data, numOfMediaToDisplay = 12) => {
                     <h3 class="media-showcase__details-title fs-450 fw-500 text-white">${title}</h3>
                 </div>
             </a>
-            <button class="media-showcase__bookmark-cta text-white" type="button" aria-label="Add ${title} to bookmarks" data-recommended-bookmark-cta>
-                <i class="fa-regular fa-bookmark"></i>
-            </button>            
+            <button class="media-showcase__bookmark-cta bookmark-cta text-white" type="button" aria-label="Add ${title} to bookmarks" data-bookmark-cta></button>            
         `)
 
         fragment.appendChild(listItem);
