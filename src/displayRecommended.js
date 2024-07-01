@@ -14,7 +14,7 @@ const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w500/`;
 async function initRecommended() {
     recommendedList = document.querySelector(listSelector);
 
-    if (!listSelector) return;
+    if (!recommendedList) return;
 
     try {
         const data = await fetchRecommendations();
