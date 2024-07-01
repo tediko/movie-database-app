@@ -55,7 +55,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: linear-gradient(-109deg, rgba(255, 0, 0, 0) 0, hsl(var(--c-blue-dark)) 100%);
+            background-image: linear-gradient(180deg, hsl(var(--c-white) / 0) 53%, hsl(var(--c-blue-dark)) 100%);
             pointer-events: none;
             z-index: 1;
         }
@@ -85,17 +85,17 @@
     
     &__more {
         position: absolute;
-        top: 40%;
-        left: 50%;
         display: flex;
         align-items: center;
+        top: 2rem;
+        left: 2rem;
         gap: 0.5rem;
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.7);
         pointer-events: none;
         background-color: hsl(var(--c-white) / 0.2);
         border-radius: 40px;
-        padding: 0.7rem;
+        padding: 0.3rem;
         transition: opacity 350ms ease-in-out,
                     transform 350ms ease-in-out;
         z-index: 1;
