@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/favicon-32x32.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b961f1cbcd.js" crossorigin="anonymous"></script>
+    <title>MovieDB - Your personal entertainment hub</title>
+  </head>
+  <body>
+    <div class="overlay" data-overlay></div>
+    <div class="app">
+        <div class="app__layout-grid">
+            <header class="app__header app-header">
+                <div class="app-header__container">
+                    <a href="index.html" class="app-header__logo-cta" aria-label="MovieDB - Your personal entertainment hub">
+                        <img src="/assets/logo.svg" alt="" class="app-header__logo">
+                    </a>
+                    <nav class="app-header__nav">
+                        <ul class="app-header__list">
+                            <li class="app-header__item active">
+                                <a href="index.html" class="app-header__link fs-450 text-blue-grayish" aria-label="MovieDB App - Home">
+                                    <i class="fa-solid fa-house"></i>
+                                </a>
+                            </li>
+                            <li class="app-header__item">
+                                <a href="movies/index.html" class="app-header__link fs-450 text-blue-grayish" aria-label="MovieDB App - Movies">
+                                    <i class="fa-solid fa-film"></i>
+                                </a>
+                            </li>
+                            <li class="app-header__item">
+                                <a href="series/index.html" class="app-header__link fs-450 text-blue-grayish" aria-label="MovieDB App - TV Series">
+                                    <i class="fa-solid fa-tv"></i>
+                                </a>
+                            </li>
+                            <li class="app-header__item">
+                                <a href="bookmarked/index.html" class="app-header__link fs-450 text-blue-grayish" aria-label="MovieDB App - Bookmarked">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="app-header__profile">
+                        <a href="profile.html" class="app-header__profile-cta" aria-label="Profile settings">
+                            <img class="app-header__profile-image" src="/assets/image-avatar.png" alt="">
+                        </a>
+                        <button type="button" class="app-header__logout-cta fs-450 text-blue-grayish" aria-label="Logout from MovieDB App">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <main class="app__main">
+                <section class="app__content">
+                    <h1 class="sr-only">MovieDB - Your personal entertainment hub</h1>
+                    <form action="#" class="app__search">
+                        <button class="app__search-submit fs-450 text-white" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        <label class="sr-only" for="search">Search for movies or TV Series</label>
+                        <input class="app__search-input fs-450 fw-300 text-white" type="text" name="search" id="search" placeholder="Search for movies or TV Series">
+                    </form>
+                    <section class="app__trending trending">
+                        <div class="trending__container" data-trending-wrapper>
+                            <h2 class="trending__title fs-600 fw-300 text-white">Trending</h2>
+                            <div class="trending__wrapper swiper" data-trending-swiper>
+                                <ul class="trending__list swiper-wrapper" data-trending-list></ul>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="app__trailers trailers--small">
+                        <div class="trailers__separator separator"></div>
+                        <div class="trailers__wrapper" data-trailers-wrapper>
+                          <div class="trailers__wrapper-gradient">
+                            <div class="trailers__container--small">
+                              <h2 class="trailers__title fs-600 fw-300 text-white">Latest Trailers</h2>
+                              <div class="trailers__list-wrapper swiper" data-trailers-swiper>
+                                <ul class="trailers__list swiper-wrapper" data-trailers-list></ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="trailers__separator separator"></div>
+                    </section>
+                    <section class="app__media-showcase media-showcase">
+                        <div class="media-showcase__container">
+                            <h2 class="media-showcase__title fs-600 fw-300 text-white">Recommended for you</h2>
+                            <ul class="media-showcase__list" data-showcase-list>
+                                <li class="media-showcase__item">
+                                    <a href="#" class="media-showcase__item-cta" data-showcase-cta>
+                                        <p class="media-showcase__more fw-500 text-white"><i class="fa-regular fa-eye"></i> Explore more</p>
+                                        <div class="media-showcase__details">
+                                            <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
+                                                <span>2024</span>
+                                                <span><img src="/assets/icon-category-movie.svg" alt=""> Movie</span>
+                                            </p>
+                                            <h3 class="media-showcase__details-title fs-450 fw-500 text-white">Beyond Earth</h3>
+                                        </div>
+                                    </a>
+                                    <button class="media-showcase__bookmark-cta text-white" type="button" aria-label="Add Beyond Earth to bookmarks" data-showcase-bookmark-cta>
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    </button>
+                                </li>
+                                <li class="media-showcase__item">
+                                    <a href="#" class="media-showcase__item-cta" data-showcase-cta>
+                                        <p class="media-showcase__more fw-500 text-white"><i class="fa-regular fa-eye"></i> Explore more</p>
+                                        <div class="media-showcase__details">
+                                            <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
+                                                <span>2024</span>
+                                                <span><img src="/assets/icon-category-movie.svg" alt=""> Movie</span>
+                                            </p>
+                                            <h3 class="media-showcase__details-title fs-450 fw-500 text-white">Beyond Earth</h3>
+                                        </div>
+                                    </a>
+                                    <button class="media-showcase__bookmark-cta text-white" type="button" aria-label="Add Beyond Earth to bookmarks" data-showcase-bookmark-cta>
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    </button>
+                                </li>
+                                <li class="media-showcase__item">
+                                    <a href="#" class="media-showcase__item-cta" data-showcase-cta>
+                                        <p class="media-showcase__more fw-500 text-white"><i class="fa-regular fa-eye"></i> Explore more</p>
+                                        <div class="media-showcase__details">
+                                            <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
+                                                <span>2024</span>
+                                                <span><img src="/assets/icon-category-movie.svg" alt=""> Movie</span>
+                                            </p>
+                                            <h3 class="media-showcase__details-title fs-450 fw-500 text-white">Beyond Earth</h3>
+                                        </div>
+                                    </a>
+                                    <button class="media-showcase__bookmark-cta text-white" type="button" aria-label="Add Beyond Earth to bookmarks" data-showcase-bookmark-cta>
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    </button>
+                                </li>
+                                <li class="media-showcase__item">
+                                    <a href="#" class="media-showcase__item-cta" data-showcase-cta>
+                                        <p class="media-showcase__more fw-500 text-white"><i class="fa-regular fa-eye"></i> Explore more</p>
+                                        <div class="media-showcase__details">
+                                            <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
+                                                <span>2024</span>
+                                                <span><img src="/assets/icon-category-movie.svg" alt=""> Movie</span>
+                                            </p>
+                                            <h3 class="media-showcase__details-title fs-450 fw-500 text-white">Beyond Earth</h3>
+                                        </div>
+                                    </a>
+                                    <button class="media-showcase__bookmark-cta text-white" type="button" aria-label="Add Beyond Earth to bookmarks" data-showcase-bookmark-cta>
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    </button>
+                                </li>
+                                <li class="media-showcase__item">
+                                    <a href="#" class="media-showcase__item-cta" data-showcase-cta>
+                                        <p class="media-showcase__more fw-500 text-white"><i class="fa-regular fa-eye"></i> Explore more</p>
+                                        <div class="media-showcase__details">
+                                            <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
+                                                <span>2024</span>
+                                                <span><img src="/assets/icon-category-movie.svg" alt=""> Movie</span>
+                                            </p>
+                                            <h3 class="media-showcase__details-title fs-450 fw-500 text-white">Beyond Earth</h3>
+                                        </div>
+                                    </a>
+                                    <button class="media-showcase__bookmark-cta text-white" type="button" aria-label="Add Beyond Earth to bookmarks" data-showcase-bookmark-cta>
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    </button>
+                                </li>
+                                <li class="media-showcase__item">
+                                    <a href="#" class="media-showcase__item-cta" data-showcase-cta>
+                                        <p class="media-showcase__more fw-500 text-white"><i class="fa-regular fa-eye"></i> Explore more</p>
+                                        <div class="media-showcase__details">
+                                            <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
+                                                <span>2024</span>
+                                                <span><img src="/assets/icon-category-movie.svg" alt=""> Movie</span>
+                                            </p>
+                                            <h3 class="media-showcase__details-title fs-450 fw-500 text-white">Beyond Earth</h3>
+                                        </div>
+                                    </a>
+                                    <button class="media-showcase__bookmark-cta text-white" type="button" aria-label="Add Beyond Earth to bookmarks" data-showcase-bookmark-cta>
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    </button>
+                                </li>
+                                <li class="media-showcase__item">
+                                    <a href="#" class="media-showcase__item-cta" data-showcase-cta>
+                                        <p class="media-showcase__more fw-500 text-white"><i class="fa-regular fa-eye"></i> Explore more</p>
+                                        <div class="media-showcase__details">
+                                            <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
+                                                <span>2024</span>
+                                                <span><img src="/assets/icon-category-movie.svg" alt=""> Movie</span>
+                                            </p>
+                                            <h3 class="media-showcase__details-title fs-450 fw-500 text-white">Beyond Earth</h3>
+                                        </div>
+                                    </a>
+                                    <button class="media-showcase__bookmark-cta text-white" type="button" aria-label="Add Beyond Earth to bookmarks" data-showcase-bookmark-cta>
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    </button>
+                                </li>
+                                <li class="media-showcase__item">
+                                    <a href="#" class="media-showcase__item-cta" data-showcase-cta>
+                                        <p class="media-showcase__more fw-500 text-white"><i class="fa-regular fa-eye"></i> Explore more</p>
+                                        <div class="media-showcase__details">
+                                            <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
+                                                <span>2024</span>
+                                                <span><img src="/assets/icon-category-movie.svg" alt=""> Movie</span>
+                                            </p>
+                                            <h3 class="media-showcase__details-title fs-450 fw-500 text-white">Beyond Earth</h3>
+                                        </div>
+                                    </a>
+                                    <button class="media-showcase__bookmark-cta text-white" type="button" aria-label="Add Beyond Earth to bookmarks" data-showcase-bookmark-cta>
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                </section>
+            </main>
+        </div>
+    </div>
+    <div class="lightbox" data-lightbox role="dialog" aria-label="Trailer video modal"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
