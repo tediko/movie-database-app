@@ -120,7 +120,7 @@ async function fetchTrending() {
  * @throws {Error} If there's an issue with the API request or response parsing.
  * @returns {Promise<{movies: any[], tvSeries: any[]}>} A promise that resolves with an object containing movie and TVseries recommendations.
  */
-async function fetchRecommended(movieId = shawshankMovieId, seriesId = breakingBadSeriesId) {
+async function fetchRecommendations(movieId = shawshankMovieId, seriesId = breakingBadSeriesId) {
     const urls = [
         `https://api.themoviedb.org/3/movie/${movieId}/recommendations`,
         `https://api.themoviedb.org/3/tv/${seriesId}/recommendations`
@@ -135,7 +135,7 @@ async function fetchRecommended(movieId = shawshankMovieId, seriesId = breakingB
                 throw new Error(`HTTP Error! Status: ${response.status}`)
             }
         })
-        
+
         const data = await Promise.all(responses.map(res => res.json()));
     
         return {
@@ -147,4 +147,4 @@ async function fetchRecommended(movieId = shawshankMovieId, seriesId = breakingB
     }
 }
 
-export { fetchUpcomingMovies, fetchTrailerSrcKey, fetchTrending, fetchRecommended };
+export { fetchUpcomingMovies, fetchTrailerSrcKey, fetchTrending, fetchRecommendations };
