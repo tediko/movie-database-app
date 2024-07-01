@@ -140,7 +140,7 @@ async function fetchRecommendations(movieId = shawshankMovieId, seriesId = break
     
         return {
             movies: data[0].results,
-            tvSeries: data[1].results
+            tv_series: data[1].results
         }
     } catch (error) {
         throw error;
