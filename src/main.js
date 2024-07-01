@@ -4,6 +4,7 @@ import { initLoginFormValidation, handleLoginButtonClick } from './auth/loginFor
 import { initRegisterFormValidation } from './auth/registerFormValidation';
 import initTrending from './displayTrending';
 import initTrailers from './displayTrailers';
+import initRecommended from './displayRecommended';
 
 initGetStartedEmailValidation('[data-home-signup]');
 initLoginFormValidation();
@@ -11,3 +12,4 @@ initRegisterFormValidation();
 handleLoginButtonClick();
 initTrending();
 initTrailers();
+initRecommended();
