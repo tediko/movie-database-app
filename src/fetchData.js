@@ -139,8 +139,24 @@ async function fetchRecommendations(movieId = shawshankMovieId, seriesId = break
         const data = await Promise.all(responses.map(res => res.json()));
     
         return {
-            movies: data[0].results,
-            tv_series: data[1].results
+            movies: data[0].results.map(item => {
+                return {
+                    id: item.id,
+                    title: item.title,
+                    backdropPath: item.backdrop_path,
+                    type: item.media_type,
+                    releaseData: item.release_date,
+                }
+            }),
+            tv_series: data[1].results.map(item => {
+                return {
+                    id: item.id,
+                    title: item.name,
+                    backdropPath: item.backdrop_path,
+                    type: item.media_type,
+                    releaseData: item.first_air_date,
+                }
+            })
         }
     } catch (error) {
         throw error;
