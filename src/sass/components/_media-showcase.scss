@@ -60,28 +60,6 @@
             z-index: 1;
         }
     }
-
-    &__bookmark-cta {
-        position: absolute;
-        display: grid;
-        place-items: center;
-        top: 1rem;
-        right: 1rem;
-        width: 2rem;
-        height: 2rem;
-        background-color: hsl(var(--c-blue-dark) / 0.5);
-        border: none;
-        border-radius: 50%;
-        z-index: 1;
-        cursor: pointer;
-        transition: color 350ms ease-in-out,
-                    background-color 350ms ease-in-out;
-
-        &:hover {
-            color: hsl(var(--c-blue-dark));
-            background-color: hsl(var(--c-white));
-        }
-    }
     
     &__more {
         position: absolute;
