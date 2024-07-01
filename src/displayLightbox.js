@@ -1,4 +1,4 @@
-import { fetchTrailerSrcKey } from './fetchData';
+import { fetchTrailerSrcKey } from './api/fetchData';
 import { createHtmlElement, focusTrap } from "./utilities";
 
 // Selectors

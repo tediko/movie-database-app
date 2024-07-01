@@ -1,4 +1,4 @@
-import { fetchRecommendations } from "./fetchData";
+import { fetchRecommendations } from "./api/fetchData";
 import { createHtmlElement, displayDataError } from "./utilities";
 
 // Selectors

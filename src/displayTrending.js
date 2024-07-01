@@ -1,4 +1,4 @@
-import { fetchTrending } from "./fetchData";
+import { fetchTrending } from "./api/fetchData";
 import initSlider from "./slider";
 import { createHtmlElement, displayDataError } from "./utilities";
 
