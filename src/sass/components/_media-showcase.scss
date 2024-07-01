@@ -78,7 +78,10 @@
                     transform 350ms ease-in-out;
         z-index: 1;
 
-        i {
+        &::before {
+            content: "\f06e";
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 400;
             font-size: 1.5rem;
         }
     }

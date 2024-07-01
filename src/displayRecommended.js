@@ -51,7 +51,7 @@ const displayRecommended = (data, numOfMediaToDisplay = 12) => {
 
         const listItem = createHtmlElement('li', ['media-showcase__item'], `
             <a href="/title?${id}" class="media-showcase__item-cta" data-recommended-cta style="background-image: url('${smallBackgroundUrl}${backdropPath}')">
-                <p class="media-showcase__more fw-500 text-white"><i class="fa-regular fa-eye"></i></p>
+                <div class="media-showcase__more text-white"></div>
                 <div class="media-showcase__details">
                     <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
                         <span>${releaseYear}</span>
