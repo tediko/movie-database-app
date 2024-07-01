@@ -65,9 +65,7 @@ const displayTrending = (data, numOfMediaToDisplay = 12) => {
                     <h3 class="trending__details-title fs-400 fw-500 text-white">${title}</h3>
                 </div>
             </a>
-            <button class="trending__bookmark-cta text-white" type="button" aria-label="Add ${title} to bookmarks" data-trending-bookmark-cta>
-                <i class="fa-regular fa-bookmark" aria-hiden="true"></i>
-            </button>
+            <button class="trending__bookmark-cta bookmark-cta text-white" type="button" aria-label="Add ${title} to bookmarks" data-bookmark-cta></button>
         `);
 
         fragment.appendChild(listItem);
