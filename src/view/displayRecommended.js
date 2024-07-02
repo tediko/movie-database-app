@@ -1,5 +1,6 @@
 import { fetchRecommendations } from "../api/fetchData";
-import { createHtmlElement, displayDataError } from "../utilities";
+import { createHtmlElement, displayDataError, createBookmarkHtmlElement } from "../utilities";
+import { getUserBookmarks } from "../database";
 
 // Selectors
 let recommendedList;
@@ -18,7 +19,9 @@ async function initRecommended() {
 
     try {
         const data = await fetchRecommendations();
-        displayRecommended(data);
+        const bookmarks = await getUserBookmarks();
+        
+        displayRecommended(data, bookmarks);
     } catch (error) {
         displayDataError(recommendedList);
     }
@@ -29,7 +32,7 @@ async function initRecommended() {
  * @param {Array} data - An array of data object containing movie or TVseries information
  * @param {number} numOfMediaToDisplay - The number of media to display. Defaults to 12.
  */
-const displayRecommended = (data, numOfMediaToDisplay = 12) => {
+const displayRecommended = (data, bookmarks, numOfMediaToDisplay = 12) => {
     // Creates a DocumentFragment to build the list
     const fragment = new DocumentFragment();
     const combinedRecommendations = [];
@@ -44,6 +47,7 @@ const displayRecommended = (data, numOfMediaToDisplay = 12) => {
             combinedRecommendations.push(data.tv_series[i])
         };
     }
+
     // Creates a list item for each movie and TV series with details and appends it to the fragment.
     combinedRecommendations.forEach(({id, title, backdropPath, type, releaseData}) => {
         const releaseYear = releaseData.split('-')[0];
@@ -60,7 +64,7 @@ const displayRecommended = (data, numOfMediaToDisplay = 12) => {
                     <h3 class="media-showcase__details-title fs-450 fw-500 text-white">${title}</h3>
                 </div>
             </a>
-            <button class="media-showcase__bookmark-cta bookmark-cta text-white" type="button" aria-label="Add ${title} to bookmarks" data-bookmark-cta></button>            
+            ${createBookmarkHtmlElement(bookmarks, {id, title, backdropPath, type, releaseData})}
         `)
 
         fragment.appendChild(listItem);
