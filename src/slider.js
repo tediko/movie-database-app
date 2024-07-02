@@ -37,10 +37,13 @@ const initSlider = (containerSelector, options = {}) => {
     const swiper = new Swiper(sliderContainer, sliderOptions);
 
     // Add event listener for focus events
+    // Return if focused element has data-bookmark-cta attribute
     // When user use keyboard to navigate through swiper slides it will 
     // change sliderWrapper transform value to match focused slide
     // and prevent bug where slider is stuck.
     sliderContainer.addEventListener('focusin', (event) => {
+        if (event.target.hasAttribute('data-bookmark-cta')) return;
+
         const focusedElement = event.target.parentElement;
 
         if (focusedElement) {
