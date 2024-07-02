@@ -99,6 +99,7 @@ async function fetchTrending() {
                 id: item.id,
                 title: item.title || item.name,
                 posterPath: item.poster_path,
+                backdropPath: item.backdrop_path,
                 type: item.media_type,
                 releaseData: item.release_date || item.first_air_date,
                 ratingAverage: item.vote_average
