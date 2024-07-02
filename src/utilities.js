@@ -156,18 +156,15 @@ const displayDataError = (listContainer) => {
 
 /**
  * Creates HTML string for a bookmark button element
- * @param {Object} bookmarks - Object containing arrays of bookmarked items by type.
+ * @param {Array} bookmarks - Array of bookmarked items.
  * @param {Object} bookmarkInfo - Object containing information about the item to be bookmarked.
  * @returns {string} HTML string representing a bookmark button element.
  */
 const createBookmarkHtmlElement = (bookmarks, bookmarkInfo) => {
     const {id, title, type} = bookmarkInfo;
-
-    // Since bookmarks will return object like { movie: ['1', '2'], tv: ['1'] } and id's can be the same for both movie and tv series
-    // we need to return bookmarked items by media type to get correct one.
-    const bookmarkedItems = bookmarks[type];
-    // Checks if bookmarkedItems has movie/tv series id assigned to our bookmark cta.
-    const isBookmarked = bookmarkedItems.includes(id.toString());
+    // Finds if given bookmark exists within bookmarks Array.
+    // We check for id and type since movie/tv series id can be the same.
+    const isBookmarked = bookmarks.find(element => element.id == id && element.type == type);
 
     return isBookmarked ? 
         `<button class="media-showcase__bookmark-cta bookmark-cta text-white" type="button" aria-label="Remove ${title} from bookmarks" data-bookmark-cta data-bookmarked data-bookmark-info='${JSON.stringify(bookmarkInfo)}'></button>` : 
