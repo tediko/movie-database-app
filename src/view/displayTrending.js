@@ -1,6 +1,7 @@
 import { fetchTrending } from "../api/fetchData";
 import initSlider from "../slider";
-import { createHtmlElement, displayDataError } from "../utilities";
+import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../utilities";
+import { getUserBookmarks, updateUserBookmarks } from "../database";
 
 // Selectors
 let trendingWrapper;
@@ -23,7 +24,10 @@ async function initTrending() {
 
     try {
         const data = await fetchTrending();
-        displayTrending(data);
+        const bookmarks = await getUserBookmarks();
+
+        displayTrending(data, bookmarks);
+        attachBookmarkEventListener(trendingList, bookmarks, updateUserBookmarks);
     } catch (error) {
         displayDataError(trendingList);
     }
@@ -32,16 +36,17 @@ async function initTrending() {
 /**
  * Displays a list of trending movies or TVseries in the DOM
  * @param {Array} data - An array of data object containing movie or TVseries information
+ * @param {Array<Object>} bookmarks - An array of bookmark objects
  * @param {number} numOfMediaToDisplay - The number of media to display. Defaults to 12.
  */
-const displayTrending = (data, numOfMediaToDisplay = 12) => {
+const displayTrending = (data, bookmarks, numOfMediaToDisplay = 12) => {
     // Slices the data array to the specified number of movies to display
     // and creates a DocumentFragment to build the list.
     const slicedTrendingData = data.slice(0, numOfMediaToDisplay);
     const fragment = new DocumentFragment();
 
     // Creates a list item for each movie/TVseries with details and appends it to the fragment.
-    slicedTrendingData.forEach(({id, title, posterPath, type, releaseData, ratingAverage}) => {
+    slicedTrendingData.forEach(({id, title, posterPath, backdropPath, type, releaseData, ratingAverage}) => {
         const releaseYear = releaseData.split('-')[0];
         const mediaType = type === 'movie' ? `<img src="/assets/icon-category-movie.svg" alt=""> Movie` : `<img src="/assets/icon-category-tv.svg" alt=""> TV Series`
         const userRating = +(ratingAverage * 10).toFixed();
@@ -63,7 +68,7 @@ const displayTrending = (data, numOfMediaToDisplay = 12) => {
                     <h3 class="trending__details-title fs-400 fw-500 text-white">${title}</h3>
                 </div>
             </a>
-            <button class="trending__bookmark-cta bookmark-cta text-white" type="button" aria-label="Add ${title} to bookmarks" data-bookmark-cta></button>
+            ${createBookmarkHtmlElement(bookmarks, {id, title, backdropPath, type, releaseData}, 'trending__bookmark-cta')}
         `);
 
         fragment.appendChild(listItem);
