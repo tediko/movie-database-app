@@ -47,6 +47,15 @@
             }
         }
 
+        &:focus-visible {
+            outline: none;
+            background-size: 110%;
+
+            #{$root}__details-title {
+                color: hsl(var(--c-red));
+            }
+        }
+
         &::before {
             position: absolute;
             display: block;
@@ -117,5 +126,9 @@
                 padding-right: 0.375rem;
             }
         }
+    }
+
+    &__details-title {
+        transition: color 350ms ease-in-out;
     }
 }
