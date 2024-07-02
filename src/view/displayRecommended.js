@@ -1,6 +1,6 @@
 import { fetchRecommendations } from "../api/fetchData";
-import { createHtmlElement, displayDataError, createBookmarkHtmlElement } from "../utilities";
-import { getUserBookmarks } from "../database";
+import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../utilities";
+import { getUserBookmarks, updateUserBookmarks } from "../database";
 
 // Selectors
 let recommendedList;
@@ -20,8 +20,9 @@ async function initRecommended() {
     try {
         const data = await fetchRecommendations();
         const bookmarks = await getUserBookmarks();
-        
+
         displayRecommended(data, bookmarks);
+        attachBookmarkEventListener(recommendedList, bookmarks, updateUserBookmarks);
     } catch (error) {
         displayDataError(recommendedList);
     }
