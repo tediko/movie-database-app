@@ -165,10 +165,12 @@ const createBookmarkHtmlElement = (bookmarks, bookmarkInfo) => {
     // Finds if given bookmark exists within bookmarks Array.
     // We check for id and type since movie/tv series id can be the same.
     const isBookmarked = bookmarks.find(element => element.id == id && element.type == type);
-
+    // Convert bookmarkInfo object to string and replace all single quotes with the HTML entity &apos;. This prevents the single quotes from breaking the attribute value.
+    const stringifiedBookmarkInfo = JSON.stringify(bookmarkInfo).replace(/'/g, "&apos;");
+    
     return isBookmarked ? 
-        `<button class="media-showcase__bookmark-cta bookmark-cta text-white" type="button" aria-label="Remove ${title} from bookmarks" data-bookmark-cta data-bookmarked data-bookmark-info='${JSON.stringify(bookmarkInfo)}'></button>` : 
-        `<button class="media-showcase__bookmark-cta bookmark-cta text-white" type="button" aria-label="Add ${title} to bookmarks" data-bookmark-cta data-bookmark-info='${JSON.stringify(bookmarkInfo)}'></button>`;
+        `<button class="media-showcase__bookmark-cta bookmark-cta text-white" type="button" aria-label="Remove ${title} from bookmarks" data-bookmark-cta data-bookmarked data-bookmark-info='${stringifiedBookmarkInfo}'></button>` : 
+        `<button class="media-showcase__bookmark-cta bookmark-cta text-white" type="button" aria-label="Add ${title} to bookmarks" data-bookmark-cta data-bookmark-info='${stringifiedBookmarkInfo}'></button>`;
 }
 
 export { 
