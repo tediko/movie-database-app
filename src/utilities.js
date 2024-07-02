@@ -173,6 +173,63 @@ const createBookmarkHtmlElement = (bookmarks, bookmarkInfo) => {
         `<button class="media-showcase__bookmark-cta bookmark-cta text-white" type="button" aria-label="Add ${title} to bookmarks" data-bookmark-cta data-bookmark-info='${stringifiedBookmarkInfo}'></button>`;
 }
 
+/**
+ * Attaches a bookmark event listener to a container element, allowing users to bookmark and unbookmark items.
+ * @param {HTMLElement} container - The container element where the bookmark event listener will be attached.
+ * @param {Array<Object>} bookmarks - An array of bookmark objects
+ */
+const attachBookmarkEventListener = (container, bookmarks, updateUserBookmarks) => {
+    const bookmarkCtaSelector = '[data-bookmark-cta]';
+    const bookmarkCtaAttribute = 'data-bookmark-cta';
+    const bookmarkedAttribute = 'data-bookmarked';
+    let newBookmarks = bookmarks;
+
+    // Toggles the bookmark state of an item.
+    const toggleBookmark = (eventTarget) => {
+        const { id, type, title } = JSON.parse(eventTarget.dataset.bookmarkInfo);
+        const newBookmark = JSON.parse(eventTarget.dataset.bookmarkInfo);
+        const isBookmarked = eventTarget.hasAttribute(bookmarkedAttribute);
+
+        if (isBookmarked) {
+            removeBookmark(eventTarget, id, type, title);
+        } else {
+            addBookmark(eventTarget, title, newBookmark);
+        }
+
+    }
+
+    // Removes a bookmark from the user's bookmarks.
+    const removeBookmark = (eventTarget, id, type, title) => {
+        // Remove the bookmarked attribute from the event target and update the aria-label
+        eventTarget.removeAttribute(bookmarkedAttribute);
+        eventTarget.setAttribute('aria-label', `Add ${title} to bookmarks`);
+        
+        // Filter out the removed bookmark from the newBookmarks array and update the user's bookmarks
+        newBookmarks = newBookmarks.filter((item) => item.id !== id || item.type !== type);
+        updateUserBookmarks(newBookmarks);
+    }
+
+    const addBookmark = (eventTarget, title, newBookmark) => {
+        // Set the bookmarked attribute to the event target and update the aria-label
+        eventTarget.setAttribute(bookmarkedAttribute, "");
+        eventTarget.setAttribute('aria-label', `Remove ${title} from bookmarks`);
+
+        // Add the new bookmark to the newBookmarks array and update the user's bookmarks
+        newBookmarks = [...newBookmarks, newBookmark];
+        updateUserBookmarks(newBookmarks);
+    }
+
+    // Add a click event listener to the container element
+    container.addEventListener('click', (event) => {
+        const eventTarget = event.target;
+        
+        // Check if the event target or its closest ancestor has the bookmark CTA attribute
+        if (eventTarget.hasAttribute(bookmarkCtaAttribute) || eventTarget.closest(bookmarkCtaSelector)) {
+            toggleBookmark(eventTarget);
+        }
+    })
+}
+
 export { 
     createHtmlElement,
     focusTrap,
@@ -182,5 +239,6 @@ export {
     showRedirectSuccessMessage,
     redirectToNewLocation,
     displayDataError,
-    createBookmarkHtmlElement
+    createBookmarkHtmlElement,
+    attachBookmarkEventListener
 };
