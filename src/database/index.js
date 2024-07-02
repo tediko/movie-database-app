@@ -28,4 +28,32 @@ async function getUserBookmarks() {
     }
 }
 
-export { getUserBookmarks };
+/**
+ * Updates bookmarks for the current user to the database.
+ * @async
+ * @param {Array.<Object>} updatedBookmarks -  Array of updated bookmark objects.
+ * @throws {Error} Throws an error if there's an issue fetching the user or updating the bookmarks.
+ * @returns {Promise}
+ */
+async function updateUserBookmarks(updatedBookmarks) {
+    try {
+        // First await the getUser() function to get the userUid.
+        const { id: userUid } = await getUser();
+        
+        // Once we have the userUid, we use it in supabase query to update the bookmarks
+        const { error } = await supabase
+            .from('bookmarks')
+            .update({ bookmarked: updatedBookmarks})
+            .eq('user_uid', userUid)
+            .select('bookmarked');
+        
+        if (error) {
+            throw new Error(error);
+        }
+
+    } catch (error) {
+        throw error;
+    }
+}
+
+export { getUserBookmarks, updateUserBookmarks };
