@@ -65,7 +65,7 @@ const displayRecommended = (data, bookmarks, numOfMediaToDisplay = 12) => {
                     <h3 class="media-showcase__details-title fs-450 fw-500 text-white">${title}</h3>
                 </div>
             </a>
-            ${createBookmarkHtmlElement(bookmarks, {id, title, backdropPath, type, releaseData})}
+            ${createBookmarkHtmlElement(bookmarks, {id, title, backdropPath, type, releaseData}, 'media-showcase__bookmark-cta')}
         `)
 
         fragment.appendChild(listItem);
