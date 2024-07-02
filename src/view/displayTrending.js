@@ -11,8 +11,6 @@ const posterBackgroundUrl = 'https://image.tmdb.org/t/p/w342/';
 const wrapperSelector = '[data-trending-wrapper]';
 const listSelector = '[data-trending-list]';
 const swiperSelector = '[data-trending-swiper]';
-const bookmarkCtaSelector = '[data-trending-bookmark-cta]';
-const bookmarkCtaAttribute = 'data-trending-bookmark-cta';
 
 /**
  * Initializes the trending content section.
@@ -76,20 +74,6 @@ const displayTrending = (data, numOfMediaToDisplay = 12) => {
     trendingList.innerHTML = '';
     trendingList.appendChild(fragment);
     initSlider(swiperSelector, {spaceBetween: 32});
-    attachEventListener(trendingList);
-}
-
-/**
- * Attaches event listener to the specified container element.
- * The listener checks if the clicked element or its closest parent matches the bookmark-cta attribute or selector.
- * @param {HTMLElement} container - The container element to attach the event listener to.
- */
-const attachEventListener = (container) => {
-    container.addEventListener('click', (event) => {
-        if (event.target.hasAttribute(bookmarkCtaAttribute) || event.target.closest(bookmarkCtaSelector)) {
-            // Add bookmark logic here
-        }
-    })
 }
 
 export default initTrending;
