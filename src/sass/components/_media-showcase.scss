@@ -5,6 +5,9 @@
     margin-top: 3rem;
 
     &__title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
         margin-bottom: 1.5rem;
     }
 
@@ -130,5 +133,12 @@
 
     &__details-title {
         transition: color 350ms ease-in-out;
+    }
+
+    &__user-score {
+        position: absolute;
+        bottom: 0;
+        right: -0.5rem;
+        z-index: 1;
     }
 }
