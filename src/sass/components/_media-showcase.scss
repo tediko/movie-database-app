@@ -141,4 +141,61 @@
         right: -0.5rem;
         z-index: 1;
     }
+
+    &__pagination {
+        display: flex;
+        justify-content: center;
+        padding-top: 3rem;
+    }
+    
+    &__pagination-wrapper {
+        display: flex;
+        background-color: hsl(var(--c-blue-dark-semi));
+        border-radius: 40px;
+        overflow: hidden;
+    }
+
+    &__pagination-cta {
+        position: relative;
+        border: none;
+        background-color: transparent;
+        padding: 0.5rem 1rem;
+        color: hsl(var(--c-white));
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: background-color 350ms ease-in-out;
+
+        &::before {
+            content: '';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
+
+        &--prev {
+            &::before {
+                content: '\f0a8';
+            }
+        }
+
+        &--next {
+            &::before {
+                content: '\f0a9';
+            }
+        }
+
+        &:focus-visible {
+            background-color: hsl(var(--c-red));
+        }
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+
+        @include breakpoint('md') {
+            &:hover {
+                background-color: hsl(var(--c-red));
+            }
+        }
+    }
 }
