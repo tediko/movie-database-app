@@ -4,11 +4,63 @@
     $root: &;
     margin-top: 3rem;
 
+    &__title-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    &__select {
+        display: flex;
+        padding-inline: 0.5rem;
+        background-color: hsl(var(--c-blue-dark-semi));
+        border-radius: 40px;
+        box-shadow: 0px 0px 18px 0px hsl(var(--c-blue-light));
+        margin-left: 1rem;
+
+        &:has(:focus-visible) {
+            @extend %focus-visible;
+        }
+    }
+
+    &__select-cta {
+        border: none;
+        background-color: transparent;
+        padding: 0.5rem 0.5rem;
+        cursor: pointer;
+        transition: color 350ms ease-in-out,
+                    background-color 350ms ease-in-out;
+
+        &.active {
+            color: hsl(var(--c-blue-light));
+        }
+
+        &:focus-visible {
+            color: hsl(var(--c-red));
+        }
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+
+        @include breakpoint('md') {
+            &:hover {
+                color: hsl(var(--c-blue-light));
+            }
+        }
+    }
+
     &__title {
         display: flex;
         align-items: center;
         gap: 0.5rem;
         margin-bottom: 1.5rem;
+
+        &--mg0 {
+            margin-bottom: 0;
+        }
     }
 
     &__list {
@@ -146,46 +198,31 @@
     &__pagination {
         display: flex;
         justify-content: center;
-        padding-top: 3rem;
+        padding-top: 2rem;
     }
     
     &__pagination-wrapper {
         display: flex;
-        background-color: hsl(var(--c-blue-dark-semi));
-        border-radius: 40px;
-        overflow: hidden;
+        gap: 0.5rem;
     }
 
     &__pagination-cta {
         position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25px;
+        height: 25px;
         border: none;
         background-color: transparent;
-        padding: 0.5rem 1rem;
-        color: hsl(var(--c-white));
-        font-size: 1.5rem;
+        padding: 1rem;
+        font-size: 1rem;
         cursor: pointer;
+        border-radius: 50%;
         transition: background-color 350ms ease-in-out;
 
-        &::before {
-            content: '';
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-        }
-
-        &--prev {
-            &::before {
-                content: '\f0a8';
-            }
-        }
-
-        &--next {
-            &::before {
-                content: '\f0a9';
-            }
-        }
-
         &:focus-visible {
-            background-color: hsl(var(--c-red));
+            background-color: hsl(var(--c-blue-dark-semi));
         }
 
         &:focus {
@@ -195,8 +232,12 @@
 
         @include breakpoint('md') {
             &:hover {
-                background-color: hsl(var(--c-red));
+                background-color: hsl(var(--c-blue-dark-semi));
             }
+        }
+        
+        &.active {
+            background-color: hsl(var(--c-blue-dark-semi));
         }
     }
 }
