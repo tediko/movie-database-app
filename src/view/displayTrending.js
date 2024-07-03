@@ -4,12 +4,10 @@ import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachB
 import { getUserBookmarks, updateUserBookmarks } from "../database";
 
 // Selectors
-let trendingWrapper;
 let trendingList;
 
 // Flags
 const posterBackgroundUrl = 'https://image.tmdb.org/t/p/w342/';
-const wrapperSelector = '[data-trending-wrapper]';
 const listSelector = '[data-trending-list]';
 const swiperSelector = '[data-trending-swiper]';
 
@@ -17,10 +15,9 @@ const swiperSelector = '[data-trending-swiper]';
  * Initializes the trending content section.
  */
 async function initTrending() {
-    trendingWrapper = document.querySelector(wrapperSelector);
     trendingList = document.querySelector(listSelector);
 
-    if (!trendingWrapper || !trendingList) return;
+    if (!trendingList) return;
 
     try {
         const data = await fetchTrending();
