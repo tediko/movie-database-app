@@ -1,7 +1,6 @@
 import { fetchTrending } from "../api/fetchData";
 import initSlider from "../slider";
 import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../utilities";
-import { getUserBookmarks, updateUserBookmarks } from "../database";
 
 // Selectors
 let trendingList;
@@ -21,10 +20,9 @@ async function initTrending() {
 
     try {
         const data = await fetchTrending();
-        const bookmarks = await getUserBookmarks();
 
-        displayTrending(data, bookmarks);
-        attachBookmarkEventListener(trendingList, bookmarks, updateUserBookmarks);
+        displayTrending(data);
+        attachBookmarkEventListener(trendingList);
     } catch (error) {
         displayDataError(trendingList);
     }
@@ -33,10 +31,9 @@ async function initTrending() {
 /**
  * Displays a list of trending movies or TVseries in the DOM
  * @param {Array} data - An array of data object containing movie or TVseries information
- * @param {Array<Object>} bookmarks - An array of bookmark objects
  * @param {number} numOfMediaToDisplay - The number of media to display. Defaults to 12.
  */
-const displayTrending = (data, bookmarks, numOfMediaToDisplay = 12) => {
+const displayTrending = (data, numOfMediaToDisplay = 12) => {
     // Slices the data array to the specified number of movies to display
     // and creates a DocumentFragment to build the list.
     const slicedTrendingData = data.slice(0, numOfMediaToDisplay);
@@ -65,7 +62,7 @@ const displayTrending = (data, bookmarks, numOfMediaToDisplay = 12) => {
                     <h3 class="trending__details-title fs-400 fw-500 text-white">${title}</h3>
                 </div>
             </a>
-            ${createBookmarkHtmlElement(bookmarks, {id, title, backdropPath, type, releaseData}, 'trending__bookmark-cta')}
+            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData}, 'trending__bookmark-cta')}
         `);
 
         fragment.appendChild(listItem);

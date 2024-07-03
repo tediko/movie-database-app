@@ -1,6 +1,5 @@
 import { fetchRecommendations } from "../api/fetchData";
 import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../utilities";
-import { getUserBookmarks, updateUserBookmarks } from "../database";
 
 // Selectors
 let recommendedList;
@@ -19,10 +18,9 @@ async function initRecommended() {
 
     try {
         const data = await fetchRecommendations();
-        const bookmarks = await getUserBookmarks();
 
-        displayRecommended(data, bookmarks);
-        attachBookmarkEventListener(recommendedList, bookmarks, updateUserBookmarks);
+        displayRecommended(data);
+        attachBookmarkEventListener(recommendedList);
     } catch (error) {
         displayDataError(recommendedList);
     }
@@ -33,7 +31,7 @@ async function initRecommended() {
  * @param {Array} data - An array of data object containing movie or TVseries information
  * @param {number} numOfMediaToDisplay - The number of media to display. Defaults to 12.
  */
-const displayRecommended = (data, bookmarks, numOfMediaToDisplay = 12) => {
+const displayRecommended = (data, numOfMediaToDisplay = 12) => {
     // Creates a DocumentFragment to build the list
     const fragment = new DocumentFragment();
     const combinedRecommendations = [];
@@ -65,7 +63,7 @@ const displayRecommended = (data, bookmarks, numOfMediaToDisplay = 12) => {
                     <h3 class="media-showcase__details-title fs-450 fw-500 text-white">${title}</h3>
                 </div>
             </a>
-            ${createBookmarkHtmlElement(bookmarks, {id, title, backdropPath, type, releaseData}, 'media-showcase__bookmark-cta')}
+            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData}, 'media-showcase__bookmark-cta')}
         `)
 
         fragment.appendChild(listItem);
