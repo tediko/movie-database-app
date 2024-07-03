@@ -49,7 +49,7 @@ const displayTrending = (data, numOfMediaToDisplay = 12) => {
         const listItem = createHtmlElement('li', ['trending__item', 'swiper-slide'], `
             <a href="/title?${id}" class="trending__item-cta" data-trending-cta>
                 <div class="trending__item-bg" style="background-image: url('${posterBackgroundUrl}${posterPath}') ">
-                    <p class="trending__user-score fs-200 fw-700 text-white" style="--progress: ${userRating}">
+                    <p class="trending__user-score user-score fs-200 fw-700 text-white" style="--progress: ${userRating}">
                         <label class="sr-only" for="user-rating">User rating: </label>
                         <meter class="sr-only" id="user-rating" value="${userRatingDecimal}">${userRating}%</meter>
                     </p>
