@@ -1,3 +1,5 @@
+import { bookmarkManager } from "./database/bookmarkManager";
+
 /**
  * Creates an HTML element with the specified tag, classes and content.
  * @param {String} tag - The HTML tag name (e.g 'div', 'p' etc.)
@@ -156,16 +158,14 @@ const displayDataError = (listContainer) => {
 
 /**
  * Creates HTML string for a bookmark button element
- * @param {Array} bookmarks - Array of bookmarked items.
  * @param {Object} bookmarkInfo - Object containing information about the item to be bookmarked.
  * @param {string} htmlClass - String with name of html class for button element.
  * @returns {string} HTML string representing a bookmark button element.
  */
-const createBookmarkHtmlElement = (bookmarks, bookmarkInfo, htmlClass) => {
+const createBookmarkHtmlElement = (bookmarkInfo, htmlClass) => {
     const {id, title, type} = bookmarkInfo;
-    // Finds if given bookmark exists within bookmarks Array.
-    // We check for id and type since movie/tv series id can be the same.
-    const isBookmarked = bookmarks.find(element => element.id == id && element.type == type);
+    // Checks if bookmark with given id and type is bookmarked.
+    const isBookmarked = bookmarkManager.isBookmarked(id, type);
     // Convert bookmarkInfo object to string and replace all single quotes with the HTML entity &apos;. This prevents the single quotes from breaking the attribute value.
     const stringifiedBookmarkInfo = JSON.stringify(bookmarkInfo).replace(/'/g, "&apos;");
     
