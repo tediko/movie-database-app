@@ -36,8 +36,7 @@
         background-color: transparent;
         padding: 0.5rem 0.5rem;
         cursor: pointer;
-        transition: color 350ms ease-in-out,
-                    background-color 350ms ease-in-out;
+        transition: color 350ms ease-in-out;
 
         &.active {
             color: hsl(var(--c-blue-light));
