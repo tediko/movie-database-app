@@ -207,6 +207,15 @@
         }
     }
 
+    &__details-genre {
+        &::before {
+            content: '\f630';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 0.3rem;
+        }
+    }
+
     &__details-title {
         transition: color 350ms ease-in-out;
     }
