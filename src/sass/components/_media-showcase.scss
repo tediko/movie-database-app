@@ -4,6 +4,13 @@
     $root: &;
     margin-top: 3rem;
 
+    &__container {
+        &--grid {
+            @extend .media-showcase__container;
+            display: grid;
+        }
+    }
+
     &__title-wrapper {
         display: flex;
         align-items: center;
@@ -206,14 +213,10 @@
     }
 
     &__pagination {
-        display: flex;
-        justify-content: center;
-        padding-top: 2rem;
-    }
-    
-    &__pagination-wrapper {
+        justify-self: center;
         display: flex;
         gap: 0.5rem;
+        margin-top: 1rem;
     }
 
     &__pagination-cta {
@@ -248,6 +251,7 @@
         
         &.active {
             background-color: hsl(var(--c-blue-dark-semi));
+            pointer-events: none;
         }
     }
 }
