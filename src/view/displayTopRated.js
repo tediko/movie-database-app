@@ -54,6 +54,10 @@ async function updateTopRated(type, page) {
     }
 }
 
+/**
+ * Displays a list of top rated movies or TVseries in the DOM.
+ * @param {Array} data - An array of data object containing movie or TVseries information
+ */
 const displayTopRated = (data) => {
     // Creates a document Fragment to build the list
     const fragment = new DocumentFragment();
