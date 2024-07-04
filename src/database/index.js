@@ -56,4 +56,27 @@ async function updateUserBookmarks(updatedBookmarks) {
     }
 }
 
-export { getUserBookmarks, updateUserBookmarks };
+/**
+ * Fetches movie/TVseries genres list from the database.
+ * @async
+ * @throws {Error} Throws an error if there's an issue fetching the user or the bookmarks.
+ * @returns {Promise<Array>} A promise that resolves to an array of genres items.
+ */
+async function getGenres() {
+    try {
+        const { data, error } = await supabase
+            .from('content')
+            .select('genres')
+            .eq('id', 1);
+        
+        if (error) {
+            throw new Error(`Database error: ${error}`);
+        }
+
+        return data[0].genres;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export { getUserBookmarks, updateUserBookmarks, getGenres };
