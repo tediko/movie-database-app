@@ -188,11 +188,21 @@
         transition: color 350ms ease-in-out;
     }
 
-    &__user-score {
+    &__user-rating {
         position: absolute;
-        bottom: 0;
-        right: -0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        top: 1rem;
+        left: 1rem;
+        background-color: hsl(var(--c-blue-dark));
+        padding: 0.5rem;
+        border-radius: 50px;
         z-index: 1;
+
+        i {
+            color: hsl(var(--c-gold));
+        }
     }
 
     &__pagination {
