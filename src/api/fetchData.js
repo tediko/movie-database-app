@@ -164,4 +164,41 @@ async function fetchRecommendations(movieId = shawshankMovieId, seriesId = break
     }
 }
 
-export { fetchUpcomingMovies, fetchTrailerSrcKey, fetchTrending, fetchRecommendations };
+/**
+ * Fetches top-rated movies or TV shows from the API.
+ * @async
+ * @param {('movie'|'tv')} [type='movie'] - The type of content to fetch. Must be either 'movie' or 'tv'. Defaults to 'movie'
+ * @param {number} [page=1] - The page number of results to fetch. Defaults to 1.
+ * @returns {Promise<Array<Object>>} A promise that resolves to an array of filtered content objects.
+ * @throws {Error} Throws an error if the HTTP request fails or if there's an issue with the fetch operation.
+ */
+async function fetchTopRated(type = 'movie', page = 1) {
+    const url = `https://api.themoviedb.org/3/${type}/top_rated?language=en-US&page=${page}`;
+
+    try {
+        const response = await fetch(url, options);
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const filteredData = data.results.map((item) => {
+            return {
+                id: item.id,
+                title: item.title || item.name,
+                backdropPath: item.backdrop_path,
+                type: type,
+                releaseData: item.release_date || item.first_air_date,
+                ratingAverage: item.vote_average,
+                genreIds: item.genre_ids
+            }
+        })
+
+        return filteredData;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export { fetchUpcomingMovies, fetchTrailerSrcKey, fetchTrending, fetchRecommendations, fetchTopRated };
