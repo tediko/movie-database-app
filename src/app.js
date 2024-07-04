@@ -1,5 +1,6 @@
 import initTrending from './view/displayTrending';
 import initRecommended from './view/displayRecommended';
+import initTopRated from './view/displayTopRated';
 import { bookmarkManager } from './database/bookmarkManager';
 
 async function initApp() {
@@ -9,6 +10,7 @@ async function initApp() {
     await bookmarkManager.init();
     initRecommended();
     initTrending();
+    initTopRated();
 }
 
 export default initApp;
