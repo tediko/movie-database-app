@@ -81,6 +81,18 @@
                 color: hsl(var(--c-red));
             }
         }
+
+        &--bookmarked {
+            position: relative;
+            margin-bottom: 0;
+            
+            &::before {
+                content: "\f02e";
+                font-family: "Font Awesome 6 Free";
+                font-weight: 900;
+                color: hsl(var(--c-blue-light));
+            }
+        }
     }
 
     &__list {
