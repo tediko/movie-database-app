@@ -102,7 +102,8 @@ async function fetchTrending() {
                 backdropPath: item.backdrop_path,
                 type: item.media_type,
                 releaseData: item.release_date || item.first_air_date,
-                ratingAverage: item.vote_average
+                ratingAverage: item.vote_average,
+                genreIds: item.genre_ids
             }
         })
 
@@ -153,6 +154,7 @@ async function fetchRecommendations(movieId = shawshankMovieId, seriesId = break
                     backdropPath: item.backdrop_path,
                     type: item.media_type,
                     releaseData: item.release_date,
+                    genreIds: item.genre_ids
                 }
             }),
             tv_series: data[1].results.map(item => {
@@ -162,6 +164,7 @@ async function fetchRecommendations(movieId = shawshankMovieId, seriesId = break
                     backdropPath: item.backdrop_path,
                     type: item.media_type,
                     releaseData: item.first_air_date,
+                    genreIds: item.genre_ids
                 }
             })
         }
