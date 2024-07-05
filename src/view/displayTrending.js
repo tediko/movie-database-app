@@ -40,7 +40,7 @@ const displayTrending = (data, numOfMediaToDisplay = 12) => {
     const fragment = new DocumentFragment();
 
     // Creates a list item for each movie/TVseries with details and appends it to the fragment.
-    slicedTrendingData.forEach(({id, title, posterPath, backdropPath, type, releaseData, ratingAverage}) => {
+    slicedTrendingData.forEach(({id, title, posterPath, backdropPath, type, releaseData, ratingAverage, genreIds}) => {
         const releaseYear = releaseData.split('-')[0];
         const mediaType = type === 'movie' ? `<img src="/assets/icon-category-movie.svg" alt=""> Movie` : `<img src="/assets/icon-category-tv.svg" alt=""> TV Series`
         const userRating = +(ratingAverage * 10).toFixed();
@@ -62,7 +62,7 @@ const displayTrending = (data, numOfMediaToDisplay = 12) => {
                     <h3 class="trending__details-title fs-400 fw-500 text-white">${title}</h3>
                 </div>
             </a>
-            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData}, 'trending__bookmark-cta')}
+            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData, genreIds}, 'trending__bookmark-cta')}
         `);
 
         fragment.appendChild(listItem);

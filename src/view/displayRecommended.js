@@ -48,7 +48,7 @@ const displayRecommended = (data, numOfMediaToDisplay = 12) => {
     }
 
     // Creates a list item for each movie and TV series with details and appends it to the fragment.
-    combinedRecommendations.forEach(({id, title, backdropPath, type, releaseData}) => {
+    combinedRecommendations.forEach(({id, title, backdropPath, type, releaseData, genreIds}) => {
         const releaseYear = releaseData.split('-')[0];
         const mediaType = type === 'movie' ? `<img src="/assets/icon-category-movie.svg" alt=""> Movie` : `<img src="/assets/icon-category-tv.svg" alt=""> TV Series`
 
@@ -63,7 +63,7 @@ const displayRecommended = (data, numOfMediaToDisplay = 12) => {
                     <h3 class="media-showcase__details-title fs-450 fw-500 text-white">${title}</h3>
                 </div>
             </a>
-            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData}, 'media-showcase__bookmark-cta')}
+            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData, genreIds}, 'media-showcase__bookmark-cta')}
         `)
 
         fragment.appendChild(listItem);
