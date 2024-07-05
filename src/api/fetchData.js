@@ -138,6 +138,12 @@ async function fetchRecommendations(movieId = shawshankMovieId, seriesId = break
         })
 
         const data = await Promise.all(responses.map(res => res.json()));
+
+        data.forEach(item => {
+            if (Array.isArray(item.results) && !item.length) {
+                throw new Error(`Data error: Data array is empty!`);
+            }
+        })
     
         return {
             movies: data[0].results.map(item => {
