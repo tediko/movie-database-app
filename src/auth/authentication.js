@@ -58,6 +58,15 @@ async function signUp(email, password) {
 }
 
 /**
+ * Removes the logged in user from the browser session and log them out - removing all items from localstorage.
+ * Redirects to landing page.
+ */
+async function signOut() {
+    await supabase.auth.signOut();
+    window.location.href = '/index.html';
+}
+
+/**
  * Gets the current user details if there is an existing session. This method
  * performs a network request to the Supabase Auth server, so the returned
  * value is authentic and can be used to base authorization rules on.
@@ -68,4 +77,4 @@ async function getUser() {
     return user;
 }
 
-export  { signIn, getUser, signUp };
+export  { signIn, getUser, signUp, signOut };
