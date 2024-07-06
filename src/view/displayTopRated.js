@@ -2,20 +2,24 @@ import { fetchTopRated } from '../api/fetchData';
 import { getGenres } from '../database';
 import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener } from '../utilities';
 
-// Selectors
+// Elements
 let topRatedContainer;
 let topRatedPagination;
 let topRatedList;
 let listOfMediaGenres;
 
-// Flags
+// Selectors
 const paginationSelector = `[data-top-pagination-wrapper]`;
 const containerSelector = `[data-top-wrapper]`;
 const listSelector = `[data-top-list]`;
 const paginationCtaSelector = `[data-top-page]`;
 const selectCtaSelector = `[data-top-select]`;
+
+// Flags
 const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w500/`;
 const activeClass = 'active';
+
+// State
 let dataTypeToDisplay = 'movie';
 let activePage = 1;
 
