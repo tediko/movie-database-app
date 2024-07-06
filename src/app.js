@@ -3,6 +3,7 @@ import initRecommended from './view/displayRecommended';
 import initTopRated from './view/displayTopRated';
 import { bookmarkManager } from './database/bookmarkManager';
 import initBookmarks from './view/displayBookmarks';
+import { signOut } from './auth/authentication';
 
 async function initApp() {
     const location = window.location.href;
@@ -13,6 +14,14 @@ async function initApp() {
     initTrending();
     initTopRated();
     initBookmarks();
+    addLogoutButtonListener();
+}
+
+const addLogoutButtonListener = () => {
+    const logoutCtaSelector = '[data-logout-cta]';
+    const logoutElement = document.querySelector(logoutCtaSelector);
+
+    logoutElement.addEventListener('click', signOut);
 }
 
 export default initApp;
