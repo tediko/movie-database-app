@@ -104,6 +104,23 @@ const displayTopRated = (data) => {
     // Adds paginationButtons within topRatedPagination container.
     topRatedList.innerHTML = '';
     topRatedList.appendChild(fragment);
+    displayPaginationButtons();
+}
+
+/**
+ * Displays pagination buttons.
+ */
+function displayPaginationButtons() {
+    // Create five pagination buttons since we want to display 5x20 movies/tv series.
+    const paginationButtons = Array.from(Array(5).keys()).map((_, index) => {
+        const page = index + 1;
+        const isActive = page == activePage;
+        return isActive ? 
+            `<button class="media-showcase__pagination-cta active fs-300 text-white" type="button" aria-label="Page ${page}" data-top-page="${page}">${page}</button>` : 
+            `<button class="media-showcase__pagination-cta fs-300 text-white" type="button" aria-label="Page ${page}" data-top-page="${page}">${page}</button>`;
+    })
+
+    // Display pagination
     topRatedPagination.innerHTML = paginationButtons.join('');
 }
 
