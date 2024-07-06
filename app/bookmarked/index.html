@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/assets/favicon-32x32.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b961f1cbcd.js" crossorigin="anonymous"></script>
+    <title>MovieDB - My Bookmarked Movies and TV Series</title>
+  </head>
+  <body>
+    <div class="app">
+        <div class="app__layout-grid">
+            <header class="app__header app-header">
+                <div class="app-header__container">
+                    <a href="../index.html" class="app-header__logo-cta" aria-label="MovieDB - Home Page">
+                        <img src="/assets/logo.svg" alt="" class="app-header__logo">
+                    </a>
+                    <nav class="app-header__nav">
+                        <ul class="app-header__list">
+                            <li class="app-header__item">
+                                <a href="../index.html" class="app-header__link fs-450 text-blue-grayish" aria-label="MovieDB - Home Page">
+                                    <i class="fa-solid fa-house"></i>
+                                </a>
+                            </li>
+                            <li class="app-header__item">
+                                <a href="../top/index.html" class="app-header__link fs-450 text-blue-grayish" aria-label="MovieDB - Top rated">
+                                    <i class="fa-solid fa-fire"></i>
+                                </a>
+                            </li>
+                            <li class="app-header__item active">
+                                <a href="index.html" class="app-header__link fs-450 text-blue-grayish" aria-label="MovieDB App - Bookmarked">
+                                    <i class="fa-solid fa-bookmark"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="app-header__profile">
+                        <a href="profile.html" class="app-header__profile-cta" aria-label="Profile settings">
+                            <img class="app-header__profile-image" src="/assets/image-avatar.png" alt="">
+                        </a>
+                        <button type="button" class="app-header__logout-cta fs-450 text-blue-grayish" aria-label="Logout from MovieDB App">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <main class="app__main">
+                <section class="app__content">
+                    <h1 class="sr-only">MovieDB - My Bookmarked Movies and TV Series</h1>
+                    <form action="#" class="app__search">
+                        <button class="app__search-submit fs-450 text-white" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        <label class="sr-only" for="search">Search for movies or TV Series</label>
+                        <input class="app__search-input fs-450 fw-300 text-white" type="text" name="search" id="search" placeholder="Search for movies or TV Series">
+                    </form>
+                    <section class="app__media-showcase media-showcase">
+                        <div class="media-showcase__container--grid" data-bookmarks-wrapper>
+                            <div class="media-showcase__title-wrapper">
+                                <h2 class="media-showcase__title media-showcase__title--bookmarked fs-600 fw-400 text-white text-uc">My bookmarks</h2>
+                                <div class="media-showcase__select">
+                                    <button class="media-showcase__select-cta active fs-300 text-white" type="button" aria-label="Sort by movies" data-bookmarks-select="movie">Movies</button>
+                                    <button class="media-showcase__select-cta fs-300 text-white" type="button" aria-label="Sort by TV series" data-bookmarks-select="tv">TV Series</button>
+                                </div>
+                            </div>
+                            <ul class="media-showcase__list" data-bookmarks-list></ul>
+                            <nav class="media-showcase__pagination" data-bookmarks-pagination-wrapper aria-label="Pagination"></nav>
+                        </div>
+                    </section>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

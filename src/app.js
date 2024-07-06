@@ -2,6 +2,7 @@ import initTrending from './view/displayTrending';
 import initRecommended from './view/displayRecommended';
 import initTopRated from './view/displayTopRated';
 import { bookmarkManager } from './database/bookmarkManager';
+import initBookmarks from './view/displayBookmarks';
 
 async function initApp() {
     const location = window.location.href;
@@ -11,6 +12,7 @@ async function initApp() {
     initRecommended();
     initTrending();
     initTopRated();
+    initBookmarks();
 }
 
 export default initApp;
