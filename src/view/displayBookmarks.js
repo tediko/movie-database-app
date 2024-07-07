@@ -101,9 +101,30 @@ const displayBookmarks = (data, pagesToDisplay) => {
         fragment.appendChild(listItem);
     })
 
+    // If there is no bookmarked items in array display info message
+    if (data.length == 0) {
+        renderInfoMessage(fragment);
+    }
+
     bookmarksList.innerHTML = '';
     bookmarksList.appendChild(fragment);
     displayPaginationButtons(pagesToDisplay);
+}
+
+/**
+ * Renders info message when there are no bookmarks to display.
+ * @param {DocumentFragment} fragment - The document fragment to append the created list item to.
+ * @returns {DocumentFragment} The document fragment with the appended list item.
+ */
+const renderInfoMessage = (fragment) => {
+    const contentTypeText = dataTypeToDisplay === 'movie' ? 'movies' : 'TV series';
+    const listItem = createHtmlElement('li', ['media-showcase__item-bookmarks-info'], `
+        <img src="/assets/bookmarks-neuralyzer.png" alt="">
+        <h3 class="fs-500 text-blue-grayish">Add bookmarks!</h3>
+        <p class="fs-400 text-white">Don't let the Man in Black's neuralyzer get the best of you! Bookmark your favourite ${contentTypeText} so you can recall them in an instant!</p>
+    `);
+
+    return fragment.appendChild(listItem);
 }
 
 /**
