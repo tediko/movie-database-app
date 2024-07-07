@@ -13,3 +13,9 @@
         visibility: visible;
     }
 }
+
+@keyframes shimmer-effect {
+    to {
+       background-position-x: 0%
+    }
+}
