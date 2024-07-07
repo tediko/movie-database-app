@@ -17,8 +17,8 @@ const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w500/`;
  */
 const getRandomMovieAndSeriesId = () => {
     const defaultIds = {
-        movie: 278, // Shawshank Redemption
-        series: 1396 // Breaking Bad
+        movie: 278, // Movie: Shawshank Redemption
+        tv: 1396 // TV Series: Breaking Bad
     };
 
     const bookmarks = bookmarkManager.getBookmarks();
@@ -31,7 +31,7 @@ const getRandomMovieAndSeriesId = () => {
             ? filteredBookmarks[Math.floor(Math.random() * filteredBookmarks.length)]?.id
             : defaultIds[type];
     }
-
+    
     return [getRandomId('movie'), getRandomId('tv')];
 }
 
