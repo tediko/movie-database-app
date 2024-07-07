@@ -1,5 +1,6 @@
 import { fetchRecommendations } from "../api/fetchData";
 import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../utilities";
+import { bookmarkManager } from "../database/bookmarkManager";
 
 // Selectors
 let recommendedList;
@@ -7,6 +8,32 @@ let recommendedList;
 // Flags
 const listSelector = '[data-recommended-list]';
 const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w500/`;
+
+/**
+ * Retrieves a random movie and series ID from the bookmarks.
+ * If no bookmarks are available, returns default IDs.
+ *
+ * @returns {number[]} An array containing a random movie ID and a random tv series ID.
+ */
+const getRandomMovieAndSeriesId = () => {
+    const defaultIds = {
+        movie: 278, // Shawshank Redemption
+        series: 1396 // Breaking Bad
+    };
+
+    const bookmarks = bookmarkManager.getBookmarks();
+
+    // Retrieves a random ID from the bookmarks of the specified type.
+    // The type of bookmark ('movie' or 'tv').
+    const getRandomId = (type) => {
+        const filteredBookmarks = bookmarks.filter(item => item.type === type);
+        return filteredBookmarks.length > 0
+            ? filteredBookmarks[Math.floor(Math.random() * filteredBookmarks.length)]?.id
+            : defaultIds[type];
+    }
+
+    return [getRandomId('movie'), getRandomId('tv')];
+}
 
 /**
  * Initializes the recommended content section.
@@ -17,8 +44,7 @@ async function initRecommended() {
     if (!recommendedList) return;
 
     try {
-        const data = await fetchRecommendations();
-
+        const data = await fetchRecommendations(...getRandomMovieAndSeriesId());
         displayRecommended(data);
         attachBookmarkEventListener(recommendedList);
     } catch (error) {
