@@ -86,6 +86,15 @@
 	outline-offset: 2px;
 }
 
+/* Shimmer effect styles */
+%shimmer-effect {
+	background: linear-gradient(-45deg, hsl(var(--c-blue-dark-semi)) 40%, hsl(224.6, 28.1%, 27.3%) 50%, hsl(var(--c-blue-dark-semi)) 60%);
+	background-size: 300%;
+	background-position-x: 100%;
+	border-radius: 8px;
+	animation: shimmer-effect 1.5s infinite linear;
+}
+
 /* Typography */
 /* font-family */
 .ff-primary {font-family: var(--ff-primary);}
