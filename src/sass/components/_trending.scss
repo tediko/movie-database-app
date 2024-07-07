@@ -29,6 +29,14 @@
         width: 100%;
         max-width: 12rem;
     }
+
+    &__shimmer {
+        @extend %shimmer-effect;
+        min-width: 192px;
+        max-height: 353px;
+        aspect-ratio: 1 / 2;
+        margin-right: 2rem;
+    }
     
     &__item-cta {
         text-decoration: none;
