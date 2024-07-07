@@ -112,6 +112,12 @@
         aspect-ratio: 16 / 9;
     }
 
+    &__shimmer {
+        @extend %shimmer-effect;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+
     &__item-bookmarks-info {
         display: flex;
         flex-direction: column;
