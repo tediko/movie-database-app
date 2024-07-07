@@ -111,6 +111,25 @@
         width: 100%;
         aspect-ratio: 16 / 9;
     }
+
+    &__item-bookmarks-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 3rem;
+
+        img {
+            max-width: 250px;
+        }
+
+        p {
+            max-width: 42ch;
+            text-align: center;
+            margin: 0 auto;
+        }
+    }
     
     &__item-cta {
         position: relative;
