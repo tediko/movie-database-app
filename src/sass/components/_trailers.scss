@@ -71,6 +71,19 @@
         }
     }
 
+    &__shimmer {
+        @extend %shimmer-effect;
+        min-width: 19.4rem;
+        max-height: 14.3125rem;
+        width: 100%;
+        margin-right: 1.5rem;
+        aspect-ratio: 1;
+        
+        @include breakpoint('sm') {
+            min-width: 19.6875rem;
+        } 
+    }
+
     &__error {
         display: grid;
         gap: 0.5rem;
@@ -117,6 +130,11 @@
         overflow: hidden;
         margin-bottom: 1rem;
         transition: transform 350ms ease-in-out;
+
+        > img {
+            max-width: 19.6875rem;
+            aspect-ratio: 16 / 9;
+        }
     }
 
     &__play {
