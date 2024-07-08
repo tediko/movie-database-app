@@ -79,4 +79,22 @@ async function getGenres() {
     }
 }
 
-export { getUserBookmarks, updateUserBookmarks, getGenres };
+/**
+ * Create a record within database for user. Performs an INSERT into the table.
+ * @param {string} userUid - User identifier assigned to user
+ */
+async function createRecord(userUid) {
+    try {
+        const { error } = await supabase
+        .from('bookmarks')
+        .insert({ user_uid: userUid });
+
+        if (error) {
+            throw new Error(`Database error: ${error}`);
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+export { getUserBookmarks, updateUserBookmarks, getGenres, createRecord };
