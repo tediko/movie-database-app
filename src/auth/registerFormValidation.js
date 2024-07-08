@@ -1,5 +1,6 @@
 import { signUp } from "./authentication";
 import { emailValidation, passwordValidation, showFormErrorMessage, showRedirectSuccessMessage, redirectToNewLocation } from "../utilities";
+import { createRecord } from "../database";
 
 // Flags
 const loginPageUrl = '/access/login.html';
@@ -44,7 +45,7 @@ const handleFormSubmit = (event, registerFormContainer) => {
 }
 
 /**
- * Creates a new user using email and password, manages the sign-up process, and handles the outcome.
+ * Creates a new user using email and password, create database record for that user, manages the sign-up process, and handles the outcome.
  * @async
  * @param {string} email - User's email address.
  * @param {string} password - User's password.
@@ -53,7 +54,9 @@ const handleFormSubmit = (event, registerFormContainer) => {
  */
 async function register(email, password, registerFormContainer) {
     try {
-        await signUp(email, password);
+        const { user } = await signUp(email, password);
+        await createRecord(user.id);
+        
         showRedirectSuccessMessage(registerContainerSelector, `Congratulations! You've successfully signed up!`)
         redirectToNewLocation(loginPageUrl);
     } catch(error) {
