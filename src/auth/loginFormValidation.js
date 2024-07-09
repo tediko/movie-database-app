@@ -2,7 +2,7 @@ import { signIn, getUser } from "./authentication";
 import { emailValidation, passwordValidation, showFormErrorMessage, showRedirectSuccessMessage, redirectToNewLocation } from "../utilities";
 
 // Flags
-const appPageUrl = '/app/index.html';
+const appPageUrl = '/app';
 const loginPageUrl = '/access/login.html';
 const loginFormSelector = '[data-access-signin]';
 const loginCtaSelector = '[data-login-cta]';
