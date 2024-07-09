@@ -159,10 +159,14 @@
     &__logout-cta {
         border: none;
         background-color: transparent;
-        text-align: center;
-        width: 100%;
         cursor: pointer;
         transition: color 350ms ease-in-out;
+
+        &::before {
+            content: "\f08b";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
 
         &:focus-visible {
             @extend %focus-visible;
