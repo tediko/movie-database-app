@@ -1,6 +1,6 @@
-import { fetchTrending } from "../api/fetchData";
-import initSlider from "../slider";
-import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../utilities";
+import { fetchTrending } from "../../api/fetchData";
+import initSlider from "../../slider";
+import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../../utilities";
 
 // Selectors
 let trendingList;

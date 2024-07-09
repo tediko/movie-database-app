@@ -1,6 +1,6 @@
-import { bookmarkManager } from "../database/bookmarkManager";
-import { getGenres } from "../database";
-import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener } from "../utilities";
+import { bookmarkManager } from "../../database/bookmarkManager";
+import { getGenres } from "../../database";
+import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener } from "../../utilities";
 
 // Selectors
 const containerSelector = `[data-bookmarks-wrapper]`;

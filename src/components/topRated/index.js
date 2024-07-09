@@ -1,6 +1,6 @@
-import { fetchTopRated } from '../api/fetchData';
-import { getGenres } from '../database';
-import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener } from '../utilities';
+import { fetchTopRated } from '../../api/fetchData';
+import { getGenres } from '../../database';
+import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener } from '../../utilities';
 
 // Elements
 let topRatedContainer;

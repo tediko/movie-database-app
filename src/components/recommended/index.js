@@ -1,6 +1,6 @@
-import { fetchRecommendations } from "../api/fetchData";
-import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../utilities";
-import { bookmarkManager } from "../database/bookmarkManager";
+import { fetchRecommendations } from "../../api/fetchData";
+import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../../utilities";
+import { bookmarkManager } from "../../database/bookmarkManager";
 
 // Selectors
 let recommendedList;

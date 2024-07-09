@@ -1,7 +1,7 @@
-import fetchTrailerAndDisplayLightbox from './displayLightbox';
-import { fetchUpcomingMovies } from '../api/fetchData';
-import initSlider from '../slider';
-import { createHtmlElement, displayDataError } from '../utilities';
+import fetchTrailerAndDisplayLightbox from '../lightbox';
+import { fetchUpcomingMovies } from '../../api/fetchData';
+import initSlider from '../../slider';
+import { createHtmlElement, displayDataError } from '../../utilities';
 
 // Selectors
 let trailersWrapper;
