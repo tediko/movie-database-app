@@ -63,12 +63,6 @@
         &:has(:focus-visible) {
             @extend %focus-visible;
         }
-
-        &.active {
-            #{$root}__link {
-                color: hsl(var(--c-white));
-            }
-        }
     }
 
     &__link {
@@ -84,6 +78,34 @@
             &:hover {
                 color: hsl(var(--c-red));
             }
+        }
+
+        &::before {
+            content: '';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
+
+        &--home {
+            &::before {
+                content: "\f015";
+            }
+        }
+
+        &--top {
+            &::before {
+                content: "\f06d";
+            }
+        }
+
+        &--bookmarks {
+            &::before {
+                content: "\f02e";
+            }
+        }
+
+        &.active {
+                color: hsl(var(--c-white));
         }
     }
 
