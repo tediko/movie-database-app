@@ -4,7 +4,7 @@
     position: sticky;
     top: 0;
     $root: &;
-    z-index: 999;
+    z-index: 998;
     
     @include breakpoint('md') {
         display: flex;
