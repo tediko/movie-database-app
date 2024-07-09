@@ -14,27 +14,21 @@
     <div class="overlay" data-overlay></div>
     <div class="app">
         <div class="app__layout-grid">
-            <header class="app__header app-header">
+            <header class="app__header app-header" data-header-container>
                 <div class="app-header__container">
-                    <a href="index.html" class="app-header__logo-cta" aria-label="MovieDB - Your personal entertainment hub">
+                    <a href="/app" class="app-header__logo-cta" aria-label="MovieDB - Your personal entertainment hub">
                         <img src="/assets/logo.svg" alt="" class="app-header__logo">
                     </a>
                     <nav class="app-header__nav">
                         <ul class="app-header__list">
-                            <li class="app-header__item active">
-                                <a href="index.html" class="app-header__link fs-450 text-blue-grayish" aria-label="MovieDB - Home Page">
-                                    <i class="fa-solid fa-house"></i>
-                                </a>
+                            <li class="app-header__item">
+                                <a href="/app" class="app-header__link app-header__link--home fs-450 text-dc-none text-blue-grayish active" aria-label="MovieDB - Home Page" data-link></a>
                             </li>
                             <li class="app-header__item">
-                                <a href="top/index.html" class="app-header__link fs-450 text-blue-grayish" aria-label="MovieDB - Top rated">
-                                    <i class="fa-solid fa-fire"></i>
-                                </a>
+                                <a href="/app/top-rated" class="app-header__link app-header__link--top fs-450 text-dc-none text-blue-grayish" aria-label="MovieDB - Top rated" data-link></a>
                             </li>
                             <li class="app-header__item">
-                                <a href="bookmarked/index.html" class="app-header__link fs-450 text-blue-grayish" aria-label="MovieDB - Bookmarked">
-                                    <i class="fa-solid fa-bookmark"></i>
-                                </a>
+                                <a href="/app/bookmarks" class="app-header__link app-header__link--bookmarks fs-450 text-dc-none text-blue-grayish" aria-label="MovieDB - Bookmarks" data-link></a>
                             </li>
                         </ul>
                     </nav>
@@ -42,15 +36,13 @@
                         <a href="profile.html" class="app-header__profile-cta" aria-label="Profile settings">
                             <img class="app-header__profile-image" src="/assets/image-avatar.png" alt="">
                         </a>
-                        <button type="button" class="app-header__logout-cta fs-450 text-blue-grayish" aria-label="Logout from MovieDB App" data-logout-cta>
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        </button>
+                        <button type="button" class="app-header__logout-cta fs-450 text-blue-grayish" aria-label="Logout from app" data-logout-cta></button>
                     </div>
                 </div>
             </header>
             <main class="app__main">
-                <section class="app__content">
-                    <h1 class="sr-only">MovieDB - Your personal entertainment hub</h1>
+                <h1 class="sr-only">MovieDB - Your personal entertainment hub</h1>
+                <section id="root" class="app__content">
                     <form action="#" class="app__search">
                         <button class="app__search-submit fs-450 text-white" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i>
@@ -58,62 +50,6 @@
                         <label class="sr-only" for="search">Search for movies or TV Series</label>
                         <input class="app__search-input fs-450 fw-300 text-white" type="text" name="search" id="search" placeholder="Search for movies or TV Series">
                     </form>
-                    <section class="app__trending trending">
-                        <div class="trending__container" data-trending-wrapper>
-                            <h2 class="trending__title fs-600 fw-300 text-white">Trending</h2>
-                            <div class="trending__wrapper swiper" data-trending-swiper>
-                                <ul class="trending__list swiper-wrapper" data-trending-list>
-                                    <li class="trending__shimmer" aria-hiden="true"></li>
-                                    <li class="trending__shimmer" aria-hiden="true"></li>
-                                    <li class="trending__shimmer" aria-hiden="true"></li>
-                                    <li class="trending__shimmer" aria-hiden="true"></li>
-                                    <li class="trending__shimmer" aria-hiden="true"></li>
-                                    <li class="trending__shimmer" aria-hiden="true"></li>
-                                    <li class="trending__shimmer" aria-hiden="true"></li>
-                                    <li class="trending__shimmer" aria-hiden="true"></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="app__trailers trailers--small">
-                        <div class="trailers__separator separator"></div>
-                        <div class="trailers__wrapper" data-trailers-wrapper>
-                          <div class="trailers__wrapper-gradient">
-                            <div class="trailers__container--small">
-                              <h2 class="trailers__title fs-600 fw-300 text-white">Latest Trailers</h2>
-                              <div class="trailers__list-wrapper swiper" data-trailers-swiper>
-                                <ul class="trailers__list swiper-wrapper" data-trailers-list>
-                                    <li class="trailers__shimmer" aria-hiden="true"></li>
-                                    <li class="trailers__shimmer" aria-hiden="true"></li>
-                                    <li class="trailers__shimmer" aria-hiden="true"></li>
-                                    <li class="trailers__shimmer" aria-hiden="true"></li>
-                                    <li class="trailers__shimmer" aria-hiden="true"></li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="trailers__separator separator"></div>
-                    </section>
-                    <section class="app__media-showcase media-showcase">
-                        <div class="media-showcase__container">
-                            <h2 class="media-showcase__title fs-600 fw-300 text-white">Recommended for you</h2>
-                            <ul class="media-showcase__list" data-recommended-list>
-                                <li class="media-showcase__shimmer" aria-hiden="true"></li>
-                                <li class="media-showcase__shimmer" aria-hiden="true"></li>
-                                <li class="media-showcase__shimmer" aria-hiden="true"></li>
-                                <li class="media-showcase__shimmer" aria-hiden="true"></li>
-                                <li class="media-showcase__shimmer" aria-hiden="true"></li>
-                                <li class="media-showcase__shimmer" aria-hiden="true"></li>
-                                <li class="media-showcase__shimmer" aria-hiden="true"></li>
-                                <li class="media-showcase__shimmer" aria-hiden="true"></li>
-                                <li class="media-showcase__shimmer" aria-hiden="true"></li>
-                                <li class="media-showcase__shimmer" aria-hiden="true"></li>
-                                <li class="media-showcase__shimmer" aria-hiden="true"></li>
-                                <li class="media-showcase__shimmer" aria-hiden="true"></li>
-                            </ul>
-                        </div>
-                    </section>
                 </section>
             </main>
         </div>

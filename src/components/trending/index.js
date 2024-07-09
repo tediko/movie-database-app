@@ -1,6 +1,6 @@
-import { fetchTrending } from "../api/fetchData";
-import initSlider from "../slider";
-import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../utilities";
+import { fetchTrending } from "../../api/fetchData";
+import initSlider from "../../slider";
+import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../../utilities";
 
 // Selectors
 let trendingList;
@@ -75,4 +75,28 @@ const displayTrending = (data, numOfMediaToDisplay = 12) => {
     initSlider(swiperSelector, {spaceBetween: 32});
 }
 
-export default initTrending;
+/**
+ * Returns the HTML for the trending component.
+ * @returns {string} The HTML for the trending component.
+ */
+const getTrendingHtml = () => {
+    return `
+        <div class="trending__container" data-trending-wrapper>
+            <h2 class="trending__title fs-600 fw-300 text-white">Trending</h2>
+            <div class="trending__wrapper swiper" data-trending-swiper>
+                <ul class="trending__list swiper-wrapper" data-trending-list>
+                    <li class="trending__shimmer" aria-hiden="true"></li>
+                    <li class="trending__shimmer" aria-hiden="true"></li>
+                    <li class="trending__shimmer" aria-hiden="true"></li>
+                    <li class="trending__shimmer" aria-hiden="true"></li>
+                    <li class="trending__shimmer" aria-hiden="true"></li>
+                    <li class="trending__shimmer" aria-hiden="true"></li>
+                    <li class="trending__shimmer" aria-hiden="true"></li>
+                    <li class="trending__shimmer" aria-hiden="true"></li>
+                </ul>
+            </div>
+        </div>
+    `;
+}
+
+export { initTrending, getTrendingHtml };

@@ -1,6 +1,6 @@
-import { fetchTopRated } from '../api/fetchData';
-import { getGenres } from '../database';
-import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener } from '../utilities';
+import { fetchTopRated } from '../../api/fetchData';
+import { getGenres } from '../../database';
+import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener } from '../../utilities';
 
 // Elements
 let topRatedContainer;
@@ -159,4 +159,37 @@ const attachEventListeners = (container) => {
     })
 }
 
-export default initTopRated;
+/**
+ * Returns the HTML for the top rated component.
+ * @returns {string} The HTML for the top rated component.
+ */
+const getTopRatedHtml = () => {
+    return `
+        <div class="media-showcase__container--grid" data-top-wrapper>
+            <div class="media-showcase__title-wrapper">
+                <h2 class="media-showcase__title media-showcase__title--mg0 fs-600 fw-400 text-white text-uc">Top rated</h2>
+                <div class="media-showcase__select">
+                    <button class="media-showcase__select-cta active fs-300 text-white" type="button" aria-label="Sort by movies" data-top-select="movie">Movies</button>
+                    <button class="media-showcase__select-cta fs-300 text-white" type="button" aria-label="Sort by TV series" data-top-select="tv">TV Series</button>
+                </div>
+            </div>
+            <ul class="media-showcase__list" data-top-list>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+            </ul>
+            <nav class="media-showcase__pagination" data-top-pagination-wrapper aria-label="Pagination"></nav>
+        </div>
+    `;
+}
+
+export { initTopRated, getTopRatedHtml };
