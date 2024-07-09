@@ -124,4 +124,31 @@ const attachTrailersListItemListeners = (moviesList, trailersListElement) => {
     })
 }
 
-export default initTrailers;
+/**
+ * Returns the HTML for the trailers component.
+ * @returns {string} The HTML for the trailers component.
+ */
+const getTrailersHtml = () => {
+    return `
+        <div class="trailers__separator separator"></div>
+        <div class="trailers__wrapper" data-trailers-wrapper>
+            <div class="trailers__wrapper-gradient">
+            <div class="trailers__container--small">
+                <h2 class="trailers__title fs-600 fw-300 text-white">Latest Trailers</h2>
+                <div class="trailers__list-wrapper swiper" data-trailers-swiper>
+                <ul class="trailers__list swiper-wrapper" data-trailers-list>
+                    <li class="trailers__shimmer" aria-hiden="true"></li>
+                    <li class="trailers__shimmer" aria-hiden="true"></li>
+                    <li class="trailers__shimmer" aria-hiden="true"></li>
+                    <li class="trailers__shimmer" aria-hiden="true"></li>
+                    <li class="trailers__shimmer" aria-hiden="true"></li>
+                </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="trailers__separator separator"></div>
+    `;
+}
+
+export { initTrailers, getTrailersHtml };
