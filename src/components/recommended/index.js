@@ -100,4 +100,30 @@ const displayRecommended = (data, numOfMediaToDisplay = 12) => {
     recommendedList.appendChild(fragment);
 }
 
-export default initRecommended;
+/**
+ * Returns the HTML for the recommended component.
+ * @returns {string} The HTML for the recommended component.
+ */
+const getRecommendedHtml = () => {
+    return `
+        <div class="media-showcase__container">
+            <h2 class="media-showcase__title fs-600 fw-300 text-white">Recommended for you</h2>
+            <ul class="media-showcase__list" data-recommended-list>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+                <li class="media-showcase__shimmer" aria-hiden="true"></li>
+            </ul>
+        </div>
+    `;
+}
+
+export { initRecommended, getRecommendedHtml };
