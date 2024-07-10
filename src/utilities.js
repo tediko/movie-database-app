@@ -223,6 +223,22 @@ const attachBookmarkEventListener = (container) => {
     })
 }
 
+/**
+ * Debounce function. Puts a pause on the function execution until a certain amount of time has passed.
+ * @param {Function} func - The function to debounce.
+ * @param {number} delay - The number of milliseconds to delay.
+ * @returns {Function} A new debounced function.
+ */
+function debounce(func, delay) {
+    let debounceTimer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    }
+}
+
 export { 
     createHtmlElement,
     focusTrap,
@@ -233,5 +249,6 @@ export {
     redirectToNewLocation,
     displayDataError,
     createBookmarkHtmlElement,
-    attachBookmarkEventListener
+    attachBookmarkEventListener,
+    debounce
 };
