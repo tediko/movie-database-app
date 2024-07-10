@@ -28,7 +28,7 @@ async function initTrailers() {
         const data = await fetchUpcomingMovies();
         displayTrailers(data);
     } catch (error) {
-        displayDataError(trailersList);
+        displayDataError(trailersList, 'li');
     }
 }
 

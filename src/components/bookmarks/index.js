@@ -41,7 +41,7 @@ async function initBookmarks() {
         attachBookmarkEventListener(bookmarksList);
         attachEventListeners(bookmarksContainer);
     } catch (error) {
-        displayDataError(bookmarksList);
+        displayDataError(bookmarksList, 'li');
     }
 }
 

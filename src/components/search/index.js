@@ -1,6 +1,6 @@
 import { fetchSearchResults } from "../../api/fetchData";
 import { getGenres } from "../../database";
-import { createHtmlElement, createBookmarkHtmlElement, debounce, attachBookmarkEventListener } from "../../utilities";
+import { createHtmlElement, createBookmarkHtmlElement, displayDataError, debounce, attachBookmarkEventListener } from "../../utilities";
 
 // Elements
 let wrapperContainer;
@@ -63,12 +63,7 @@ async function getSearchResults(searchQuery) {
 
         displaySearchResults(data, searchQuery);
     } catch (error) {
-        // TODO: Rework error handling and use displayError fn from utilities
-        const errorDiv = createHtmlElement('div', ['data-error'], `
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <p class="fs-400 fw-700 text-white">It seems like our data unicorns have gone on strike.<br>Try again later!</p>    
-        `);
-        resultsWrapper.appendChild(errorDiv);
+        displayDataError(resultsWrapper, 'div');
     }
 }
 

@@ -48,7 +48,7 @@ async function initRecommended() {
         displayRecommended(data);
         attachBookmarkEventListener(recommendedList);
     } catch (error) {
-        displayDataError(recommendedList);
+        displayDataError(recommendedList, 'li');
     }
 }
 

@@ -24,7 +24,7 @@ async function initTrending() {
         displayTrending(data);
         attachBookmarkEventListener(trendingList);
     } catch (error) {
-        displayDataError(trendingList);
+        displayDataError(trendingList, 'li');
     }
 }
 

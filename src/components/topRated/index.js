@@ -41,7 +41,7 @@ async function initTopRated() {
         attachBookmarkEventListener(topRatedList);
         attachEventListeners(topRatedContainer);
     } catch (error) {
-        displayDataError(topRatedList);
+        displayDataError(topRatedList, 'li');
     }
 }
 
