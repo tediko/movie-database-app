@@ -4,6 +4,7 @@ import { initTrending, getTrendingHtml } from "./trending";
 import { initTrailers, getTrailersHtml } from "./trailers";
 import { initRecommended, getRecommendedHtml } from "./recommended";
 import { initTopRated, getTopRatedHtml } from "./topRated";
+import { getSearchHtml, initSearch } from "./search";
 
 // Selectors
 const rootSelector = `#root`;
@@ -39,6 +40,12 @@ const renderComponent = (componentName) => {
 }
 
 const componentTemplates = {
+    search: {
+        html: getSearchHtml(),
+        tag: 'section',
+        classes: ['app__search', 'search'],
+        init: initSearch
+    },
     bookmarks: {
         html: getBookmarksHtml(),
         tag: 'section',

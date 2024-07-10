@@ -60,16 +60,19 @@ window.addEventListener('popstate', () => {
 const routes = [
     { path: '/app', callback: () => {
         document.title = `MovieDB - Your personal entertainment hub`;
+        renderComponent('search');
         renderComponent('trending');
         renderComponent('trailers');
         renderComponent('recommended');
     }},
     { path: '/app/top-rated', callback: () => {
         document.title = `MovieDB - Top rated movies & TV series`
+        renderComponent('search');
         renderComponent('top');
     }},
     { path: '/app/bookmarks', callback: () => {
         document.title = `MovieDB - Bookmarked Movies and TV Series`
+        renderComponent('search');
         renderComponent('bookmarks');
     }}
 ]
