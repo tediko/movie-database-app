@@ -120,8 +120,10 @@ const displaySearchResults = (data, searchQuery, numOfMediaToDisplay = 12) => {
         resultsWrapper.innerHTML = '';
         resultsList.appendChild(fragment);
         resultsWrapper.appendChild(resultsTitle);
-        resultsWrapper.appendChild(resultsList);
-        resultsWrapper.appendChild(separator);
+        if (slicedData.length !== 0) {
+            resultsWrapper.appendChild(resultsList);
+            resultsWrapper.appendChild(separator);
+        }
     }
     
 /**
