@@ -59,19 +59,16 @@ window.addEventListener('popstate', () => {
 // Defining Routes
 const routes = [
     { path: '/app', callback: () => {
-        console.log('App')
         document.title = `MovieDB - Your personal entertainment hub`;
         renderComponent('trending');
         renderComponent('trailers');
         renderComponent('recommended');
     }},
     { path: '/app/top-rated', callback: () => {
-        console.log('top-rated');
         document.title = `MovieDB - Top rated movies & TV series`
         renderComponent('top');
     }},
     { path: '/app/bookmarks', callback: () => {
-        console.log('bookmarks');
         document.title = `MovieDB - Bookmarked Movies and TV Series`
         renderComponent('bookmarks');
     }}
