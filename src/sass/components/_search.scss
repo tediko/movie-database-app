@@ -1,0 +1,57 @@
+@use '../utilities' as *;
+
+.search {
+    &__container {
+        display: grid;
+        gap: 1rem;
+    }
+    
+    &__form {
+        display: flex;
+        align-items: start;
+        gap: 1.5rem;
+    }
+    
+    &__submit {
+        position: relative;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transition: color 350ms ease-in-out;
+
+        &::before {
+            content: "\f002";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
+    
+        &:focus-visible {
+            @extend %focus-visible;
+            color: hsl(var(--c-red));
+        }
+        
+        @include breakpoint('md') {
+            &:hover {
+                color: hsl(var(--c-red));
+            }
+        }
+    }
+    
+    &__input {
+        background-color: transparent;
+        border: none;
+        width: 100%;
+        padding-bottom: 1rem;
+        caret-color: hsl(var(--c-red));
+        
+        &:focus {
+            border: none;
+            outline: none;
+        }
+        
+        &:focus-visible {
+            border-bottom: 1px solid hsl(var(--c-blue-grayish));
+            margin-bottom: -1px;
+        }
+    }
+}
