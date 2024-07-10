@@ -142,18 +142,17 @@ const redirectToNewLocation = (newLocationUrl, timeoutDuration = 1000) => {
 
 /**
  * Displays a error in the DOM within list container.
+ * @param {string} elementTag - String containing html tag name.
+ * @param {HTMLElement} listContainer - Container HTML element to attach error message.
  */
-const displayDataError = (listContainer) => {
-    const fragment = new DocumentFragment();
-
-    const listItem = createHtmlElement('li', ['data-error'], `
+const displayDataError = (listContainer, elementTag) => {
+    const errorElement = createHtmlElement(elementTag, ['data-error'], `
         <i class="fa-solid fa-triangle-exclamation"></i>
         <p class="fs-400 fw-700 text-white">It seems like our data unicorns have gone on strike.<br>Try again later!</p>    
     `);
 
     listContainer.innerHTML = '';
-    fragment.appendChild(listItem);
-    listContainer.appendChild(fragment);
+    listContainer.appendChild(errorElement);
 }
 
 /**
