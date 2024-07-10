@@ -1,11 +1,6 @@
 @use '../utilities' as *;
 
 .search {
-    &__container {
-        display: grid;
-        gap: 1rem;
-    }
-    
     &__form {
         display: flex;
         align-items: start;
@@ -53,5 +48,14 @@
             border-bottom: 1px solid hsl(var(--c-blue-grayish));
             margin-bottom: -1px;
         }
+    }
+
+    &__results {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    &__title {
+        margin-top: 0.5rem;
     }
 }
