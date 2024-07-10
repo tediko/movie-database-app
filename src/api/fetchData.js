@@ -1,6 +1,7 @@
 // Flags
 const apiMovieUrl = 'https://api.themoviedb.org/3/movie/';
 const apiTrendingUrl = 'https://api.themoviedb.org/3/trending/all/week';
+const apiSearchUrl = 'https://api.themoviedb.org/3/search/multi?query=';
 
 // Fetch options
 const options = {
@@ -207,4 +208,47 @@ async function fetchTopRated(type = 'movie', page = 1) {
     }
 }
 
-export { fetchUpcomingMovies, fetchTrailerSrcKey, fetchTrending, fetchRecommendations, fetchTopRated };
+/**
+ * Fetches search results from an API based on the given search query.
+ * @async
+ * @param {string} searchQuery - The search query to be used for fetching results.
+ * @returns {Promise<Array<Object>>} - A promise that resolves to an array of filtered and formatted search results.
+ * @throws {Error} Throws an error if the API request fails or if there's an HTTP error.
+ */
+async function fetchSearchResults(searchQuery) {
+    const url = `${apiSearchUrl}${searchQuery}&include_adult=false&language=en-US&page=1`
+
+    try {
+        const response = await fetch(url, options);
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const filteredData = data.results
+            .filter(item => {
+                return item.media_type !== 'person' && item.backdrop_path !== null;
+            })
+            .sort((a, b) => {
+                return b.popularity - a.popularity;
+            })
+            .map((item) => {
+                return {
+                    id: item.id,
+                    title: item.title || item.name,
+                    backdropPath: item.backdrop_path,
+                    type: item.media_type,
+                    releaseData: item.release_date || item.first_air_date,
+                    ratingAverage: item.vote_average,
+                    genreIds: item.genre_ids
+                }
+            });
+
+        return filteredData;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export { fetchUpcomingMovies, fetchTrailerSrcKey, fetchTrending, fetchRecommendations, fetchTopRated, fetchSearchResults };
