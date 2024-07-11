@@ -87,7 +87,6 @@ const displaySearchResults = (data, searchQuery, numOfMediaToDisplay = 12) => {
     // Create the main elements for the search results
     const resultsList = createHtmlElement('ul', ['search__list', 'media-showcase__list']);
     const resultsTitle = createHtmlElement('h2', ['search__title', 'fs-600', 'fw-300', 'text-white']);
-    const separator = createHtmlElement('div', ['separator']);
     
     // Creates a list item for each search result with details and appends it to the fragment.
     slicedData.forEach(({ id, title, backdropPath, type, releaseData, ratingAverage, genreIds }) => {
@@ -127,10 +126,7 @@ const displaySearchResults = (data, searchQuery, numOfMediaToDisplay = 12) => {
         resultsWrapper.innerHTML = '';
         resultsList.appendChild(fragment);
         resultsWrapper.appendChild(resultsTitle);
-        if (slicedData.length !== 0) {
-            resultsWrapper.appendChild(resultsList);
-            resultsWrapper.appendChild(separator);
-        }
+        if (slicedData.length !== 0) resultsWrapper.appendChild(resultsList);
     }
 
 /**
