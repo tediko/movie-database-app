@@ -1,13 +1,16 @@
 import { getUserBookmarks, updateUserBookmarks } from ".";
 
 let bookmarks = [];
+let subscribers = [];
 
 /**
  * Initializes the bookmarks by fetching them from the database.
+ * Notify subscribers after initialization.
  * @async
  */
 async function init() {
     bookmarks = await getUserBookmarks();
+    notifySubscribers();
 }
 
 /**
@@ -28,7 +31,7 @@ const getBookmarks = () => {
 }
 
 /**
- * Toggles the bookmark state for the given bookmark.
+ * Toggles the bookmark state for the given bookmark and notify subscribers about bookmarks update.
  * If the bookmark exists, it removes it from the current bookmarks array.
  * If the bookmark doesn't exists, it adds it to the current bookmarks array.
  * @async
@@ -46,11 +49,28 @@ async function toggleBookmark(newBookmark) {
         bookmarks.push(newBookmark);
     }
     await updateUserBookmarks(bookmarks);
+    notifySubscribers();
+}
+
+/**
+ * Subscribes a component to bookmark updates
+ * @param {Function} callback - Function to call when bookmarks are updated.
+ */
+const subscribe = (callback) => {
+    subscribers.push(callback);
+}
+
+/**
+ * Notifies all subscribers about bookmarks update.
+ */
+const notifySubscribers = () => {
+    subscribers.forEach(callback => callback());
 }
 
 export const bookmarkManager = {
     init,
     toggleBookmark,
     isBookmarked,
-    getBookmarks
+    getBookmarks,
+    subscribe
 }
