@@ -95,15 +95,6 @@ const displayTopRated = (data) => {
         fragment.appendChild(listItem);
     })
 
-    // Create five pagination buttons since we want to display 5x20 movies/tv series.
-    const paginationButtons = Array.from(Array(5).keys()).map((item, index) => {
-        const page = index + 1;
-        const isActive = page == activePage;
-        return isActive ? 
-            `<button class="media-showcase__pagination-cta active fs-300 text-white" type="button" aria-label="Page ${page}" data-top-page="${page}">${page}</button>` : 
-            `<button class="media-showcase__pagination-cta fs-300 text-white" type="button" aria-label="Page ${page}" data-top-page="${page}">${page}</button>`;
-    })
-
     // Clears the existing content of topRatedList and appends the new fragment.
     // Adds paginationButtons within topRatedPagination container.
     topRatedList.innerHTML = '';
