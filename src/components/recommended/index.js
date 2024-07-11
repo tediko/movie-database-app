@@ -8,6 +8,10 @@ let recommendedList;
 // Flags
 const listSelector = '[data-recommended-list]';
 const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w500/`;
+const componentName = 'recommended';
+
+// State
+let isInitialized = false;
 
 /**
  * Retrieves a random movie and series ID from the bookmarks.
@@ -46,7 +50,9 @@ async function initRecommended() {
     try {
         const data = await fetchRecommendations(...getRandomMovieAndSeriesId());
         displayRecommended(data);
-        attachBookmarkEventListener(recommendedList);
+        attachBookmarkEventListener(recommendedList, componentName);
+        isInitialized ? null : bookmarkManager.subscribe(() => displayRecommended(data), componentName);
+        isInitialized = true;
     } catch (error) {
         displayDataError(recommendedList, 'li');
     }
