@@ -176,8 +176,9 @@ const createBookmarkHtmlElement = (bookmarkInfo, htmlClass) => {
 /**
  * Attaches a bookmark event listener to a container element, allowing users to bookmark and unbookmark items.
  * @param {HTMLElement} container - The container element where the bookmark event listener will be attached.
+ * @param {'string'} callingComponentName - Name of the calling component.
  */
-const attachBookmarkEventListener = (container) => {
+const attachBookmarkEventListener = (container, callingComponentName) => {
     const bookmarkCtaSelector = '[data-bookmark-cta]';
     const bookmarkCtaAttribute = 'data-bookmark-cta';
     const bookmarkedAttribute = 'data-bookmarked';
@@ -218,6 +219,8 @@ const attachBookmarkEventListener = (container) => {
         // Check if the event target or its closest ancestor has the bookmark CTA attribute
         if (eventTarget.hasAttribute(bookmarkCtaAttribute) || eventTarget.closest(bookmarkCtaSelector)) {
             toggleBookmark(eventTarget);
+            
+            bookmarkManager.notifySubscribers(callingComponentName);
         }
     })
 }
