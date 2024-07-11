@@ -1,4 +1,5 @@
 import renderComponent from '../components/renderComponent';
+import { bookmarkManager } from '../database/bookmarkManager';
 
 /**
  * Gets the current URL path.
@@ -48,6 +49,7 @@ const loadRoute = (path) => {
 const navigateTo = (path) => {
     // Push the new state to the browser's history stack without causing a full page reload.
     window.history.pushState(null, null, path);
+    bookmarkManager.unsubscribe();
     loadRoute(path);
 }
 
