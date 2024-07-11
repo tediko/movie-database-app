@@ -24,7 +24,6 @@ const componentName = 'top';
 // State
 let dataTypeToDisplay = 'movie';
 let activePage = 1;
-let isInitialized = false;
 
 /**
  * Initializes top rated content section.
@@ -43,8 +42,7 @@ async function initTopRated() {
         displayTopRated(data);
         attachBookmarkEventListener(topRatedList, componentName);
         attachEventListeners(topRatedContainer);
-        isInitialized ? null : bookmarkManager.subscribe(() => displayTopRated(data), componentName);
-        isInitialized = true;
+        bookmarkManager.subscribe(() => displayTopRated(data), componentName);
     } catch (error) {
         displayDataError(topRatedList, 'li');
     }

@@ -24,7 +24,6 @@ const componentName = 'bookmarks';
 // State
 let dataTypeToDisplay = 'movie';
 let activePage = 0;
-let isInitialized = false;
 
 /**
  * Initializes bookmarked content section.
@@ -42,8 +41,7 @@ async function initBookmarks() {
         updateBookmarks();
         attachBookmarkEventListener(bookmarksList, componentName);
         attachEventListeners(bookmarksContainer);
-        isInitialized ? null : bookmarkManager.subscribe(updateBookmarks, componentName);
-        isInitialized = true;
+        bookmarkManager.subscribe(updateBookmarks, componentName);
     } catch (error) {
         displayDataError(bookmarksList, 'li');
     }

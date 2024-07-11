@@ -12,9 +12,6 @@ const listSelector = '[data-trending-list]';
 const swiperSelector = '[data-trending-swiper]';
 const componentName = 'trending';
 
-// State
-let isInitialized = false;
-
 /**
  * Initializes the trending content section.
  */
@@ -28,8 +25,7 @@ async function initTrending() {
 
         displayTrending(data);
         attachBookmarkEventListener(trendingList, componentName);
-        isInitialized ? null : bookmarkManager.subscribe(() => displayTrending(data), componentName);
-        isInitialized = true;
+        bookmarkManager.subscribe(() => displayTrending(data), componentName);
     } catch (error) {
         displayDataError(trendingList, 'li');
     }
