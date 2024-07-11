@@ -67,11 +67,25 @@ const notifySubscribers = (callingComponentName) => {
     subscribersToNotify.forEach(subscriber => subscriber.callback());
 };
 
+/**
+ * Unsubscribes a component from bookmark updates.
+ * If the callingComponentName is 'all', it unsubscribes all components.
+ * @param {string} [callingComponentName=all] - The name of the component to unsubscribe. If not provided, it unsubscribes all components.
+ */
+const unsubscribe = (callingComponentName = 'all') => {
+    if (callingComponentName === 'all') {
+        subscribers = [];
+    } else {
+        subscribers = subscribers.filter(sub => sub.name !== callingComponentName);
+    }
+}
+
 export const bookmarkManager = {
     init,
     toggleBookmark,
     isBookmarked,
     getBookmarks,
     subscribe,
+    unsubscribe,
     notifySubscribers
 }
