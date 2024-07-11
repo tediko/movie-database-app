@@ -19,6 +19,7 @@ let listOfMediaGenres;
 // Flags
 const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w500/`;
 const activeClass = 'active';
+const componentName = 'bookmarks';
 
 // State
 let dataTypeToDisplay = 'movie';
@@ -39,9 +40,9 @@ async function initBookmarks() {
         listOfMediaGenres = await getGenres();
         
         updateBookmarks();
-        attachBookmarkEventListener(bookmarksList);
+        attachBookmarkEventListener(bookmarksList, componentName);
         attachEventListeners(bookmarksContainer);
-        isInitialized ? null : bookmarkManager.subscribe(updateBookmarks);
+        isInitialized ? null : bookmarkManager.subscribe(updateBookmarks, componentName);
         isInitialized = true;
     } catch (error) {
         displayDataError(bookmarksList, 'li');
