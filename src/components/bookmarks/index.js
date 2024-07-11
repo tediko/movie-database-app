@@ -1,6 +1,7 @@
 import { bookmarkManager } from "../../database/bookmarkManager";
 import { getGenres } from "../../database";
 import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener } from "../../utilities";
+import noImageImg from '../../assets/no-image.jpg';
 
 // Selectors
 const containerSelector = `[data-bookmarks-wrapper]`;
@@ -88,7 +89,7 @@ const displayBookmarks = (data, pagesToDisplay) => {
             .join(', ');
         
         const listItem = createHtmlElement('li', ['media-showcase__item'], `
-            <a href="/title?${id}" class="media-showcase__item-cta" style="background-image: url('${smallBackgroundUrl}${backdropPath}')">
+            <a href="/title?${id}" class="media-showcase__item-cta" style="background-image: url('${backdropPath ? `${smallBackgroundUrl}${backdropPath}` : noImageImg}')">
                 <div class="media-showcase__details">
                     <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
                         <span>${releaseYear}</span>
