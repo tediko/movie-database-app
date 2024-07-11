@@ -10,7 +10,6 @@ let subscribers = [];
  */
 async function init() {
     bookmarks = await getUserBookmarks();
-    notifySubscribers();
 }
 
 /**
@@ -49,28 +48,30 @@ async function toggleBookmark(newBookmark) {
         bookmarks.push(newBookmark);
     }
     await updateUserBookmarks(bookmarks);
-    notifySubscribers();
 }
 
 /**
  * Subscribes a component to bookmark updates
  * @param {Function} callback - Function to call when bookmarks are updated.
  */
-const subscribe = (callback) => {
-    subscribers.push(callback);
+const subscribe = (callback, componentName) => {
+    subscribers.push({name: componentName, callback });
 }
 
 /**
- * Notifies all subscribers about bookmarks update.
+ * Notifies all subscribers about updates, except the calling component.
+ * @param {string} callingComponentName - The name of the component that triggered the update.
  */
-const notifySubscribers = () => {
-    subscribers.forEach(callback => callback());
-}
+const notifySubscribers = (callingComponentName) => {
+    const subscribersToNotify = subscribers.filter(subscriber => subscriber.name !== callingComponentName);
+    subscribersToNotify.forEach(subscriber => subscriber.callback());
+};
 
 export const bookmarkManager = {
     init,
     toggleBookmark,
     isBookmarked,
     getBookmarks,
-    subscribe
+    subscribe,
+    notifySubscribers
 }
