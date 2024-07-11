@@ -3,11 +3,13 @@ import { getGenres } from "../../database";
 import { createHtmlElement, createBookmarkHtmlElement, displayDataError, debounce, attachBookmarkEventListener } from "../../utilities";
 
 // Elements
+let appRoot;
 let wrapperContainer;
 let formElement;
 let resultsWrapper;
 
 // Selectors
+const appRootSelector = `#root`;
 const wrapperSelector = `[data-search-wrapper]`;
 const formSelector = `[data-search-form]`;
 const resultsWrapperSelector = `[data-search-results-wrapper]`;
@@ -17,16 +19,19 @@ let listOfMediaGenres;
 
 // Flags 
 const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w500/`;
+const hideClass = 'hide';
+const searchContainerClass = 'search';
 
 /**
  * Initializes search section
  */
 const initSearch = () => {
+    appRoot = document.querySelector(appRootSelector)
     wrapperContainer = document.querySelector(wrapperSelector);
     formElement = document.querySelector(formSelector);
     resultsWrapper = document.querySelector(resultsWrapperSelector);
 
-    if (!wrapperContainer) return;
+    if (!appRoot || !wrapperContainer) return;
 
     formElement.addEventListener('submit', (event) => event.preventDefault());
     formElement.addEventListener('input', debounce(handleSearchForm, 800));
@@ -44,6 +49,7 @@ const handleSearchForm = (event) => {
 
     if (searchQuery === '' || searchQuery.length < 3) {
         resultsWrapper.innerHTML = '';
+        toggleRootElementsVisibility(false);
         return;
     };
 
@@ -62,6 +68,7 @@ async function getSearchResults(searchQuery) {
         listOfMediaGenres = await getGenres();
 
         displaySearchResults(data, searchQuery);
+        toggleRootElementsVisibility(true);
     } catch (error) {
         displayDataError(resultsWrapper, 'div');
     }
@@ -125,6 +132,22 @@ const displaySearchResults = (data, searchQuery, numOfMediaToDisplay = 12) => {
             resultsWrapper.appendChild(separator);
         }
     }
+
+/**
+ * Toggles the visibility of direct children of root element, except for those with 'search' class.
+ * @param {boolean} shouldHide - If true, hides elements. Shows them otherwise.
+ */
+const toggleRootElementsVisibility = (shouldHide) => {
+    const rootElements = appRoot.querySelectorAll(`:scope > *:not(.${searchContainerClass})`);
+
+    rootElements.forEach(element => {
+        if (shouldHide) {
+            element.classList.add(hideClass);
+        } else {
+            element.classList.remove(hideClass);
+        }
+    })
+}
     
 /**
  * Returns the HTML for the search component.
