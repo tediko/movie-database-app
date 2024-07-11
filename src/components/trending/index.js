@@ -1,4 +1,5 @@
 import { fetchTrending } from "../../api/fetchData";
+import { bookmarkManager } from "../../database/bookmarkManager";
 import initSlider from "../../slider";
 import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../../utilities";
 
@@ -9,6 +10,10 @@ let trendingList;
 const posterBackgroundUrl = 'https://image.tmdb.org/t/p/w342/';
 const listSelector = '[data-trending-list]';
 const swiperSelector = '[data-trending-swiper]';
+const componentName = 'trending';
+
+// State
+let isInitialized = false;
 
 /**
  * Initializes the trending content section.
@@ -22,7 +27,9 @@ async function initTrending() {
         const data = await fetchTrending();
 
         displayTrending(data);
-        attachBookmarkEventListener(trendingList);
+        attachBookmarkEventListener(trendingList, componentName);
+        isInitialized ? null : bookmarkManager.subscribe(() => displayTrending(data), componentName);
+        isInitialized = true;
     } catch (error) {
         displayDataError(trendingList, 'li');
     }
