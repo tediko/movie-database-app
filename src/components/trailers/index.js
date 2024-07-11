@@ -2,6 +2,7 @@ import fetchTrailerAndDisplayLightbox from '../lightbox';
 import { fetchUpcomingMovies } from '../../api/fetchData';
 import initSlider from '../../slider';
 import { createHtmlElement, displayDataError } from '../../utilities';
+import backgroundImg from '../../assets/trailersBackground.jpg';
 
 // Selectors
 let trailersWrapper;
@@ -28,6 +29,7 @@ async function initTrailers() {
         const data = await fetchUpcomingMovies();
         displayTrailers(data);
     } catch (error) {
+        trailersWrapper.style.backgroundImage = `url(${backgroundImg}`;
         displayDataError(trailersList, 'li');
     }
 }
