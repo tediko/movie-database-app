@@ -8,6 +8,7 @@ let recommendedList;
 // Flags
 const listSelector = '[data-recommended-list]';
 const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w500/`;
+const componentName = 'recommended';
 
 /**
  * Retrieves a random movie and series ID from the bookmarks.
@@ -46,7 +47,8 @@ async function initRecommended() {
     try {
         const data = await fetchRecommendations(...getRandomMovieAndSeriesId());
         displayRecommended(data);
-        attachBookmarkEventListener(recommendedList);
+        attachBookmarkEventListener(recommendedList, componentName);
+        bookmarkManager.subscribe(() => displayRecommended(data), componentName);
     } catch (error) {
         displayDataError(recommendedList, 'li');
     }
@@ -80,7 +82,6 @@ const displayRecommended = (data, numOfMediaToDisplay = 12) => {
 
         const listItem = createHtmlElement('li', ['media-showcase__item'], `
             <a href="/title?${id}" class="media-showcase__item-cta" data-recommended-cta style="background-image: url('${smallBackgroundUrl}${backdropPath}')">
-                <div class="media-showcase__more text-white"></div>
                 <div class="media-showcase__details">
                     <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
                         <span>${releaseYear}</span>

@@ -1,6 +1,7 @@
 import { fetchTopRated } from '../../api/fetchData';
 import { getGenres } from '../../database';
 import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener } from '../../utilities';
+import { bookmarkManager } from '../../database/bookmarkManager';
 
 // Elements
 let topRatedContainer;
@@ -18,6 +19,7 @@ const selectCtaSelector = `[data-top-select]`;
 // Flags
 const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w500/`;
 const activeClass = 'active';
+const componentName = 'top';
 
 // State
 let dataTypeToDisplay = 'movie';
@@ -38,8 +40,9 @@ async function initTopRated() {
         listOfMediaGenres = await getGenres();
         
         displayTopRated(data);
-        attachBookmarkEventListener(topRatedList);
+        attachBookmarkEventListener(topRatedList, componentName);
         attachEventListeners(topRatedContainer);
+        bookmarkManager.subscribe(() => displayTopRated(data), componentName);
     } catch (error) {
         displayDataError(topRatedList, 'li');
     }
@@ -93,15 +96,6 @@ const displayTopRated = (data) => {
         `)
 
         fragment.appendChild(listItem);
-    })
-
-    // Create five pagination buttons since we want to display 5x20 movies/tv series.
-    const paginationButtons = Array.from(Array(5).keys()).map((item, index) => {
-        const page = index + 1;
-        const isActive = page == activePage;
-        return isActive ? 
-            `<button class="media-showcase__pagination-cta active fs-300 text-white" type="button" aria-label="Page ${page}" data-top-page="${page}">${page}</button>` : 
-            `<button class="media-showcase__pagination-cta fs-300 text-white" type="button" aria-label="Page ${page}" data-top-page="${page}">${page}</button>`;
     })
 
     // Clears the existing content of topRatedList and appends the new fragment.

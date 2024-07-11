@@ -15,6 +15,12 @@
 	background-color: hsl(var(--c-blue-grayish) / 0.2);
 }
 
+/* Hide element */
+.hide {
+	display: none;
+	visibility: hidden;
+}
+
 /* data-error */ 
 .data-error {
 	display: grid;
