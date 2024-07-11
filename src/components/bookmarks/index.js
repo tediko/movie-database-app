@@ -23,6 +23,7 @@ const activeClass = 'active';
 // State
 let dataTypeToDisplay = 'movie';
 let activePage = 0;
+let isInitialized = false;
 
 /**
  * Initializes bookmarked content section.
@@ -36,10 +37,12 @@ async function initBookmarks() {
     
     try {
         listOfMediaGenres = await getGenres();
-
+        
         updateBookmarks();
         attachBookmarkEventListener(bookmarksList);
         attachEventListeners(bookmarksContainer);
+        isInitialized ? null : bookmarkManager.subscribe(updateBookmarks);
+        isInitialized = true;
     } catch (error) {
         displayDataError(bookmarksList, 'li');
     }
