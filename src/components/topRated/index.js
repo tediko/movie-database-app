@@ -1,6 +1,7 @@
 import { fetchTopRated } from '../../api/fetchData';
 import { getGenres } from '../../database';
 import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener } from '../../utilities';
+import { bookmarkManager } from '../../database/bookmarkManager';
 
 // Elements
 let topRatedContainer;
@@ -18,10 +19,12 @@ const selectCtaSelector = `[data-top-select]`;
 // Flags
 const smallBackgroundUrl = `https://media.themoviedb.org/t/p/w500/`;
 const activeClass = 'active';
+const componentName = 'top';
 
 // State
 let dataTypeToDisplay = 'movie';
 let activePage = 1;
+let isInitialized = false;
 
 /**
  * Initializes top rated content section.
@@ -38,8 +41,10 @@ async function initTopRated() {
         listOfMediaGenres = await getGenres();
         
         displayTopRated(data);
-        attachBookmarkEventListener(topRatedList);
+        attachBookmarkEventListener(topRatedList, componentName);
         attachEventListeners(topRatedContainer);
+        isInitialized ? null : bookmarkManager.subscribe(() => displayTopRated(data), componentName);
+        isInitialized = true;
     } catch (error) {
         displayDataError(topRatedList, 'li');
     }
