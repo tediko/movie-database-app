@@ -5,6 +5,7 @@ import { initTrailers, getTrailersHtml } from "./trailers";
 import { initRecommended, getRecommendedHtml } from "./recommended";
 import { initTopRated, getTopRatedHtml } from "./topRated";
 import { getSearchHtml, initSearch } from "./search";
+import { get404Html, init404 } from "./404";
 
 // Selectors
 const rootSelector = `#root`;
@@ -75,6 +76,12 @@ const componentTemplates = {
         tag: 'section',
         classes: ['app__media-showcase', 'media-showcase'],
         init: initRecommended
+    },
+    404: {
+        html: get404Html(),
+        tag: 'section',
+        classes: ['page404'],
+        init: init404
     }
 }
 

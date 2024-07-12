@@ -17,7 +17,8 @@ const getCurrentURL = () => {
  */
 const matchUrlToRoutes = (path) => {
     const matchedRoute = routes.find((route) => route.path === path);
-    return matchedRoute || null;
+    const route404 = routes.find((route) => route.path === '/404');
+    return matchedRoute || route404;
 }
 
 /**
@@ -76,6 +77,10 @@ const routes = [
         document.title = `MovieDB - Bookmarked Movies and TV Series`
         renderComponent('search');
         renderComponent('bookmarks');
+    }},
+    { path: '/404', callback: () => {
+        document.title = `MovieDB - 404: Take the cannoli!`
+        renderComponent('404');
     }}
 ]
 
