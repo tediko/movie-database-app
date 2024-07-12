@@ -4,7 +4,6 @@
     $root: &;
 
     @include breakpoint('md') {
-        padding-block: 2rem;
         padding-left: 2.5rem;
     }
 
@@ -29,7 +28,10 @@
     }
 
     &__search {
-        margin-top: 1.8rem;
         margin-bottom: 1.25rem;
+
+        @include breakpoint('md') {
+            margin-top: 3.8rem;
+        }
     }
 }
