@@ -2,6 +2,7 @@ import { bookmarkManager } from "../../database/bookmarkManager";
 import { getGenres } from "../../database";
 import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener } from "../../utilities";
 import noImageImg from '../../assets/no-image.jpg';
+import noBookmarkImg from '../../assets/no-bookmark.jpg';
 
 // Selectors
 const containerSelector = `[data-bookmarks-wrapper]`;
@@ -122,7 +123,9 @@ const displayBookmarks = (data, pagesToDisplay) => {
 const renderInfoMessage = (fragment) => {
     const contentTypeText = dataTypeToDisplay === 'movie' ? 'movies' : 'TV series';
     const listItem = createHtmlElement('li', ['media-showcase__item-bookmarks-info'], `
-        <img src="/assets/bookmarks-neuralyzer.png" alt="">
+        <div class="image-wrapper">
+            <img src="${noBookmarkImg}" alt="">
+        </div>
         <h3 class="fs-500 text-blue-grayish">Add bookmarks!</h3>
         <p class="fs-400 text-white">Don't let the Man in Black's neuralyzer get the best of you! Bookmark your favourite ${contentTypeText} so you can recall them in an instant!</p>
     `);
