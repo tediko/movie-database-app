@@ -135,12 +135,12 @@ const attachListeners = () => {
         closeButton.removeEventListener('click', closeLightbox);
     });
 
-    document.addEventListener('keydown', function closeLightboxKey(event) {
+    lightboxElement.addEventListener('keydown', function closeLightboxKey(event) {
         const pressedKey = event.key;
 
         if (pressedKey === 'Escape') {
             hideLightbox();
-            closeButton.removeEventListener('keydown', closeLightboxKey);
+            lightboxElement.removeEventListener('keydown', closeLightboxKey);
         }
     })
 }
