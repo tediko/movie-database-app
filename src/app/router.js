@@ -85,6 +85,7 @@ const routes = [
 ]
 
 export const router = {
+    getCurrentURL,
     loadInitialRoute,
     navigateTo
 };
