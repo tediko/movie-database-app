@@ -1,5 +1,6 @@
 import { router } from '../../app/router';
 import image404 from '../../assets/image404.jpg';
+import { updateActiveNavElement } from '../../app';
 
 // Elements
 let appRoot;
@@ -31,6 +32,7 @@ const handleNavLinkClick = (event) => {
     event.preventDefault();
     appRoot.innerHTML = '';
     router.navigateTo('/app');
+    updateActiveNavElement();
 }
 
 /**
