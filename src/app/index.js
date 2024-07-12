@@ -4,11 +4,12 @@ import { router } from './router';
 
 // Elements
 let root;
+let headerContainer;
 
 // Selectors
 const rootSelector = `#root`;
 const headerSelector = `[data-header-container]`;
-const navLinkSelector = `[data-link]`;
+const navLinkSelector = (attrValue) => attrValue ? `[data-link="${attrValue}"]` : `[data-link]`;
 const logoutCtaSelector = `[data-logout-cta]`;
 
 // Flags
@@ -43,13 +44,14 @@ async function initApp() {
  * Sets up the navigation event listeners and handlers.
  */
 const setupNavigation = () => {
-    const headerContainer = document.querySelector(headerSelector);
+    headerContainer = document.querySelector(headerSelector);
 
+    updateActiveNavElement();
     headerContainer.addEventListener('click', (event) => {
         const eventTarget = event.target;
 
         // Handle nav link click
-        if (eventTarget.matches(navLinkSelector)) {
+        if (eventTarget.matches(navLinkSelector())) {
             handleNavLinkClick(headerContainer, event)
         }
 
@@ -61,6 +63,14 @@ const setupNavigation = () => {
 };
 
 /**
+ * Updates header active nav link element based on url path by adding active class to it.
+ */
+const updateActiveNavElement = () => {
+    const activeNavElement = headerContainer.querySelector(navLinkSelector(router.getCurrentURL()));
+    activeNavElement ? activeNavElement.classList.add(activeClass) : null;
+}
+
+/**
  * Handles the click event on navigation link
  * @param {HTMLElement} container - The header container element.
  * @param {Event} event - The click event object.
@@ -68,7 +78,7 @@ const setupNavigation = () => {
 const handleNavLinkClick = (container, event) => {
     event.preventDefault();
     const eventTarget = event.target;
-    const navLinks = container.querySelectorAll(navLinkSelector);
+    const navLinks = container.querySelectorAll(navLinkSelector());
     const path = eventTarget.getAttribute('href');
 
     // Clear root element HTML and route to clicked navLink path.
@@ -79,4 +89,4 @@ const handleNavLinkClick = (container, event) => {
     eventTarget.classList.add(activeClass);
 }
 
-export { initApp };
+export { initApp, updateActiveNavElement };
