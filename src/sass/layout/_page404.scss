@@ -12,13 +12,8 @@
             min-height: calc(100vh - 4rem); // Little cheat to remove parent container padding
         }
     }
-
+    
     &__quote {
-        line-height: 0;
-        font-size: 5rem;
-    }
-
-    &__title {
         position: relative;
         display: grid;
         max-width: 15ch;
@@ -62,7 +57,7 @@
         width: 100%;
     }
 
-    &__subtitle {
+    &__title {
         margin-top: 2rem;
         margin-bottom: 0.5rem;
     }
