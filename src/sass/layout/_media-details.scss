@@ -1,0 +1,204 @@
+@use '../utilities' as *;
+
+.media-details {
+    &__top {
+        display: grid;
+        background-image: url("https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces/tmU7GeKVybMWFButWEGl2M4GeiP.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50%;
+        min-height: 500px;
+        max-height: 800px;
+        height: 60vw;
+    }
+    
+    &__top-container {
+        position: relative;
+        display: grid;
+        align-content: center;
+        justify-self: start;
+        z-index: 0;
+        padding: 1rem;
+
+        &::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 130%;
+            z-index: -1;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                hsl(223, 30%, 9%) 10%,
+                hsla(223, 30%, 9%, 0.98) 20%,
+                hsla(223, 30%, 9%, 0.97) 25%,
+                hsla(223, 30%, 9%, 0.95) 35%,
+                hsla(223, 30%, 9%, 0.94) 40%,
+                hsla(223, 30%, 9%, 0.92) 45%,
+                hsla(223, 30%, 9%, 0.9) 50%,
+                hsla(223, 30%, 9%, 0.87) 55%,
+                hsla(223, 30%, 9%, 0.82) 60%,
+                hsla(223, 30%, 9%, 0.75) 65%,
+                hsla(223, 30%, 9%, 0.63) 70%,
+                hsla(223, 30%, 9%, 0.45) 75%,
+                hsla(223, 30%, 9%, 0.27) 80%,
+                hsla(223, 30%, 9%, 0.15) 85%,
+                hsla(223, 30%, 9%, 0.08) 90%,
+                hsla(223, 30%, 9%, 0.03) 95%,
+                hsla(223, 30%, 9%, 0) 100%
+                );
+        }
+    }
+
+    &__title {
+        display: flex;
+        flex-direction: column-reverse;
+
+        @include breakpoint('sm') {
+            flex-direction: row;
+            gap: 0.5rem;
+        }
+    }
+
+    &__info {
+        display: flex;
+        
+        span {
+            display: inline-flex;
+            align-items: center;
+            
+            &:not(:last-of-type) {
+                &::after {
+                    position: relative;
+                    display: inline-block;
+                    content: '';
+                    width: 3px;
+                    height: 3px;
+                    background-color: hsl(var(--c-white) / 0.75);
+                    margin-inline: 0.5rem;
+                    border-radius: 50%;
+                }
+            }
+            
+            img {
+                padding-right: 0.375rem;
+            }
+        }
+    }
+
+    &__info-genre {
+        &::before {
+            content: '\f630';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 0.3rem;
+        }
+    }
+
+    &__tagline {
+        padding-top: 1rem;
+        font-style: italic;
+    }
+
+    &__desc {
+        max-width: 60ch;
+        text-align: justify;
+
+        @include breakpoint('md') {
+            text-align: left;
+        }
+    }
+
+    &__top-details {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    &__top-score {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: hsl(var(--c-blue-dark-semi));
+        border-radius: 40px;
+        padding-inline: 3.5rem 1rem;
+    }
+
+    &__user-score {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    &__cta {
+        position: relative;
+        display: flex;
+        gap: 0.5rem;
+        padding: 1rem 2.5rem;
+        background-color: hsl(var(--c-blue-dark-semi));
+        border-radius: 40px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+
+        &::before {
+            content: "\f02e";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+        }
+    }
+
+    &__cast {
+        position: relative;
+        margin-top: 2rem;
+
+        &::after {
+            position: absolute;
+            display: block;
+            content: "";
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 100%;
+            background-image: linear-gradient(to right,rgba(255, 0, 0, 0)0,hsl(var(--c-blue-dark)) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+    }
+
+    &__cast-title {
+        margin-bottom: 1.5rem;
+    }
+
+    &__cast-item {
+        position: relative;
+        width: 100%;
+        max-width: 12rem;
+    }
+
+    &__cast-item-bg {
+        position: relative;
+        background-image: url("https://media.themoviedb.org/t/p/w300_and_h450_bestv2/jPsLqiYGSofU4s6BjrxnefMfabb.jpg");
+        background-size: 100%;
+        background-position: center;
+        aspect-ratio: 4/6;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        transition: background-size 350ms ease-in-out;
+    }
+
+    &__cast-shimmer {
+        @extend %shimmer-effect;
+        min-width: 192px;
+        max-height: 335px;
+        aspect-ratio: 1 / 2;
+        margin-right: 2rem;
+    }
+
+    &__similar {
+        margin-top: 2rem;
+    }
+}
