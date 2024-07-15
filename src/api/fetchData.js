@@ -251,4 +251,43 @@ async function fetchSearchResults(searchQuery) {
     }
 }
 
-export { fetchUpcomingMovies, fetchTrailerSrcKey, fetchTrending, fetchRecommendations, fetchTopRated, fetchSearchResults };
+/**
+ * Fetches detailed information about a media item (movie or TV show).
+ * @async
+ * @param {string} type - The type of media ('movie' or 'tv').
+ * @param {string|number} mediaId - The unique identifier of the media item.
+ * @returns {Promise<Object>} A promise that resolves to an object containing the media details.
+ * @throws {Error} Throws an error if the API request fails or returns a non-OK status.
+ */
+async function fetchMediaDetails(type, mediaId) {
+    const url = `https://api.themoviedb.org/3/${type}/${mediaId}?append_to_response=credits,similar`;
+
+    try {
+        const response = await fetch(url, options);
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        return {
+            id: data.id,
+            title: data.title || data.name,
+            backdropPath: data.backdrop_path,
+            type: type,
+            releaseData: data.release_date || data.first_air_date,
+            runTime: data.runtime || data.number_of_seasons,
+            ratingAverage: data.vote_average,
+            genreIds: data.genres,
+            tagline: data.tagline,
+            cast: data.credits.cast,
+            similar: data.similar.results,
+            overview: data.overview
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+export { fetchUpcomingMovies, fetchTrailerSrcKey, fetchTrending, fetchRecommendations, fetchTopRated, fetchSearchResults, fetchMediaDetails };
