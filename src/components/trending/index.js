@@ -1,7 +1,7 @@
 import { fetchTrending } from "../../api/fetchData";
 import { bookmarkManager } from "../../database/bookmarkManager";
 import initSlider from "../../slider";
-import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../../utilities";
+import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener, attachLinkWithParamsEventListener } from "../../utilities";
 
 // Selectors
 let trendingList;
@@ -26,6 +26,7 @@ async function initTrending() {
         displayTrending(data);
         attachBookmarkEventListener(trendingList, componentName);
         bookmarkManager.subscribe(() => displayTrending(data), componentName);
+        attachLinkWithParamsEventListener(trendingList);
     } catch (error) {
         displayDataError(trendingList, 'li');
     }
@@ -48,9 +49,10 @@ const displayTrending = (data, numOfMediaToDisplay = 12) => {
         const mediaType = type === 'movie' ? `<img src="/assets/icon-category-movie.svg" alt=""> Movie` : `<img src="/assets/icon-category-tv.svg" alt=""> TV Series`
         const userRating = +(ratingAverage * 10).toFixed();
         const userRatingDecimal = userRating / 100;
+        const stringifyUrlParams = JSON.stringify({id, type});
 
         const listItem = createHtmlElement('li', ['trending__item', 'swiper-slide'], `
-            <a href="/app/title?id=${id}&type=${type}" class="trending__item-cta" data-trending-cta>
+            <a href="/app/title?id=${id}&type=${type}" class="trending__item-cta" data-params='${stringifyUrlParams}' data-trending-cta>
                 <div class="trending__item-bg" style="background-image: url('${posterBackgroundUrl}${posterPath}') ">
                     <p class="trending__user-score user-score fs-200 fw-700 text-white" style="--progress: ${userRating}">
                         <label class="sr-only" for="user-rating">User rating: </label>
