@@ -1,6 +1,9 @@
 import renderComponent from '../components/renderComponent';
 import { bookmarkManager } from '../database/bookmarkManager';
 
+// Elements
+const root = document.querySelector('#root');
+
 /**
  * Gets the current URL path.
  * @returns {string} The current URL path.
@@ -64,6 +67,7 @@ window.addEventListener('popstate', () => {
 const routes = [
     { path: '/app', callback: () => {
         document.title = `MovieDB - Your personal entertainment hub`;
+        root.innerHTML = '';
         renderComponent('search');
         renderComponent('trending');
         renderComponent('trailers');
@@ -71,19 +75,23 @@ const routes = [
     }},
     { path: '/app/top-rated', callback: () => {
         document.title = `MovieDB - Top rated movies & TV series`
+        root.innerHTML = '';
         renderComponent('search');
         renderComponent('top');
     }},
     { path: '/app/bookmarks', callback: () => {
         document.title = `MovieDB - Bookmarked Movies and TV Series`
+        root.innerHTML = '';
         renderComponent('search');
         renderComponent('bookmarks');
     }},
     { path: '/app/title', callback: () => {
+        root.innerHTML = '';
         renderComponent('mediaDetails');
     }},
     { path: '/404', callback: () => {
         document.title = `MovieDB - 404: Take the cannoli!`
+        root.innerHTML = '';
         renderComponent('404');
     }}
 ]
