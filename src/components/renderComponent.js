@@ -5,6 +5,7 @@ import { initTrailers, getTrailersHtml } from "./trailers";
 import { initRecommended, getRecommendedHtml } from "./recommended";
 import { initTopRated, getTopRatedHtml } from "./topRated";
 import { getSearchHtml, initSearch } from "./search";
+import { getMediaDetailsHtml, initMediaDetails } from "./mediaDetails";
 import { get404Html, init404 } from "./404";
 
 // Selectors
@@ -76,6 +77,12 @@ const componentTemplates = {
         tag: 'section',
         classes: ['app__media-showcase', 'media-showcase'],
         init: initRecommended
+    },
+    mediaDetails: {
+        html: getMediaDetailsHtml(),
+        tag: 'section',
+        classes: ['media-details'],
+        init: initMediaDetails
     },
     404: {
         html: get404Html(),
