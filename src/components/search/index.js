@@ -102,7 +102,7 @@ const displaySearchResults = (data, searchQuery, numOfMediaToDisplay = 12) => {
         .join(', ');
         
         const listItem = createHtmlElement('li', ['media-showcase__item'], `
-            <a href="/title?${id}" class="media-showcase__item-cta" data-top-cta style="background-image: url('${backdropPath ? `${smallBackgroundUrl}${backdropPath}` : noImageImg}')">
+            <a href="/app/title?id=${id}&type=${type}" class="media-showcase__item-cta" data-top-cta style="background-image: url('${backdropPath ? `${smallBackgroundUrl}${backdropPath}` : noImageImg}')">
                 <div class="media-showcase__details">
                     <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
                         <span>${releaseYear}</span>

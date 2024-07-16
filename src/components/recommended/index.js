@@ -82,7 +82,7 @@ const displayRecommended = (data, numOfMediaToDisplay = 12) => {
         const mediaType = type === 'movie' ? `<img src="/assets/icon-category-movie.svg" alt=""> Movie` : `<img src="/assets/icon-category-tv.svg" alt=""> TV Series`
 
         const listItem = createHtmlElement('li', ['media-showcase__item'], `
-            <a href="/title?${id}" class="media-showcase__item-cta" data-recommended-cta style="background-image: url('${backdropPath ? `${smallBackgroundUrl}${backdropPath}` : noImageImg}')">
+            <a href="/app/title?id=${id}&type=${type}" class="media-showcase__item-cta" data-recommended-cta style="background-image: url('${backdropPath ? `${smallBackgroundUrl}${backdropPath}` : noImageImg}')">
                 <div class="media-showcase__details">
                     <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
                         <span>${releaseYear}</span>
