@@ -277,6 +277,7 @@ const attachLinkWithParamsEventListener = (container) => {
             const url = new URL(location);
             url.searchParams.set(idQueryParameterName, parsedData.id);
             url.searchParams.set(typeQueryParameterName, parsedData.type);
+            url.pathname = path;
 
             root.innerHTML = '';
             router.navigateTo(path, url);
