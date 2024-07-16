@@ -1,6 +1,6 @@
 import { fetchTopRated } from '../../api/fetchData';
 import { getGenres } from '../../database';
-import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener } from '../../utilities';
+import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener, attachLinkWithParamsEventListener } from '../../utilities';
 import { bookmarkManager } from '../../database/bookmarkManager';
 import noImageImg from '../../assets/no-image.jpg';
 
@@ -43,6 +43,7 @@ async function initTopRated() {
         displayTopRated(data);
         attachBookmarkEventListener(topRatedList, componentName);
         attachEventListeners(topRatedContainer);
+        attachLinkWithParamsEventListener(topRatedContainer);
         bookmarkManager.subscribe(() => displayTopRated(data), componentName);
     } catch (error) {
         displayDataError(topRatedList, 'li');
@@ -79,9 +80,10 @@ const displayTopRated = (data) => {
             .map(id => listOfMediaGenres.find(genre => genre.id === id)?.name)
             .filter(Boolean)
             .join(', ');
+        const stringifyUrlParams = JSON.stringify({id, type});
 
         const listItem = createHtmlElement('li', ['media-showcase__item'], `
-            <a href="/app/title?id=${id}&type=${type}" class="media-showcase__item-cta" data-top-cta style="background-image: url('${backdropPath ? `${smallBackgroundUrl}${backdropPath}` : noImageImg}')">
+            <a href="/app/title?id=${id}&type=${type}" class="media-showcase__item-cta" data-top-cta data-params='${stringifyUrlParams}' style="background-image: url('${backdropPath ? `${smallBackgroundUrl}${backdropPath}` : noImageImg}')">
                 <div class="media-showcase__details">
                     <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
                         <span>${releaseYear}</span>
