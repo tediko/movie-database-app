@@ -3,13 +3,17 @@
 .media-details {
     &__top {
         display: grid;
-        background-image: url("https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces/tmU7GeKVybMWFButWEGl2M4GeiP.jpg");
+        background-color: hsl(var(--c-blue-dark));
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 50%;
         min-height: 500px;
         max-height: 800px;
         height: 60vw;
+
+        .data-error {
+            align-content: center;
+        }
     }
     
     &__top-container {
