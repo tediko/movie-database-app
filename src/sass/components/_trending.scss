@@ -71,6 +71,7 @@
         border-radius: 8px;
         margin-bottom: 0.5rem;
         transition: background-size 350ms ease-in-out;
+        pointer-events: none;
     }
 
     &__user-score {
@@ -83,6 +84,7 @@
     &__details {
         display: grid;
         gap: 0.1rem;
+        pointer-events: none;
     }
     
     &__details-desc {
