@@ -1,5 +1,5 @@
 import { fetchRecommendations } from "../../api/fetchData";
-import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener } from "../../utilities";
+import { createHtmlElement, displayDataError, createBookmarkHtmlElement, attachBookmarkEventListener, attachLinkWithParamsEventListener } from "../../utilities";
 import { bookmarkManager } from "../../database/bookmarkManager";
 import noImageImg from '../../assets/no-image.jpg';
 
@@ -49,6 +49,7 @@ async function initRecommended() {
         const data = await fetchRecommendations(...getRandomMovieAndSeriesId());
         displayRecommended(data);
         attachBookmarkEventListener(recommendedList, componentName);
+        attachLinkWithParamsEventListener(recommendedList);
         bookmarkManager.subscribe(() => displayRecommended(data), componentName);
     } catch (error) {
         displayDataError(recommendedList, 'li');
@@ -80,9 +81,10 @@ const displayRecommended = (data, numOfMediaToDisplay = 12) => {
     combinedRecommendations.forEach(({id, title, backdropPath, type, releaseData, genreIds}) => {
         const releaseYear = releaseData.split('-')[0];
         const mediaType = type === 'movie' ? `<img src="/assets/icon-category-movie.svg" alt=""> Movie` : `<img src="/assets/icon-category-tv.svg" alt=""> TV Series`
+        const stringifyUrlParams = JSON.stringify({id, type});
 
         const listItem = createHtmlElement('li', ['media-showcase__item'], `
-            <a href="/app/title?id=${id}&type=${type}" class="media-showcase__item-cta" data-recommended-cta style="background-image: url('${backdropPath ? `${smallBackgroundUrl}${backdropPath}` : noImageImg}')">
+            <a href="/app/title?id=${id}&type=${type}" class="media-showcase__item-cta" data-recommended-cta data-params='${stringifyUrlParams}' style="background-image: url('${backdropPath ? `${smallBackgroundUrl}${backdropPath}` : noImageImg}')">
                 <div class="media-showcase__details">
                     <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
                         <span>${releaseYear}</span>
