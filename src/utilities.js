@@ -158,10 +158,10 @@ const displayDataError = (listContainer, elementTag) => {
 /**
  * Creates HTML string for a bookmark button element
  * @param {Object} bookmarkInfo - Object containing information about the item to be bookmarked.
- * @param {string} htmlClass - String with name of html class for button element.
+ * @param {String[]} classes - An array of CSS class names to apply to element
  * @returns {string} HTML string representing a bookmark button element.
  */
-const createBookmarkHtmlElement = (bookmarkInfo, htmlClass) => {
+const createBookmarkHtmlElement = (bookmarkInfo, classes) => {
     const {id, title, type} = bookmarkInfo;
     // Checks if bookmark with given id and type is bookmarked.
     const isBookmarked = bookmarkManager.isBookmarked(id, type);
@@ -169,8 +169,8 @@ const createBookmarkHtmlElement = (bookmarkInfo, htmlClass) => {
     const stringifiedBookmarkInfo = JSON.stringify(bookmarkInfo).replace(/'/g, "&apos;");
     
     return isBookmarked ? 
-        `<button class="${htmlClass} bookmark-cta text-white" type="button" aria-label="Remove ${title} from bookmarks" data-bookmark-cta data-bookmarked data-bookmark-info='${stringifiedBookmarkInfo}'></button>` : 
-        `<button class="${htmlClass} bookmark-cta text-white" type="button" aria-label="Add ${title} to bookmarks" data-bookmark-cta data-bookmark-info='${stringifiedBookmarkInfo}'></button>`;
+        `<button class="${classes.join(' ')}" type="button" aria-label="Remove ${title} from bookmarks" data-bookmark-cta data-bookmarked data-bookmark-info='${stringifiedBookmarkInfo}'></button>` : 
+        `<button class="${classes.join(' ')}" type="button" aria-label="Add ${title} to bookmarks" data-bookmark-cta data-bookmark-info='${stringifiedBookmarkInfo}'></button>`;
 }
 
 /**
