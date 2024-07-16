@@ -241,6 +241,17 @@ function debounce(func, delay) {
     }
 }
 
+/**
+ * Retrieves the value of a specified query parameter from the current URL.
+ * from the query string of a URL.
+ * @param {string} name - The name of the query parameter to retrieve.
+ * @returns {string|null} The value of the specified query parameter, or null if not found.
+ */
+const getUrlQueryParameters = (name) => {
+    const newParams = new URLSearchParams(window.location.search);
+    return newParams.get(name);
+}
+
 export { 
     createHtmlElement,
     focusTrap,
@@ -252,5 +263,6 @@ export {
     displayDataError,
     createBookmarkHtmlElement,
     attachBookmarkEventListener,
-    debounce
+    debounce,
+    getUrlQueryParameters
 };
