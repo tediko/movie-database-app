@@ -1,4 +1,5 @@
 import { bookmarkManager } from "./database/bookmarkManager";
+import { router } from "./app/router";
 
 /**
  * Creates an HTML element with the specified tag, classes and content.
@@ -252,6 +253,38 @@ const getUrlQueryParameters = (name) => {
     return newParams.get(name);
 }
 
+/**
+ * Attaches a click event listener to the specified container to handle navigation with custom parameters.
+ * @param {HTMLElement} container - The container element to which the event listener will be attached.
+ * @returns {void}
+ */
+const attachLinkWithParamsEventListener = (container) => {
+    const root = document.querySelector('#root');
+    const linkWithParamsSelector = `[data-params]`;
+    const idQueryParameterName = 'id';
+    const typeQueryParameterName = 'type';
+    const path = `/app/title`
+
+    if (!root || !container) return;
+
+    container.addEventListener('click', (event) => {
+        event.preventDefault();
+        const eventTarget = event.target;
+
+        // Check if the event target or its closest ancestor has the data-params attribute
+        if (eventTarget.hasAttribute(linkWithParamsSelector) || eventTarget.closest(linkWithParamsSelector)) {
+            const parsedData = JSON.parse(event.target.dataset.params);
+            const url = new URL(location);
+            url.searchParams.set(idQueryParameterName, parsedData.id);
+            url.searchParams.set(typeQueryParameterName, parsedData.type);
+
+            root.innerHTML = '';
+            router.navigateTo(path, url);
+            window.scrollTo(0, 0);
+        }
+    })
+}
+
 export { 
     createHtmlElement,
     focusTrap,
@@ -264,5 +297,6 @@ export {
     createBookmarkHtmlElement,
     attachBookmarkEventListener,
     debounce,
-    getUrlQueryParameters
+    getUrlQueryParameters,
+    attachLinkWithParamsEventListener
 };
