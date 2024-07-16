@@ -1,6 +1,6 @@
 import { fetchSearchResults } from "../../api/fetchData";
 import { getGenres } from "../../database";
-import { createHtmlElement, createBookmarkHtmlElement, displayDataError, debounce, attachBookmarkEventListener } from "../../utilities";
+import { createHtmlElement, createBookmarkHtmlElement, displayDataError, debounce, attachBookmarkEventListener, attachLinkWithParamsEventListener } from "../../utilities";
 import noImageImg from '../../assets/no-image.jpg';
 
 // Elements
@@ -37,6 +37,7 @@ const initSearch = () => {
     formElement.addEventListener('submit', (event) => event.preventDefault());
     formElement.addEventListener('input', debounce(handleSearchForm, 800));
     attachBookmarkEventListener(resultsWrapper);
+    attachLinkWithParamsEventListener(resultsWrapper);
 }
 
 /**
@@ -100,9 +101,10 @@ const displaySearchResults = (data, searchQuery, numOfMediaToDisplay = 12) => {
         .map(id => listOfMediaGenres.find(genre => genre.id === id)?.name)
         .filter(Boolean)
         .join(', ');
+        const stringifyUrlParams = JSON.stringify({id, type});
         
         const listItem = createHtmlElement('li', ['media-showcase__item'], `
-            <a href="/app/title?id=${id}&type=${type}" class="media-showcase__item-cta" data-top-cta style="background-image: url('${backdropPath ? `${smallBackgroundUrl}${backdropPath}` : noImageImg}')">
+            <a href="/app/title?id=${id}&type=${type}" class="media-showcase__item-cta" data-top-cta data-params='${stringifyUrlParams}' style="background-image: url('${backdropPath ? `${smallBackgroundUrl}${backdropPath}` : noImageImg}')">
                 <div class="media-showcase__details">
                     <p class="media-showcase__details-desc fs-200 fw-400 text-white75">
                         <span>${releaseYear}</span>
