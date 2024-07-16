@@ -260,7 +260,7 @@ async function fetchSearchResults(searchQuery) {
  * @throws {Error} Throws an error if the API request fails or returns a non-OK status.
  */
 async function fetchMediaDetails(type, mediaId) {
-    const url = `https://api.themoviedb.org/3/${type}/${mediaId}?append_to_response=credits,similar`;
+    const url = `https://api.themoviedb.org/3/${type}/${mediaId}?append_to_response=credits,recommendations`;
 
     try {
         const response = await fetch(url, options);
@@ -282,7 +282,7 @@ async function fetchMediaDetails(type, mediaId) {
             genreIds: data.genres,
             tagline: data.tagline,
             cast: data.credits.cast,
-            similar: data.similar.results,
+            recommendations: data.recommendations.results,
             overview: data.overview
         }
     } catch (error) {
