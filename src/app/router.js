@@ -46,10 +46,11 @@ const loadRoute = (path) => {
 /**
  * Navigates to the specified path and loads the corresponding route.
  * @param {string} path - The path to navigate to.
+ * @param {URL} [url] - An optional URL object representing the new URL to navigate to with query params.
  */
-const navigateTo = (path) => {
+const navigateTo = (path, url) => {
     // Push the new state to the browser's history stack without causing a full page reload.
-    window.history.pushState(null, null, path);
+    window.history.pushState(null, null, url ? url : path);
     bookmarkManager.unsubscribe();
     loadRoute(path);
 }
@@ -77,6 +78,9 @@ const routes = [
         document.title = `MovieDB - Bookmarked Movies and TV Series`
         renderComponent('search');
         renderComponent('bookmarks');
+    }},
+    { path: '/app/title', callback: () => {
+        renderComponent('mediaDetails');
     }},
     { path: '/404', callback: () => {
         document.title = `MovieDB - 404: Take the cannoli!`
