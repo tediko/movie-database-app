@@ -93,7 +93,7 @@ const displayTopRated = (data) => {
                         ${userRating}
                     </p>
             </a>
-            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData, genreIds}, 'media-showcase__bookmark-cta')}
+            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData, genreIds}, ['media-showcase__bookmark-cta', 'bookmark-cta', 'text-white'])}
         `)
 
         fragment.appendChild(listItem);

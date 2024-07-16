@@ -115,7 +115,7 @@ const displaySearchResults = (data, searchQuery, numOfMediaToDisplay = 12) => {
                     ${userRating}
                 </p>
             </a>
-            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData, genreIds}, 'media-showcase__bookmark-cta')}
+            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData, genreIds}, ['media-showcase__bookmark-cta', 'bookmark-cta', 'text-white'])}
             `)
             fragment.appendChild(listItem);
         })

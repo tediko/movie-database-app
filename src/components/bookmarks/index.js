@@ -99,7 +99,7 @@ const displayBookmarks = (data, pagesToDisplay) => {
                     <h3 class="media-showcase__details-title fs-450 fw-500 text-white">${title}</h3>
                 </div>
             </a>
-            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData, genreIds}, 'media-showcase__bookmark-cta')}
+            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData, genreIds}, ['media-showcase__bookmark-cta', 'bookmark-cta', 'text-white'])}
         `);
 
         fragment.appendChild(listItem);

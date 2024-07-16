@@ -65,7 +65,7 @@ const displayTrending = (data, numOfMediaToDisplay = 12) => {
                     <h3 class="trending__details-title fs-400 fw-500 text-white">${title}</h3>
                 </div>
             </a>
-            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData, genreIds}, 'trending__bookmark-cta')}
+            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData, genreIds}, ['trending__bookmark-cta', 'bookmark-cta', 'text-white'])}
         `);
 
         fragment.appendChild(listItem);
