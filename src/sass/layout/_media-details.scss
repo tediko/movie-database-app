@@ -67,6 +67,7 @@
 
     &__info {
         display: flex;
+        flex-wrap: wrap;
         
         span {
             display: inline-flex;
@@ -151,7 +152,29 @@
         &::before {
             content: "\f02e";
             font-family: "Font Awesome 6 Free";
-            font-weight: 900;
+            font-weight: 400;
+        }
+
+        &:focus-visible {
+            @extend %focus-visible;
+            background-color: hsl(var(--c-white));
+            color: hsl(var(--c-blue-dark));
+        }
+
+        @include breakpoint('md') {
+            transition: background-color 350ms ease-in-out,
+                        color 350ms ease-in-out;
+    
+            &:hover {
+                background-color: hsl(var(--c-white));
+                color: hsl(var(--c-blue-dark));
+            }
+        }
+
+        &[data-bookmarked] {
+            &::before {
+                font-weight: 900;
+            }
         }
     }
 
@@ -203,6 +226,6 @@
     }
 
     &__similar {
-        margin-top: 2rem;
+        margin-top: 4rem;
     }
 }
