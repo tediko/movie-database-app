@@ -68,8 +68,9 @@ const setupNavigation = () => {
  * and remove it from the rest.
  */
 const updateActiveNavElement = () => {
+    const logoSelector = `[data-header-logo]`;
     const navLinks = headerContainer.querySelectorAll(navLinkSelector());
-    const activeNavElement = Array.from(navLinks).find(link => link.matches(navLinkSelector(router.getCurrentURL())));
+    const activeNavElement = Array.from(navLinks).find(link => !link.matches(logoSelector) && link.matches(navLinkSelector(router.getCurrentURL())));
 
     navLinks.forEach(link => link.classList.remove(activeClass));
     activeNavElement ? activeNavElement.classList.add(activeClass) : null;
