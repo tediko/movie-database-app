@@ -97,4 +97,29 @@ async function createRecord(userUid) {
     }
 }
 
-export { getUserBookmarks, updateUserBookmarks, getGenres, createRecord };
+/**
+ * Retrieves a random media item representing either movie or tv series id and type.
+ * @returns {Promise<object>} - A promise that resolves to an object representing the random media item.
+ * @throws {Error} - If there is an error retrieving the data from the database.
+ */
+async function getRandomMedia() {
+    try {
+        const { data, error } = await supabase
+            .from('content')
+            .select('media_pool')
+            .eq('id', 1);
+        
+        if (error) {
+            throw new Error(`Database error: ${error}`);
+        }
+
+        const mediaPoolArr = data[0].media_pool;
+        const randomNumber = Math.floor(Math.random() * mediaPoolArr.length);
+
+        return mediaPoolArr[randomNumber];
+    } catch (error) {
+        throw error;
+    }
+}
+
+export { getUserBookmarks, updateUserBookmarks, getGenres, createRecord, getRandomMedia };
