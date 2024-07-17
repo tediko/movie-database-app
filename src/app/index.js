@@ -21,6 +21,7 @@ const activeClass = 'active';
 async function initApp() {
     const user = await getUser();
     root = document.querySelector(rootSelector);
+    headerContainer = document.querySelector(headerSelector);
     
     // Check if root element exists.
     if (!root) return;
@@ -44,15 +45,12 @@ async function initApp() {
  * Sets up the navigation event listeners and handlers.
  */
 const setupNavigation = () => {
-    headerContainer = document.querySelector(headerSelector);
-
-    updateActiveNavElement();
     headerContainer.addEventListener('click', (event) => {
         const eventTarget = event.target;
 
         // Handle nav link click
         if (eventTarget.matches(navLinkSelector())) {
-            handleNavLinkClick(headerContainer, event)
+            handleNavLinkClick(event)
         }
 
         // Handle logout button click
@@ -66,7 +64,9 @@ const setupNavigation = () => {
  * Updates header active nav link element based on url path by adding active class to it.
  */
 const updateActiveNavElement = () => {
+    const navLinks = headerContainer.querySelectorAll(navLinkSelector());
     const activeNavElement = headerContainer.querySelector(navLinkSelector(router.getCurrentURL()));
+    navLinks.forEach(link => link.classList.remove(activeClass));
     activeNavElement ? activeNavElement.classList.add(activeClass) : null;
 }
 
@@ -75,18 +75,14 @@ const updateActiveNavElement = () => {
  * @param {HTMLElement} container - The header container element.
  * @param {Event} event - The click event object.
  */
-const handleNavLinkClick = (container, event) => {
+const handleNavLinkClick = (event) => {
     event.preventDefault();
     const eventTarget = event.target;
-    const navLinks = container.querySelectorAll(navLinkSelector());
     const path = eventTarget.getAttribute('href');
 
     // Clear root element HTML and route to clicked navLink path.
     root.innerHTML = '';
     router.navigateTo(path);
-    // Add active class for clicked nav link and remove it from the rest.
-    navLinks.forEach(link => link.classList.remove(activeClass));
-    eventTarget.classList.add(activeClass);
 }
 
 export { initApp, updateActiveNavElement };
