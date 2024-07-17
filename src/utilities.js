@@ -261,8 +261,6 @@ const getUrlQueryParameters = (name) => {
 const attachLinkWithParamsEventListener = (container) => {
     const root = document.querySelector('#root');
     const linkWithParamsSelector = `[data-params]`;
-    const idQueryParameterName = 'id';
-    const typeQueryParameterName = 'type';
     const path = `/app/title`
 
     if (!root || !container) return;
@@ -274,13 +272,8 @@ const attachLinkWithParamsEventListener = (container) => {
         // Check if the event target or its closest ancestor has the data-params attribute
         if (eventTarget.hasAttribute(linkWithParamsSelector) || eventTarget.closest(linkWithParamsSelector)) {
             const parsedData = JSON.parse(event.target.dataset.params);
-            const url = new URL(location);
-            url.searchParams.set(idQueryParameterName, parsedData.id);
-            url.searchParams.set(typeQueryParameterName, parsedData.type);
-            url.pathname = path;
 
-            root.innerHTML = '';
-            router.navigateTo(path, url);
+            router.navigateTo(path, createUrlWithIdAndTypeParams(parsedData, path));
             window.scrollTo(0, 0);
         }
     })
