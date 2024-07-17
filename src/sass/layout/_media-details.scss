@@ -9,7 +9,10 @@
         background-position: 50%;
         min-height: 500px;
         max-height: 800px;
-        height: 60vw;
+
+        @include breakpoint('md') {
+            height: 60vw;
+        }
 
         .data-error {
             align-content: center;
