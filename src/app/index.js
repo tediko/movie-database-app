@@ -1,6 +1,8 @@
 import { bookmarkManager } from '../database/bookmarkManager';
 import { getUser, signOut } from '../auth/authentication';
 import { router } from './router';
+import { getRandomMedia } from '../database';
+import { createUrlWithIdAndTypeParams } from '../utilities';
 
 // Elements
 let root;
@@ -14,6 +16,7 @@ const logoutCtaSelector = `[data-logout-cta]`;
 
 // Flags
 const activeClass = 'active';
+const titlePageAttribute = '/app/title';
 
 /**
  * Initializes the Application
@@ -82,9 +85,23 @@ const handleNavLinkClick = (event) => {
     const eventTarget = event.target;
     const path = eventTarget.getAttribute('href');
 
-    // Clear root element HTML and route to clicked navLink path.
-    root.innerHTML = '';
-    router.navigateTo(path);
+    // Check if the target element matches the title navlink selector.
+    if (eventTarget.matches(navLinkSelector(titlePageAttribute))) {
+        // Navigate to a random media item.
+        navigateToRandomMedia();
+    } else {
+        // Route to clicked navLink path.
+        router.navigateTo(path);
+    }
+}
+
+/**
+ * Asynchronously retrieves a random media item (movie or tv series),
+ * creates a URL with the media ID and type, and navigates to the title page using the created URL.
+ */
+async function navigateToRandomMedia() {
+    const data = await getRandomMedia();
+    router.navigateTo(titlePageAttribute, createUrlWithIdAndTypeParams(data, titlePageAttribute));
 }
 
 export { initApp, updateActiveNavElement };
