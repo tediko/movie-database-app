@@ -1,5 +1,6 @@
 import renderComponent from '../components/renderComponent';
 import { bookmarkManager } from '../database/bookmarkManager';
+import { updateActiveNavElement } from '.';
 
 // Elements
 const root = document.querySelector('#root');
@@ -42,7 +43,8 @@ const loadRoute = (path) => {
     if (!matchedRoute) {
         throw new Error('Route not found');
     }
-
+    
+    updateActiveNavElement();
     matchedRoute.callback();
 }
 
