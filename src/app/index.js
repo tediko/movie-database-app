@@ -61,11 +61,13 @@ const setupNavigation = () => {
 };
 
 /**
- * Updates header active nav link element based on url path by adding active class to it.
+ * Updates header active nav link element based on url path by adding active class to it
+ * and remove it from the rest.
  */
 const updateActiveNavElement = () => {
     const navLinks = headerContainer.querySelectorAll(navLinkSelector());
-    const activeNavElement = headerContainer.querySelector(navLinkSelector(router.getCurrentURL()));
+    const activeNavElement = Array.from(navLinks).find(link => link.matches(navLinkSelector(router.getCurrentURL())));
+
     navLinks.forEach(link => link.classList.remove(activeClass));
     activeNavElement ? activeNavElement.classList.add(activeClass) : null;
 }
