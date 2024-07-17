@@ -104,6 +104,12 @@
             }
         }
 
+        &--title {
+            &::before {
+                content: "\f522";
+            }
+        }
+
         &.active {
                 color: hsl(var(--c-white));
         }
