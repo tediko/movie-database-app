@@ -73,6 +73,7 @@ const displayTop = (data) => {
         .filter(Boolean)
         .join(', ');
     const runTimeFormatted = type === 'movie' ? `${runTime} min` : `${runTime} seasons`;
+    const genreIdsArr = genreIds.map(genre => genre.id);
     
     // Creates a DocumentFragment to build the container
     const fragment = new DocumentFragment();
@@ -96,7 +97,7 @@ const displayTop = (data) => {
                     <meter class="sr-only" id="user-rating" value="${userRatingDecimal}">${userRating}%</meter>
                 </p>
             </div>
-            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData, genreIds}, ['media-details__cta', , 'fs-300', 'fw-700', 'text-white'], 'Bookmark')}
+            ${createBookmarkHtmlElement({id, title, backdropPath, type, releaseData, genreIds: genreIdsArr}, ['media-details__cta', , 'fs-300', 'fw-700', 'text-white'], 'Bookmark')}
         </div>
     `)
     fragment.appendChild(topInfoContainer);
