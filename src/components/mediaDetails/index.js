@@ -1,5 +1,5 @@
 import { getGenres } from "../../database"
-import { createHtmlElement, createBookmarkHtmlElement, displayDataError, attachBookmarkEventListener, attachLinkWithParamsEventListener } from "../../utilities";
+import { createHtmlElement, createBookmarkHtmlElement, attachBookmarkEventListener, attachLinkWithParamsEventListener } from "../../utilities";
 import { fetchMediaDetails } from "../../api/fetchData";
 import noImageImg from '../../assets/no-image.jpg';
 import initSlider from "../../slider";
@@ -40,7 +40,7 @@ async function initMediaDetails() {
     
     if (!topWrapper) return;
     if (queryParams.id == null || queryParams.id === '' || queryParams.type == null || queryParams.type === '') {
-        displayDataError(topWrapper, 'div');
+        router.navigateTo('404');
         return;
     }
 
