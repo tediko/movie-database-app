@@ -286,6 +286,21 @@ const attachLinkWithParamsEventListener = (container) => {
     })
 }
 
+/**
+ * Creates a new URL object with the provided `id` and `type` parameters and the specified `path`.
+ * @param {Object} data - An object containing the `id` and `type` properties.
+ * @param {string} path - The path to be set in the URL.
+ * @returns {URL} - A new URL object with the specified parameters and path.
+ */
+const createUrlWithIdAndTypeParams = (data, path) => {
+    const url = new URL(location);
+    url.searchParams.set('id', data.id);
+    url.searchParams.set('type', data.type);
+    url.pathname = path;
+
+    return url;
+}
+
 export { 
     createHtmlElement,
     focusTrap,
@@ -299,5 +314,6 @@ export {
     attachBookmarkEventListener,
     debounce,
     getUrlQueryParameters,
-    attachLinkWithParamsEventListener
+    attachLinkWithParamsEventListener,
+    createUrlWithIdAndTypeParams
 };
