@@ -167,6 +167,7 @@
     &__profile-image {
         position: relative;
         width: clamp(24px, 0.06rem + 5.076vw, 40px);
+        pointer-events: none;
     }
 
     &__logout-cta {
