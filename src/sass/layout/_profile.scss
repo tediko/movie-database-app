@@ -1,0 +1,115 @@
+@use '../utilities' as *;
+
+.profile {
+    $root: &;
+    display: grid;
+    place-items: start;
+    min-height: 100vh;
+
+    @include breakpoint('md') {
+        margin-right: 4rem;
+        place-items: center;
+    }
+
+    @include breakpoint('xlg') {
+        margin-right: 0;
+    }
+
+    &__container {
+        display: grid;
+        gap: 2rem;
+        width: 100%;
+        max-width: 50rem;
+        padding: clamp(1.5rem, 1.024rem + 2.03vw, 2rem);
+        border: 1px solid hsl(var(--c-blue-grayish));
+        border-radius: 20px;
+        background-color: hsl(var(--c-blue-dark-semi));
+        box-shadow: 0px 0px 111px -23px hsl(var(--c-blue-light)/0.6);
+        z-index: 1;
+    }
+
+    &__title {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__avatar-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &:has(:focus-within) {
+            #{$root}__avatar-wrapper {
+                outline: 3px dashed hsl(var(--c-red));
+            }
+        }
+    }
+
+    &__avatar-wrapper {
+        border-radius: 50%;
+        overflow: hidden;
+        outline: 2px dashed hsl(var(--c-blue-grayish));
+        cursor: pointer;
+    }
+    
+    &__avatar-image {
+        width: clamp(80px, 0.836rem + 17.766vw, 150px);
+        height: clamp(80px, 0.836rem + 17.766vw, 150px);
+        object-fit: cover;
+    }
+
+    &__avatar-label-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 0.2rem;
+    }
+
+    &__avatar-label-desc {
+        font-style: italic;
+    }
+
+    &__form {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    &__input-wrapper {
+        display: grid;
+        position: relative;
+        gap: 0.2rem;
+        border: 1px solid hsl(var(--c-blue-grayish)/0.5);
+        border-radius: 10px;
+        
+        &:has(:focus-within) {
+            border: 1px solid hsl(var(--c-white));
+        }
+    }
+
+    &__label {
+        display: flex;
+        gap: 0.3rem;
+        align-items: center;
+        position: absolute;
+        top: -0.5rem;
+        left: 0.46rem;
+        background-color: hsl(var(--c-blue-dark-semi));
+        padding-inline: 0.2rem;
+    }
+
+    &__input {
+        background-color: transparent;
+        border: none;
+        caret-color: hsl(var(--c-red));
+        padding: 0.66rem;
+        padding-left: 0.6rem;
+
+        &:focus {
+            outline: none;
+        }
+        
+        &::placeholder {
+            color: hsl(var(--c-blue-grayish));
+        }
+    }
+}
