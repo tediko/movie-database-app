@@ -135,7 +135,7 @@
             position: absolute;
             content: '';
             inset: -2px;
-            background-color: hsl(var(--c-white));
+            background-color: hsl(var(--c-blue-grayish));
             border-radius: 50%;
             transition: background-color 350ms ease-in-out;
         }
@@ -154,6 +154,12 @@
                 &::before {
                     background-color: hsl(var(--c-red));
                 }
+            }
+        }
+
+        &.active {
+            &::before {
+                background-color: hsl(var(--c-white));
             }
         }
     }
