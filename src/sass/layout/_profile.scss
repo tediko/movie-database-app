@@ -35,6 +35,7 @@
 
     &__avatar-container {
         display: flex;
+        flex-direction: column;
         align-items: center;
         gap: 0.5rem;
 
@@ -61,7 +62,7 @@
     &__avatar-label-wrapper {
         display: flex;
         flex-direction: column;
-        align-items: start;
+        align-items: center;
         gap: 0.2rem;
     }
 
