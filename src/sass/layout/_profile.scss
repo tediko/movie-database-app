@@ -30,7 +30,7 @@
 
     &__title {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
     }
 
     &__avatar-container {
@@ -89,13 +89,36 @@
 
     &__label {
         display: flex;
-        gap: 0.3rem;
         align-items: center;
         position: absolute;
         top: -0.5rem;
         left: 0.46rem;
         background-color: hsl(var(--c-blue-dark-semi));
         padding-inline: 0.2rem;
+
+        &::before {
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 0.3rem;
+        }
+
+        &--user {
+            &::before {
+                content: "\f007";
+            }
+        }
+
+        &--email {
+            &::before {
+                content: "\f0e0";
+            }
+        }
+
+        &--password {
+            &::before {
+                content: "\f023";
+            }
+        }
     }
 
     &__input {
