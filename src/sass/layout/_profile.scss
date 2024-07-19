@@ -140,4 +140,13 @@
             color: hsl(var(--c-blue-grayish));
         }
     }
+
+    &__error {
+        display: none;
+        
+        &.active {
+            display: grid;
+            gap: 0.25rem;
+        }
+    }
 }
