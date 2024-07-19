@@ -122,4 +122,32 @@ async function getRandomMedia() {
     }
 }
 
-export { getUserBookmarks, updateUserBookmarks, getGenres, createRecord, getRandomMedia };
+/**
+ * Uploads an avatar file to the storage under the 'user-avatars' bucket.
+ * @async
+ * @param {string} avatarFileName - Unique identifier for the user, used as the name for uploaded avatar file.
+ * @param {File} avatarFile - Avatar file object.
+ * @returns {Promise<Object>} A promise that resolves to response data from the upload operation.
+ * @throws {Error} Throws an error if there is a problem during the upload process, including database errors.
+ */
+async function uploadAvatar(avatarFileName, avatarFile) {
+    try {
+        const { data, error } = await supabase
+            .storage
+            .from('user-avatars')
+            .upload(`${avatarFileName}`, avatarFile, {
+                cacheControl: '3600',
+                upsert: true
+            });
+        
+        if (error) {
+            throw new Error(`Database error uploading avatar: ${error}`);
+        }
+
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export { getUserBookmarks, updateUserBookmarks, getGenres, createRecord, getRandomMedia, uploadAvatar };
