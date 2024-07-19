@@ -150,4 +150,21 @@ async function uploadAvatar(avatarFileName, avatarFile) {
     }
 }
 
-export { getUserBookmarks, updateUserBookmarks, getGenres, createRecord, getRandomMedia, uploadAvatar };
+/**
+ * Downloads avatar file from the 'user-avatars' storage bucket.
+ * @async
+ * @param {string} avatarFileName - The name of the avatar file to download.
+ * @returns {Promise<Object|null>} A promise that resolves to the response data if successful, or null if an error occurs.
+ */
+async function downloadAvatar(avatarFileName) {
+    const { data, error } = await supabase
+        .storage
+        .from('user-avatars')
+        .download(`${avatarFileName}`);
+
+    if (error) return null;
+
+    return data;
+}
+
+export { getUserBookmarks, updateUserBookmarks, getGenres, createRecord, getRandomMedia, uploadAvatar, downloadAvatar };
