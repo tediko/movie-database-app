@@ -1,4 +1,5 @@
 import supabase from "../database/client";
+import { generateRandomName } from "../utilities";
 
 /**
  * Asynchronously signs in a user with their email and password using Supabase authentication.
@@ -45,6 +46,11 @@ async function signUp(email, password) {
         const { data, error } = await supabase.auth.signUp({
             email: email,
             password: password,
+            options: {
+                data: {
+                    name: generateRandomName()
+                }
+            }
         })
 
         if (error) {
