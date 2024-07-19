@@ -294,6 +294,16 @@ const createUrlWithIdAndTypeParams = (data, path) => {
     return url;
 }
 
+/**
+ * Generates a random character name from a predefined list of iconic names.
+ * @returns {string} A randomly selected character name from the list.
+ */
+const generateRandomName = () => {
+    const names = ['Jack Sparrow', 'Sheldon Cooper', 'Michael Scott', 'Homer Simpson', 'Miss Piggy', 'Marty McFly', 'Winnie the Pooh', 'Hannibal Lecter', 'Rocky Balboa', 'Forrest Gump', 'James Bond', 'Wonder Woman', 'Harley Quinn'];
+    const randomIndex = Math.floor(Math.random() * names.length);
+    return names[randomIndex];
+}
+
 export { 
     createHtmlElement,
     focusTrap,
@@ -308,5 +318,6 @@ export {
     debounce,
     getUrlQueryParameters,
     attachLinkWithParamsEventListener,
-    createUrlWithIdAndTypeParams
+    createUrlWithIdAndTypeParams,
+    generateRandomName
 };
