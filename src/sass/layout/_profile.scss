@@ -68,6 +68,10 @@
 
     &__avatar-label-desc {
         font-style: italic;
+
+        &--error {
+            color: hsl(var(--c-red));
+        }
     }
 
     &__form {
