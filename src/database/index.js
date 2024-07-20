@@ -136,7 +136,7 @@ async function uploadAvatar(avatarFileName, avatarFile) {
             .storage
             .from('user-avatars')
             .upload(`${avatarFileName}`, avatarFile, {
-                cacheControl: '3600',
+                cacheControl: 'no-cache',
                 upsert: true
             });
         
