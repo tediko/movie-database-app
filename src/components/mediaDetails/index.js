@@ -51,6 +51,7 @@ async function initMediaDetails() {
         displayTop(data);
         displayCast(data);
         displaySimilar(data);
+        removeShimmer();
     } catch (error) {
         router.navigateTo('404');
     }
@@ -193,6 +194,14 @@ const displaySimilar = (data, numOfMediaToDisplay = 8) => {
 }
 
 /**
+ * Removes shimmer effect from elements that are displaying some fetched data.
+ */
+const removeShimmer = () => {
+    const shimmerClass = 'shimmer';
+    topWrapper.classList.remove(shimmerClass);
+}
+
+/**
  * Returns the HTML for the media details component.
  * @returns {string} The HTML for the media details.
  */
@@ -200,7 +209,7 @@ const getMediaDetailsHtml = () => {
    return `
         <section class="media-details">
             <div class="media-details__container">
-                <div class="media-details__top" data-media-details-top-wrapper></div>
+                <div class="media-details__top shimmer" data-media-details-top-wrapper></div>
                 <section class="media-details__cast" data-media-details-cast>
                     <h2 class="media-details__cast-title fs-600 fw-300 text-white">Top billing cast</h2>
                     <div class="media-details__cast-wrapper swiper" data-media-details-cast-swiper>
