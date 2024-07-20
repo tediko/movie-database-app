@@ -7,6 +7,7 @@ import { initTopRated, getTopRatedHtml } from "./topRated";
 import { getSearchHtml, initSearch } from "./search";
 import { getMediaDetailsHtml, initMediaDetails } from "./mediaDetails";
 import { get404Html, init404 } from "./404";
+import { getProfileHtml, initProfile } from "./profile";
 
 // Selectors
 const rootSelector = `#root`;
@@ -83,6 +84,12 @@ const componentTemplates = {
         tag: 'section',
         classes: ['media-details'],
         init: initMediaDetails
+    },
+    profile: {
+        html: getProfileHtml(),
+        tag: 'section',
+        classes: ['profile'],
+        init: initProfile
     },
     404: {
         html: get404Html(),

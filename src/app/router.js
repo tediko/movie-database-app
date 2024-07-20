@@ -91,6 +91,11 @@ const routes = [
         root.innerHTML = '';
         renderComponent('mediaDetails');
     }},
+    { path: '/app/profile', callback: () => {
+        document.title = `MovieDB - Profile`
+        root.innerHTML = '';
+        renderComponent('profile');
+    }},
     { path: '/404', callback: () => {
         document.title = `MovieDB - 404: Take the cannoli!`
         root.innerHTML = '';
