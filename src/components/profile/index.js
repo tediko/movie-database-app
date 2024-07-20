@@ -69,6 +69,7 @@ async function initProfile() {
     nameInput.value = userName;
     emailInput.value = userEmail;
     profileNameSpan.innerHTML = userName;
+    removeShimmer();
 
     // Set up event listeners
     avatarWrapper.addEventListener('click', () => avatarInput.click());
@@ -210,17 +211,29 @@ const loadImageFromBlob = (blob, imageElement) => {
 }
 
 /**
+ * Removes shimmer effect from multiple elements that are displaying some fetched data.
+ */
+const removeShimmer = () => {
+    const shimmerClass = 'shimmer';
+    avatarWrapper.classList.remove(shimmerClass);
+    profileNameSpan.classList.remove(shimmerClass);
+    nameInput.parentElement.classList.remove(shimmerClass);
+    emailInput.parentElement.classList.remove(shimmerClass);
+    passwordInput.parentElement.classList.remove(shimmerClass);
+}
+
+/**
  * Returns HTML for the profile component.
  * @returns {string} HTML for the profile component.
  */
 const getProfileHtml = () => {
     return `
         <div class="profile__container" data-profile-wrapper>
-            <h2 class="profile__title fs-600 fw-300 text-white">Profile<span class="fs-500 fw-500 text-blue-grayish" data-profile-name>&nbsp;</span></h2>
+            <h2 class="profile__title fs-600 fw-300 text-white">Profile<span class="fs-500 fw-500 text-blue-grayish shimmer" data-profile-name>&nbsp;</span></h2>
             <div class="profile__avatar">
                 <div class="profile__avatar-container">
                     <input class="sr-only" accept="image/jpeg,image/png" id="avatar" type="file" data-profile-avatar-input>
-                    <div class="profile__avatar-wrapper" data-profile-avatar-wrapper>
+                    <div class="profile__avatar-wrapper shimmer" data-profile-avatar-wrapper>
                         <img class="profile__avatar-image" src="" alt="Preview" data-profile-avatar-image>
                     </div>
                     <div class="profile__avatar-label-wrapper">
@@ -230,15 +243,15 @@ const getProfileHtml = () => {
                 </div>
             </div>
             <form action="" novalidate class="profile__form" data-profile-form>
-                <div class="profile__input-wrapper">
+                <div class="profile__input-wrapper shimmer" data-form-input-wrapper>
                     <label class="profile__label profile__label--user fs-200 text-white" for="name">Name</label>
                     <input class="profile__input fs-300 fw-300 text-white" type="text" name="name" id="name" placeholder="Name">
                 </div>
-                <div class="profile__input-wrapper">
+                <div class="profile__input-wrapper shimmer" data-form-input-wrapper>
                     <label class="profile__label profile__label--email fs-200 text-white" for="email">Email<sup aria-hidden="true" class=" fs-200 text-red">*</sup></label>
                     <input class="profile__input fs-300 fw-300 text-white" type="email" name="email" id="email" placeholder="Email address">
                 </div>
-                <div class="profile__input-wrapper">
+                <div class="profile__input-wrapper shimmer" data-form-input-wrapper>
                     <label class="profile__label profile__label--password fs-200 text-white" for="password">New password</label>
                     <input class="profile__input fs-300 fw-300 text-white" type="password" name="password" id="password" placeholder="New password">
                 </div>
