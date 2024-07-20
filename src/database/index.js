@@ -157,10 +157,13 @@ async function uploadAvatar(avatarFileName, avatarFile) {
  * @returns {Promise<Object|null>} A promise that resolves to the response data if successful, or null if an error occurs.
  */
 async function downloadAvatar(avatarFileName) {
+    const uniqueParam = `?t=${Date.now()}`; // Unique query parameter to prevent image caching
+    const fullFileName = `${avatarFileName}${uniqueParam}`;
+
     const { data, error } = await supabase
         .storage
         .from('user-avatars')
-        .download(`${avatarFileName}`);
+        .download(`${fullFileName}`);
 
     if (error) return null;
 
