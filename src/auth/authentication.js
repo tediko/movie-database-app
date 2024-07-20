@@ -83,4 +83,39 @@ async function getUser() {
     return user;
 }
 
-export  { signIn, getUser, signUp, signOut };
+/**
+ * Updates user information in the Supabase authentication system.
+ * @async
+ * @param {string} email - The email address of the user to update.
+ * @param {string} name - The new name of the user.
+ * @param {string} password - The new password of the user. If an empty string, the password will not be updated.
+ * @returns {Promise<Object>} A promise that resolves to the updated user data if the update is successful.
+ * @throws {Error} Throws an error if there is an issue updating the user, including any errors returned from Supabase.
+ */
+async function updateUser(email, name, password) {
+    const updateData = {
+        email,
+        data: {
+            name
+        }
+    }
+
+    // Check if password isn't an empty string
+    if (password !== '') {
+        updateData.password = password;
+    }
+
+    try {
+        const { data, error } = await supabase.auth.updateUser(updateData);
+
+        if (error) {
+            throw new Error(`Error updating user: ${error.message}`);
+        }
+
+        return data;
+    } catch (error) {
+        throw error;
+    }
+}
+
+export  { signIn, getUser, signUp, signOut, updateUser };
