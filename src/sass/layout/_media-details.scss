@@ -2,6 +2,7 @@
 
 .media-details {
     &__top {
+        position: relative;
         display: grid;
         background-color: hsl(var(--c-blue-dark));
         background-repeat: no-repeat;
@@ -16,6 +17,15 @@
 
         .data-error {
             align-content: center;
+        }
+
+        &.shimmer {
+            &::before {
+                @extend %shimmer-effect;
+                position: absolute;
+                content: '';
+                inset: 0;
+            }
         }
     }
     
