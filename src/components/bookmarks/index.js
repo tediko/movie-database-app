@@ -61,7 +61,7 @@ function updateBookmarks(numOfMediaToDisplay = 12) {
     // Calculate the total number of pages
     const pagesToDisplay = Math.ceil((filteredData.length / numOfMediaToDisplay));
     // Adjust activePage if it exceeds the available pages
-    activePage = Math.min(activePage, pagesToDisplay - 1);
+    activePage = Math.max(0, Math.min(activePage, pagesToDisplay - 1));
 
     // Calculate the slice of data to display on the current page
     const currentPageData = filteredData.slice(
