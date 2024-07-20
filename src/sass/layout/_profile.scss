@@ -31,6 +31,20 @@
     &__title {
         display: flex;
         flex-direction: column;
+        z-index: 1;
+
+        span {
+            position: relative;
+
+            &.shimmer {
+                &::before {
+                    @extend %shimmer-effect;
+                    position: absolute;
+                    content: '';
+                    inset: 0;
+                }
+            }
+        }
     }
 
     &__avatar-container {
@@ -47,10 +61,21 @@
     }
 
     &__avatar-wrapper {
+        position: relative;
         border-radius: 50%;
         overflow: hidden;
         outline: 2px dashed hsl(var(--c-blue-grayish));
         cursor: pointer;
+
+        
+        &.shimmer {
+            &::before {
+                @extend %shimmer-effect;
+                position: absolute;
+                content: '';
+                inset: 0;
+            }
+        }
     }
     
     &__avatar-image {
@@ -80,6 +105,7 @@
     }
 
     &__input-wrapper {
+        position: relative;
         display: grid;
         position: relative;
         gap: 0.2rem;
@@ -88,6 +114,15 @@
         
         &:has(:focus-within) {
             border: 1px solid hsl(var(--c-white));
+        }
+
+        &.shimmer {
+            &::after {
+                @extend %shimmer-effect;
+                position: absolute;
+                content: '';
+                inset: -10px -1px -1px -1px;
+            }
         }
     }
 
