@@ -69,7 +69,7 @@
     &__avatar-label-desc {
         font-style: italic;
 
-        &--error {
+        &.has-error {
             color: hsl(var(--c-red));
         }
     }
@@ -144,12 +144,12 @@
     &__error {
         display: none;
         
-        &.active {
+        &.has-error {
             display: grid;
             gap: 0.25rem;
         }
 
-        &.success {
+        &.has-success {
             display: grid;
             gap: 0.25rem;
             color: hsl(var(--c-green));
