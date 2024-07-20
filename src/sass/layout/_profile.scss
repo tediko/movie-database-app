@@ -148,5 +148,11 @@
             display: grid;
             gap: 0.25rem;
         }
+
+        &.success {
+            display: grid;
+            gap: 0.25rem;
+            color: hsl(var(--c-green));
+        }
     }
 }
