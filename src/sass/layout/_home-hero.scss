@@ -93,7 +93,7 @@
             padding-right: 0.1rem;
         }
 
-        &.active {
+        &.has-error {
             animation: error-email 350ms ease-in-out forwards;
         }
     }

@@ -1,4 +1,4 @@
-import { showFormErrorMessage, emailValidation } from "./utilities";
+import { showFormMessage, emailValidation } from "./utilities";
 
 /**
  * Handles form submission and email validation.
@@ -14,7 +14,7 @@ const handleValidationOnSubmit = (event) => {
     if (emailValidation(inputValue)) {
         window.location.href = `access/register.html?email=${inputValue}`;
     } else {
-        showFormErrorMessage(eventTarget, ['Please enter a valid email address.']);
+        showFormMessage(eventTarget, ['Please enter a valid email address.']);
     }
 }
 

@@ -72,33 +72,34 @@ const passwordValidation = (password) => {
 
 /**
  * Displays error messages in a form and sets up auto-hiding on user input.
- * @param {HTMLElement} formContainer - The container element of the form.
+ * @param {HTMLElement} container - The container element wrapping error messages
  * @param {string[]} messages - An array of error messages to display.
+ * @param {Boolean} hasSuccess - Boolean value to display either succes or error message.
  */
-const showFormErrorMessage = (formContainer, messages) => {
-    const errorElement = formContainer.querySelector('[data-form-error]');
+const showFormMessage = (container, messages, hasSuccess) => {
+    const msgElement = container.querySelector('[data-form-message]');
 
     // Early return if inputs are invalid or error element doesn't exist
-    if (!formContainer || messages.length === 0 || !Array.isArray(messages)) return;
-    if (!errorElement) return;
+    if (!container || messages.length === 0 || !Array.isArray(messages)) return;
+    if (!msgElement) return;
 
     // Flags
-    const activeClass = 'active';
-    const errorIcon = '<i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>';
+    const activeClass = hasSuccess ? 'has-success' : 'has-error';
+    const icon = hasSuccess ? '<i class="fa-solid fa-circle-check" aria-hidden="true"></i>' : '<i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>';
 
     // Create HTML string for error messages
-    const errorMsg = messages
-        .map(msg => `<span>${errorIcon} ${msg}</span>`)
+    const message = messages
+        .map(msg => `<span>${icon} ${msg}</span>`)
         .join('');
 
-    errorElement.innerHTML = errorMsg;
-    errorElement.classList.add(activeClass);
-    errorElement.setAttribute('aria-hidden', 'false');
+    msgElement.innerHTML = message;
+    msgElement.classList.add(activeClass);
+    msgElement.setAttribute('aria-hidden', 'false');
     
     // Add a one-time event listener to hide the error when user starts typing
-    formContainer.addEventListener('input', () => {
-        errorElement.classList.remove(activeClass);
-        errorElement.setAttribute('aria-hidden', 'true');
+    container.addEventListener('input', () => {
+        msgElement.classList.remove(activeClass);
+        msgElement.setAttribute('aria-hidden', 'true');
     }, { once: true})
 }
 
@@ -309,7 +310,7 @@ export {
     focusTrap,
     emailValidation,
     passwordValidation,
-    showFormErrorMessage,
+    showFormMessage,
     showRedirectSuccessMessage,
     redirectToNewLocation,
     displayDataError,

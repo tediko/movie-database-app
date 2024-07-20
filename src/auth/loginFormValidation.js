@@ -1,5 +1,5 @@
 import { signIn, getUser } from "./authentication";
-import { emailValidation, passwordValidation, showFormErrorMessage, showRedirectSuccessMessage, redirectToNewLocation } from "../utilities";
+import { emailValidation, passwordValidation, showFormMessage, showRedirectSuccessMessage, redirectToNewLocation } from "../utilities";
 
 // Flags
 const appPageUrl = '/app';
@@ -33,7 +33,7 @@ const handleFormSubmit = (event, loginFormContrainer) => {
     }
 
     if (errors.length > 0) {
-        showFormErrorMessage(loginFormContrainer, errors);
+        showFormMessage(loginFormContrainer, errors);
         return;
     }
 
@@ -55,7 +55,7 @@ async function login(email, password, loginFormContrainer) {
         showRedirectSuccessMessage(loginContainerSelector, 'You are successfully logged in!')
         redirectToNewLocation(appPageUrl);
     } catch(error) {
-        showFormErrorMessage(loginFormContrainer, [`${error.message}`]);
+        showFormMessage(loginFormContrainer, [`${error.message}`]);
     }
 }
 

@@ -1,5 +1,5 @@
 import { signUp } from "./authentication";
-import { emailValidation, passwordValidation, showFormErrorMessage, showRedirectSuccessMessage, redirectToNewLocation } from "../utilities";
+import { emailValidation, passwordValidation, showFormMessage, showRedirectSuccessMessage, redirectToNewLocation } from "../utilities";
 import { createRecord } from "../database";
 import { getUrlQueryParameters } from "../utilities";
 
@@ -38,7 +38,7 @@ const handleFormSubmit = (event, registerFormContainer) => {
     }
 
     if (errors.length > 0) {
-        showFormErrorMessage(registerFormContainer, errors);
+        showFormMessage(registerFormContainer, errors);
         return;
     }
 
@@ -64,7 +64,7 @@ async function register(email, password, registerFormContainer) {
         // A little workaround since there are no error codes with sign-up supabase auth.
         // Returns string after colon in error message (e.g. "AuthApiError: error message"); 
         const errorMsg = error.message.split(':')[1];
-        showFormErrorMessage(registerFormContainer, [`${errorMsg}`]);
+        showFormMessage(registerFormContainer, [`${errorMsg}`]);
     }
 }
 
