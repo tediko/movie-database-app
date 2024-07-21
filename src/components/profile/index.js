@@ -2,6 +2,7 @@ import { emailValidation, generateRandomName, passwordValidation, showFormMessag
 import { getUser, updateUser } from "../../auth/authentication";
 import { uploadAvatar, downloadAvatar } from "../../database";
 import noAvatarImg from '../../assets/no-avatar.jpg';
+import { updateHeaderAvatar } from "../header";
 
 // Elements
 let profileWrapper;
@@ -105,6 +106,7 @@ const handleFormSubmit = (event) => {
     // Upload avatar to storage if user uploaded file
     if (userUploadedAvatarFile) {
         uploadAvatar(userId, userUploadedAvatarFile);
+        updateHeaderAvatar(userUploadedAvatarFile);
         avatarLabelElement.innerHTML = `Image cannot be more than 250KB`;
     }
 
