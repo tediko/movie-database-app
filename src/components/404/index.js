@@ -1,6 +1,5 @@
 import { router } from '../../app/router';
 import image404 from '../../assets/image404.jpg';
-import { updateActiveNavElement } from '../header';
 
 // Elements
 let wrapperContainer;
@@ -28,7 +27,6 @@ const init404 = () => {
 const handleNavLinkClick = (event) => {
     event.preventDefault();
     router.navigateTo('/app');
-    updateActiveNavElement();
 }
 
 /**
