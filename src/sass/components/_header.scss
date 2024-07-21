@@ -134,10 +134,10 @@
         &::before {
             position: absolute;
             content: '';
-            inset: -2px;
-            background-color: hsl(var(--c-blue-grayish));
+            inset: 0;
+            outline: 2px solid hsl(var(--c-blue-grayish));
             border-radius: 50%;
-            transition: background-color 350ms ease-in-out;
+            transition: outline 350ms ease-in-out;
         }
 
         &:focus-visible {
@@ -145,21 +145,21 @@
             outline-offset: 3px;
             
             &::before {
-                background-color: hsl(var(--c-red));
+                outline: 2px solid hsl(var(--c-red));
             }
         }
 
         @include breakpoint('md') {
             &:hover {
                 &::before {
-                    background-color: hsl(var(--c-red));
+                    outline: 2px solid hsl(var(--c-red));
                 }
             }
         }
 
         &.active {
             &::before {
-                background-color: hsl(var(--c-white));
+                outline: 2px solid hsl(var(--c-white));
             }
         }
     }
@@ -167,7 +167,15 @@
     &__profile-image {
         position: relative;
         width: clamp(24px, 0.06rem + 5.076vw, 40px);
+        height: clamp(24px, 0.06rem + 5.076vw, 40px);
+        border-radius: 50%;
         pointer-events: none;
+
+        &[src=""] {
+            @extend %shimmer-effect;
+            border-radius: 50%;
+            border: 1px solid transparent; // Remove border when there is no src
+        }
     }
 
     &__logout-cta {
