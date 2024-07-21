@@ -91,31 +91,31 @@ async function navigateToRandomMedia() {
  */
 const getHeaderHtml = () => {
     return `
-        <div class="app-header__container" data-header-container>
-            <a href="/app" class="app-header__logo-cta" aria-label="MovieDB - Your personal entertainment hub" data-header-logo data-link="/app">
-                <img src="/assets/logo.svg" alt="" class="app-header__logo">
+        <div class="header__container" data-header-container>
+            <a href="/app" class="header__logo-cta" aria-label="MovieDB - Your personal entertainment hub" data-header-logo data-link="/app">
+                <img src="/assets/logo.svg" alt="" class="header__logo">
             </a>
-            <nav class="app-header__nav">
-                <ul class="app-header__list">
-                    <li class="app-header__item">
-                        <a href="/app" class="app-header__link app-header__link--home fs-450 text-dc-none text-blue-grayish" aria-label="MovieDB - Home Page" data-link="/app"></a>
+            <nav class="header__nav">
+                <ul class="header__list">
+                    <li class="header__item">
+                        <a href="/app" class="header__link header__link--home fs-450 text-dc-none text-blue-grayish" aria-label="Home Page" data-link="/app"></a>
                     </li>
-                    <li class="app-header__item">
-                        <a href="/app/top-rated" class="app-header__link app-header__link--top fs-450 text-dc-none text-blue-grayish" aria-label="MovieDB - Top rated" data-link="/app/top-rated"></a>
+                    <li class="header__item">
+                        <a href="/app/top-rated" class="header__link header__link--top fs-450 text-dc-none text-blue-grayish" aria-label="Top Rated" data-link="/app/top-rated"></a>
                     </li>
-                    <li class="app-header__item">
-                        <a href="/app/bookmarks" class="app-header__link app-header__link--bookmarks fs-450 text-dc-none text-blue-grayish" aria-label="MovieDB - Bookmarks" data-link="/app/bookmarks"></a>
+                    <li class="header__item">
+                        <a href="/app/bookmarks" class="header__link header__link--bookmarks fs-450 text-dc-none text-blue-grayish" aria-label="Bookmarks" data-link="/app/bookmarks"></a>
                     </li>
-                    <li class="app-header__item">
-                        <a href="/app/title" class="app-header__link app-header__link--title fs-450 text-dc-none text-blue-grayish" aria-label="MovieDB - Randomly draw a title" data-link="/app/title"></a>
+                    <li class="header__item">
+                        <a href="/app/title" class="header__link header__link--title fs-450 text-dc-none text-blue-grayish" aria-label="Randomly draw a title" data-link="/app/title"></a>
                     </li>
                 </ul>
             </nav>
-            <div class="app-header__profile">
-                <a href="/app/profile" class="app-header__profile-cta" aria-label="Profile settings" data-link="/app/profile">
-                    <img class="app-header__profile-image" src="/assets/image-avatar.png" alt="">
+            <div class="header__profile">
+                <a href="/app/profile" class="header__profile-cta" aria-label="Profile settings" data-link="/app/profile">
+                    <img class="header__profile-image" src="/assets/image-avatar.png" alt="">
                 </a>
-                <button type="button" class="app-header__logout-cta fs-450 text-blue-grayish" aria-label="Logout from app" data-logout-cta></button>
+                <button type="button" class="header__logout-cta fs-450 text-blue-grayish" aria-label="Logout from app" data-logout-cta></button>
             </div>
         </div>
     `

@@ -45,7 +45,7 @@ const componentTemplates = {
     header: {
         html: getHeaderHtml(),
         tag: 'header',
-        classes: ['app__header', 'app-header'],
+        classes: ['app__header', 'header'],
         init: initHeader
     },
     search: {
