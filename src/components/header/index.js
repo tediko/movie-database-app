@@ -1,7 +1,8 @@
-import { signOut } from '../../auth/authentication';
-import { getRandomMedia } from '../../database';
-import { createUrlWithIdAndTypeParams } from '../../utilities';
+import { getUser, signOut } from '../../auth/authentication';
+import { getRandomMedia, downloadAvatar } from '../../database';
+import { createUrlWithIdAndTypeParams, loadImageFromBlob } from '../../utilities';
 import { router } from '../../app/router';
+import noAvatarImg from '../../assets/no-avatar.jpg';
 
 // Elements
 let headerContainer;
@@ -10,6 +11,7 @@ let headerContainer;
 const headerContainerSelector = `[data-header-container]`;
 const navLinkSelector = (attrValue) => attrValue ? `[data-link="${attrValue}"]` : `[data-link]`;
 const logoutCtaSelector = `[data-logout-cta]`;
+const avatarImageSelector = `[data-header-avatar]`;
 
 // Flags
 const activeClass = 'active';
@@ -20,7 +22,25 @@ const titlePageAttribute = '/app/title';
  */
 async function initHeader() {
     headerContainer = document.querySelector(headerContainerSelector);
+    const { id: userId } = await getUser();
+    const avatarBlob = await downloadAvatar(userId);
+    
+    updateHeaderAvatar(avatarBlob);
     setupNavigation();
+}
+
+/**
+ * Updates the avatar image in the header based on the provided avatar blob.
+ * @param {Blob} avatarBlob - The Blob object representing the avatar image. 
+ */
+const updateHeaderAvatar = (avatarBlob) => {
+    const avatarElement = headerContainer.querySelector(avatarImageSelector);
+
+    if (avatarBlob) {
+        loadImageFromBlob(avatarBlob, avatarElement);
+    } else {
+        avatarElement.src = noAvatarImg;
+    }
 }
 
 /**
@@ -113,7 +133,7 @@ const getHeaderHtml = () => {
             </nav>
             <div class="header__profile">
                 <a href="/app/profile" class="header__profile-cta" aria-label="Profile settings" data-link="/app/profile">
-                    <img class="header__profile-image" src="/assets/image-avatar.png" alt="">
+                    <img class="header__profile-image" src="" alt="" data-header-avatar>
                 </a>
                 <button type="button" class="header__logout-cta fs-450 text-blue-grayish" aria-label="Logout from app" data-logout-cta></button>
             </div>
@@ -121,4 +141,4 @@ const getHeaderHtml = () => {
     `
 }
 
-export { initHeader, getHeaderHtml, updateActiveNavElement };
+export { initHeader, getHeaderHtml, updateActiveNavElement, updateHeaderAvatar };
