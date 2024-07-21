@@ -1,9 +1,5 @@
-import renderComponent from '../components/renderComponent';
 import { bookmarkManager } from '../database/bookmarkManager';
-import { updateActiveNavElement } from '.';
-
-// Elements
-const root = document.querySelector('#root');
+import { renderApp } from '../components/app';
 
 /**
  * Gets the current URL path.
@@ -43,8 +39,7 @@ const loadRoute = (path) => {
     if (!matchedRoute) {
         throw new Error('Route not found');
     }
-    
-    updateActiveNavElement();
+        
     matchedRoute.callback();
 }
 
@@ -68,38 +63,22 @@ window.addEventListener('popstate', () => {
 // Defining Routes
 const routes = [
     { path: '/app', callback: () => {
-        document.title = `MovieDB - Your personal entertainment hub`;
-        root.innerHTML = '';
-        renderComponent('search');
-        renderComponent('trending');
-        renderComponent('trailers');
-        renderComponent('recommended');
+        renderApp('home');
     }},
     { path: '/app/top-rated', callback: () => {
-        document.title = `MovieDB - Top rated movies & TV series`
-        root.innerHTML = '';
-        renderComponent('search');
-        renderComponent('top');
+        renderApp('top-rated');
     }},
     { path: '/app/bookmarks', callback: () => {
-        document.title = `MovieDB - Bookmarked Movies and TV Series`
-        root.innerHTML = '';
-        renderComponent('search');
-        renderComponent('bookmarks');
+        renderApp('bookmarks');
     }},
     { path: '/app/title', callback: () => {
-        root.innerHTML = '';
-        renderComponent('mediaDetails');
+        renderApp('title');
     }},
     { path: '/app/profile', callback: () => {
-        document.title = `MovieDB - Profile`
-        root.innerHTML = '';
-        renderComponent('profile');
+        renderApp('profile');
     }},
     { path: '/404', callback: () => {
-        document.title = `MovieDB - 404: Take the cannoli!`
-        root.innerHTML = '';
-        renderComponent('404');
+        renderApp('404');
     }}
 ]
 

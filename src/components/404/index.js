@@ -1,14 +1,11 @@
 import { router } from '../../app/router';
 import image404 from '../../assets/image404.jpg';
-import { updateActiveNavElement } from '../../app';
 
 // Elements
-let appRoot;
 let wrapperContainer;
 let navLink;
 
 // Selectors
-const appRootSelector = `#root`;
 const wrapperSelector = `[data-404-wrapper]`;
 const navLinkSelector = `[data-404-link]`;
 
@@ -16,9 +13,8 @@ const navLinkSelector = `[data-404-link]`;
  * Initializes 404 section
  */
 const init404 = () => {
-    appRoot = document.querySelector(appRootSelector);
     wrapperContainer = document.querySelector(wrapperSelector);
-    if (!appRoot || !wrapperContainer) return;
+    if (!wrapperContainer) return;
 
     navLink = document.querySelector(navLinkSelector);
     navLink.addEventListener('click', handleNavLinkClick);
@@ -30,9 +26,7 @@ const init404 = () => {
  */
 const handleNavLinkClick = (event) => {
     event.preventDefault();
-    appRoot.innerHTML = '';
     router.navigateTo('/app');
-    updateActiveNavElement();
 }
 
 /**

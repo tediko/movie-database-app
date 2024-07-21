@@ -8,17 +8,16 @@ import { getSearchHtml, initSearch } from "./search";
 import { getMediaDetailsHtml, initMediaDetails } from "./mediaDetails";
 import { get404Html, init404 } from "./404";
 import { getProfileHtml, initProfile } from "./profile";
-
-// Selectors
-const rootSelector = `#root`;
+import { getHeaderHtml, initHeader } from "./header";
 
 /**
  * Renders a component in the root element.
  * @param {string} componentName - The name of the component to render.
+ * @param {HTMLElement} root - The DOM element where the component will be rendered.
+ * @param {boolean} [prepend=false] - If false or omitted, component will be appended to the root, else it will be prepended.
  */
-const renderComponent = (componentName) => {
+const renderComponent = (componentName, root, prepend) => {
     // Check if root element exists.
-    const root = document.querySelector(rootSelector);
     if (!root) return;
     
     // Checks if the componentName key exists in the componentTemplates object.
@@ -36,13 +35,19 @@ const renderComponent = (componentName) => {
     
     // Append DocumentFragment to the section element and insert the new view section into the root element.
     componentWrapper.appendChild(fragment);
-    root.appendChild(componentWrapper);
+    prepend ? root.prepend(componentWrapper) : root.appendChild(componentWrapper);
 
     // Initializes component
     componentTemplates[componentName].init();
 }
 
 const componentTemplates = {
+    header: {
+        html: getHeaderHtml(),
+        tag: 'header',
+        classes: ['app__header', 'header'],
+        init: initHeader
+    },
     search: {
         html: getSearchHtml(),
         tag: 'section',
