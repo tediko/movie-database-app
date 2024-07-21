@@ -91,7 +91,7 @@ const pageSwitch = (pageName) => {
  */
 const getAppHtml = () => {
     return `
-        <div class="app__layout-grid" data-app-wrapper>
+        <div class="app__wrapper" data-app-wrapper>
             <main class="app__main">
                 <h1 class="sr-only">MovieDB - Your personal entertainment hub</h1>
                 <div class="app__content" data-app-root></div>
