@@ -1,5 +1,4 @@
 import { bookmarkManager } from '../database/bookmarkManager';
-import { updateActiveNavElement } from '.';
 import { renderApp } from '../components/app';
 
 /**
@@ -40,8 +39,7 @@ const loadRoute = (path) => {
     if (!matchedRoute) {
         throw new Error('Route not found');
     }
-    
-    updateActiveNavElement();
+        
     matchedRoute.callback();
 }
 
