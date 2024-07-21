@@ -305,6 +305,20 @@ const generateRandomName = () => {
     return names[randomIndex];
 }
 
+/**
+ * Loads an image from a Blob object and sets it as the source of an given element.
+ * @param {Blob} blob - Blob object representing the image data.
+ * @param {HTMLImageElement} imageElement - Image element where the image will be displayed.
+ */
+const loadImageFromBlob = (blob, imageElement) => {
+    // Creates a temporary URL that points to a file/blob object
+    const objectUrl = URL.createObjectURL(blob);
+    // Cleanup. Release the memory associated with the object URL after image is loaded.
+    imageElement.onload = () => URL.revokeObjectURL(objectUrl);
+    // Set image src with temporary URL
+    imageElement.src = objectUrl;
+}
+
 export { 
     createHtmlElement,
     focusTrap,
@@ -320,5 +334,6 @@ export {
     getUrlQueryParameters,
     attachLinkWithParamsEventListener,
     createUrlWithIdAndTypeParams,
-    generateRandomName
+    generateRandomName,
+    loadImageFromBlob
 };
