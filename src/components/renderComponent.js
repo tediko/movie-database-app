@@ -9,16 +9,13 @@ import { getMediaDetailsHtml, initMediaDetails } from "./mediaDetails";
 import { get404Html, init404 } from "./404";
 import { getProfileHtml, initProfile } from "./profile";
 
-// Selectors
-const rootSelector = `#root`;
-
 /**
  * Renders a component in the root element.
  * @param {string} componentName - The name of the component to render.
+ * @param {HTMLElement} root - The DOM element where the component will be rendered.
  */
-const renderComponent = (componentName) => {
+const renderComponent = (componentName, root) => {
     // Check if root element exists.
-    const root = document.querySelector(rootSelector);
     if (!root) return;
     
     // Checks if the componentName key exists in the componentTemplates object.
