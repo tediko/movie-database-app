@@ -1,6 +1,6 @@
 import { router } from '../../app/router';
 import image404 from '../../assets/image404.jpg';
-import { updateActiveNavElement } from '../../app';
+import { updateActiveNavElement } from '../header';
 
 // Elements
 let appRoot;
