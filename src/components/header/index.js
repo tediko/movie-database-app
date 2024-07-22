@@ -58,6 +58,7 @@ const setupNavigation = () => {
         // Handle logout button click
         if (eventTarget.matches(logoutCtaSelector)) {
             signOut();
+            window.location.href = '/index.html';
         }
     });
 };
