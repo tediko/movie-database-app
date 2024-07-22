@@ -65,11 +65,9 @@ async function signUp(email, password) {
 
 /**
  * Removes the logged in user from the browser session and log them out - removing all items from localstorage.
- * Redirects to landing page.
  */
 async function signOut() {
     await supabase.auth.signOut();
-    window.location.href = '/index.html';
 }
 
 /**
