@@ -1,4 +1,4 @@
-import { emailValidation, generateRandomName, passwordValidation, showFormMessage } from "../../utilities";
+import { emailValidation, generateRandomName, passwordValidation, showFormMessage, loadImageFromBlob } from "../../utilities";
 import { getUser, updateUser } from "../../auth/authentication";
 import { uploadAvatar, downloadAvatar } from "../../database";
 import noAvatarImg from '../../assets/no-avatar.jpg';
@@ -196,20 +196,6 @@ const displayAvatar = (imageElement, avatar) => {
     } else {
         loadImageFromBlob(avatar, imageElement);
     }
-}
-
-/**
- * Loads an image from a Blob object and sets it as the source of an given element.
- * @param {Blob} blob - Blob object representing the image data.
- * @param {HTMLImageElement} imageElement - Image element where the image will be displayed.
- */
-const loadImageFromBlob = (blob, imageElement) => {
-    // Creates a temporary URL that points to a file/blob object
-    const objectUrl = URL.createObjectURL(blob);
-    // Cleanup. Release the memory associated with the object URL after image is loaded.
-    imageElement.onload = () => URL.revokeObjectURL(objectUrl);
-    // Set image src with temporary URL
-    imageElement.src = objectUrl;
 }
 
 /**
