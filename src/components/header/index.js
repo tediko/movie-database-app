@@ -84,7 +84,6 @@ const handleNavLinkClick = (event) => {
     event.preventDefault();
     const eventTarget = event.target;
     const path = eventTarget.getAttribute('href');
-    console.log('navclick', eventTarget);
 
     // Check if the target element matches the title navlink selector.
     if (eventTarget.matches(navLinkSelector(titlePageAttribute))) {
