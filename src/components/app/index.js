@@ -54,35 +54,18 @@ const initApp = () => {
  * @param {string} pageName - The name of the page to switch to.
  */
 const pageSwitch = (pageName) => {
-    switch (pageName) {
-        case 'home':
-            renderHome(appRoot);
-            updateActiveNavElement();
-            break;
-        case 'top-rated':
-            renderTopRated(appRoot);
-            updateActiveNavElement();
-            break;
-        case 'bookmarks':
-            renderBookmarks(appRoot);
-            updateActiveNavElement();
-            break;
-        case 'title':
-            renderTitle(appRoot);
-            updateActiveNavElement();
-            break;
-        case 'profile':
-            renderProfile(appRoot);
-            updateActiveNavElement();
-            break;
-        case '404':
-            render404(appRoot);
-            updateActiveNavElement();
-            break;
-        default:
-            renderHome(appRoot);
-            updateActiveNavElement();
+    const pages = {
+        'home': () => renderHome(appRoot),
+        'top-rated': () => renderTopRated(appRoot),
+        'bookmarks': () => renderBookmarks(appRoot),
+        'title': () => renderTitle(appRoot),
+        'profile': () => renderProfile(appRoot),
+        '404': () => render404(appRoot)
     }
+
+    const renderPage = pages[pageName] || pages['404'];
+    renderPage();
+    updateActiveNavElement();
 }
 
 /**
