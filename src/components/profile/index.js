@@ -56,10 +56,10 @@ async function initProfile() {
 
     // Get user data and avatar blob object
     const { id, email, user_metadata } = await getUser();
-    const avatarBlob = await downloadAvatar(id);
+    const avatarBase64Url = await downloadAvatar(id);
     
     // Display downloaded avatar image
-    displayAvatar(imageElement, avatarBlob);
+    displayAvatar(imageElement, avatarBase64Url);
 
     // Update state
     userId = id;
@@ -187,14 +187,14 @@ const handleAvatarUpload = (event) => {
 
 /**
  * Displays an avatar image in an imageElement.
- * @param {Blob|null} avatar - The Blob object representing the avatar image, or null if no avatar is available.
+ * @param {string|null} avatar - Base64 string representing the avatar image, or null if no avatar is available.
  * @param {HTMLImageElement} imageElement - The image element where the avatar will be displayed.
  */
 const displayAvatar = (imageElement, avatar) => {
     if (avatar === null) {
         imageElement.src = noAvatarImg;
     } else {
-        loadImageFromBlob(avatar, imageElement);
+        imageElement.src = avatar;
     }
 }
 
