@@ -1,6 +1,17 @@
 import { getUser } from "../auth/authentication";
 import { blobToBase64 } from "../utilities";
 
+// Flags
+const endpoints = {
+    getUserBookmarks: `/.netlify/functions/db-getUserBookmarks`,
+    getGenres: `/.netlify/functions/db-getGenres`,
+    getRandomMedia: `/.netlify/functions/db-getRandomMedia`,
+    downloadAvatar: `/.netlify/functions/db-getDownloadAvatar`,
+    updateUserBookmarks: `/.netlify/functions/db-postUpdateUserBookmarks`,
+    createRecord: `/.netlify/functions/db-postCreateRecord`,
+    uploadAvatar: `/.netlify/functions/db-postUploadAvatar`
+};
+
 /**
  * Asynchronously retrieves the bookmarks for the current user making request to Netlify function `db-getUserBookmarks` to retrieve the user
  * bookmarks
@@ -12,14 +23,13 @@ async function getUserBookmarks() {
     try {
         // First await the getUser() function to get the userUid.
         const { id: userUid } = await getUser();
-        const response = await fetch(`/.netlify/functions/db-getUserBookmarks?userUid=${userUid}`);
+        const response = await fetch(`${endpoints.getUserBookmarks}?userUid=${userUid}`);
         const data = await response.json();
 
         if (!response.ok) {
             throw new Error(data.error);
         }
 
-        console.log(data[0]);
         return data[0];
     } catch (error) {
         throw error;
@@ -34,14 +44,13 @@ async function getUserBookmarks() {
  */
 async function getGenres() {
     try {
-        const response = await fetch(`/.netlify/functions/db-getGenres`);
+        const response = await fetch(endpoints.getGenres);
         const data = await response.json();
 
         if (!response.ok) {
             throw new Error(data.error);
         }
 
-        console.log(data[0]);
         return data[0];
     } catch (error) {
         throw error;
@@ -56,13 +65,12 @@ async function getGenres() {
  */
 async function getRandomMedia() {
     try {
-        const response = await fetch(`/.netlify/functions/db-getRandomMedia`);
+        const response = await fetch(endpoints.getRandomMedia);
         const data = await response.json();
 
         if (!response.ok) {
             throw new Error(data.error);
         }
-        console.log(data);
         return data;
     } catch (error) {
         throw error;
@@ -77,7 +85,7 @@ async function getRandomMedia() {
 async function downloadAvatar() {
     // First await the getUser() function to get the userUid.
     const { id: userUid } = await getUser();
-    const response = await fetch(`/.netlify/functions/db-getDownloadAvatar?userUid=${userUid}`);
+    const response = await fetch(`${endpoints.downloadAvatar}?userUid=${userUid}`);
     const data = await response.json();
 
     if (!response.ok) {
@@ -85,7 +93,6 @@ async function downloadAvatar() {
         return null;
     }
 
-    console.log(data);
     return data;
 }
 
@@ -100,7 +107,7 @@ async function updateUserBookmarks(updatedBookmarks) {
     try {
         // First await the getUser() function to get the userUid.
         const { id: userUid } = await getUser();
-        const response = await fetch(`/.netlify/functions/db-postUpdateUserBookmarks`, {
+        const response = await fetch(endpoints.updateUserBookmarks, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -127,7 +134,7 @@ async function createRecord() {
     try {
         // First await the getUser() function to get the userUid.
         const { id: userUid } = await getUser();
-        const response = await fetch(`/.netlify/functions/db-postCreateRecord`, {
+        const response = await fetch(endpoints.createRecord, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -153,7 +160,7 @@ async function createRecord() {
 async function uploadAvatar(avatarFileName, avatarFile) {
     try {
         const base64 = await blobToBase64(avatarFile);
-        const response = await fetch(`/.netlify/functions/db-postUploadAvatar`, {
+        const response = await fetch(endpoints.uploadAvatar, {
             method: 'POST',
             body: JSON.stringify({avatarFileName, base64}),
         });
