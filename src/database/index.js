@@ -1,149 +1,68 @@
-import supabase from "./client";
 import { getUser } from "../auth/authentication";
+import { blobToBase64 } from "../utilities";
 
 /**
- * Fetches bookmarks for the current user from the database.
+ * Asynchronously retrieves the bookmarks for the current user making request to Netlify function `db-getUserBookmarks` to retrieve the user
+ * bookmarks
  * @async
- * @throws {Error} Throws an error if there's an issue fetching the user or the bookmarks.
- * @returns {Promise<Array>} A promise that resolves to an array of bookmarked items.
+ * @returns {Promise<Object>} A promise that resolves to object.
+ * @throws {Error} Throws an error if the user cannot be retrieved or if the fetch request fails.
  */
 async function getUserBookmarks() {
     try {
         // First await the getUser() function to get the userUid.
         const { id: userUid } = await getUser();
+        const response = await fetch(`/.netlify/functions/db-getUserBookmarks?userUid=${userUid}`);
+        const data = await response.json();
 
-        // Once we have the userUid, we use it in supabase query to fetch the bookmarks
-        const { data: bookmarks, error } = await supabase
-            .from('bookmarks')
-            .select('bookmarked')
-            .eq('user_uid', userUid);
-        
-        if (error) {
-            throw new Error(`Database error: ${error}`);
+        if (!response.ok) {
+            throw new Error(data.error);
         }
 
-        return bookmarks[0].bookmarked;
+        console.log(data[0]);
+        return data[0];
     } catch (error) {
         throw error;
     }
 }
 
 /**
- * Updates bookmarks for the current user to the database.
+ * Asynchronously retrieves the movie/TVseries genres list making request to Netlify function `db-getGenres`
  * @async
- * @param {Array.<Object>} updatedBookmarks -  Array of updated bookmark objects.
- * @throws {Error} Throws an error if there's an issue fetching the user or updating the bookmarks.
- * @returns {Promise}
- */
-async function updateUserBookmarks(updatedBookmarks) {
-    try {
-        // First await the getUser() function to get the userUid.
-        const { id: userUid } = await getUser();
-        
-        // Once we have the userUid, we use it in supabase query to update the bookmarks
-        const { error } = await supabase
-            .from('bookmarks')
-            .update({ bookmarked: updatedBookmarks})
-            .eq('user_uid', userUid)
-            .select('bookmarked');
-        
-        if (error) {
-            throw new Error(error);
-        }
-
-    } catch (error) {
-        throw error;
-    }
-}
-
-/**
- * Fetches movie/TVseries genres list from the database.
- * @async
- * @throws {Error} Throws an error if there's an issue fetching the user or the bookmarks.
- * @returns {Promise<Array>} A promise that resolves to an array of genres items.
+ * @returns {Promise<Object>} A promise that resolves to object.
+ * @throws {Error} Throws an error if the user cannot be retrieved or if the fetch request fails.
  */
 async function getGenres() {
     try {
-        const { data, error } = await supabase
-            .from('content')
-            .select('genres')
-            .eq('id', 1);
-        
-        if (error) {
-            throw new Error(`Database error: ${error}`);
+        const response = await fetch(`/.netlify/functions/db-getGenres`);
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error);
         }
 
-        return data[0].genres;
+        console.log(data[0]);
+        return data[0];
     } catch (error) {
         throw error;
     }
 }
 
 /**
- * Create a record within database for user. Performs an INSERT into the table.
- * @param {string} userUid - User identifier assigned to user
- */
-async function createRecord(userUid) {
-    try {
-        const { error } = await supabase
-        .from('bookmarks')
-        .insert({ user_uid: userUid });
-
-        if (error) {
-            throw new Error(`Database error: ${error}`);
-        }
-    } catch (error) {
-        throw error;
-    }
-}
-
-/**
- * Retrieves a random media item representing either movie or tv series id and type.
- * @returns {Promise<object>} - A promise that resolves to an object representing the random media item.
- * @throws {Error} - If there is an error retrieving the data from the database.
+ * Asynchronously retrieves random media object representing either movie or tv series id and type making request to Netlify function `db-getRandomMedia`
+ * @async
+ * @returns {Promise<Object>} A promise that resolves to object.
+ * @throws {Error} Throws an error if the user cannot be retrieved or if the fetch request fails.
  */
 async function getRandomMedia() {
     try {
-        const { data, error } = await supabase
-            .from('content')
-            .select('media_pool')
-            .eq('id', 1);
-        
-        if (error) {
-            throw new Error(`Database error: ${error}`);
+        const response = await fetch(`/.netlify/functions/db-getRandomMedia`);
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.error);
         }
-
-        const mediaPoolArr = data[0].media_pool;
-        const randomNumber = Math.floor(Math.random() * mediaPoolArr.length);
-
-        return mediaPoolArr[randomNumber];
-    } catch (error) {
-        throw error;
-    }
-}
-
-/**
- * Uploads an avatar file to the storage under the 'user-avatars' bucket.
- * @async
- * @param {string} avatarFileName - Unique identifier for the user, used as the name for uploaded avatar file.
- * @param {File} avatarFile - Avatar file object.
- * @returns {Promise<Object>} A promise that resolves to response data from the upload operation.
- * @throws {Error} Throws an error if there is a problem during the upload process, including database errors.
- */
-async function uploadAvatar(avatarFileName, avatarFile) {
-    try {
-        const { data, error } = await supabase
-            .storage
-            .from('user-avatars')
-            .upload(`${avatarFileName}`, avatarFile, {
-                cacheControl: 'no-cache',
-                upsert: true
-            });
-        
-        if (error) {
-            throw new Error(`Database error uploading avatar: ${error}`);
-        }
-
+        console.log(data);
         return data;
     } catch (error) {
         throw error;
@@ -151,23 +70,101 @@ async function uploadAvatar(avatarFileName, avatarFile) {
 }
 
 /**
- * Downloads avatar file from the 'user-avatars' storage bucket.
+ * Asynchronously retrieves base64 string containing user avatar by making request to Netlify function `db-getUserAvatar`
  * @async
- * @param {string} avatarFileName - The name of the avatar file to download.
- * @returns {Promise<Object|null>} A promise that resolves to the response data if successful, or null if an error occurs.
+ * @returns {Promise<String|null>} A promise that resolves to string or null.
  */
-async function downloadAvatar(avatarFileName) {
-    const uniqueParam = `?t=${Date.now()}`; // Unique query parameter to prevent image caching
-    const fullFileName = `${avatarFileName}${uniqueParam}`;
+async function downloadAvatar() {
+    // First await the getUser() function to get the userUid.
+    const { id: userUid } = await getUser();
+    const response = await fetch(`/.netlify/functions/db-getDownloadAvatar?userUid=${userUid}`);
+    const data = await response.json();
 
-    const { data, error } = await supabase
-        .storage
-        .from('user-avatars')
-        .download(`${fullFileName}`);
+    if (!response.ok) {
+        console.log(null);
+        return null;
+    }
 
-    if (error) return null;
-
+    console.log(data);
     return data;
 }
 
-export { getUserBookmarks, updateUserBookmarks, getGenres, createRecord, getRandomMedia, uploadAvatar, downloadAvatar };
+/**
+ * Updates the user bookmarks by sending a POST request to a `db-postUpdateUserBookmarks` Netlify function.
+ * @async
+ * @param {Array} updatedBookmarks - Array of updated bookmark objects.
+ * @returns {Promise<void>} Promise that resolves when the update operation is complete.
+ * @throws {Error} Throws an error if the request to the server fails or if the user cannot be retrieved.
+ */
+async function updateUserBookmarks(updatedBookmarks) {
+    try {
+        // First await the getUser() function to get the userUid.
+        const { id: userUid } = await getUser();
+        const response = await fetch(`/.netlify/functions/db-postUpdateUserBookmarks`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({updatedBookmarks, userUid}),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to send data');
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+/**
+ * Creates a new record in the database by fetching the user ID and sending a POST request
+ * to the `db-postCreateRecord` Netlify function
+ * @async
+ * @returns {Promise<void>} A promise that resolves when the record is created successfully.
+ * @throws {Error} Throws an error if the fetch request fails or if the response is not ok.
+ */
+async function createRecord() {
+    try {
+        // First await the getUser() function to get the userUid.
+        const { id: userUid } = await getUser();
+        const response = await fetch(`/.netlify/functions/db-postCreateRecord`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userUid),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to send data');
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+/**
+ * Uploads an avatar file by converting it to a Base64 string and sending a POST request to the `db-postUploadAvatar` Netlify function.
+ * @async
+ * @param {string} avatarFileName - Unique identifier for the user, used as the name for the uploaded avatar file.
+ * @param {File} avatarFile - The avatar file object to be uploaded.
+ * @throws {Error} Throws an error if the fetch request fails or if the response is not ok.
+ */
+async function uploadAvatar(avatarFileName, avatarFile) {
+    try {
+        const base64 = await blobToBase64(avatarFile);
+        const response = await fetch(`/.netlify/functions/db-postUploadAvatar`, {
+            method: 'POST',
+            body: JSON.stringify({avatarFileName, base64}),
+        });
+        
+        if (!response.ok) {
+            throw new Error('Failed to send data');
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+export { getUserBookmarks, getGenres, getRandomMedia, downloadAvatar, updateUserBookmarks, createRecord, uploadAvatar };
