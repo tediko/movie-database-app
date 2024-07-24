@@ -89,7 +89,6 @@ async function downloadAvatar() {
     const data = await response.json();
 
     if (!response.ok) {
-        console.log(null);
         return null;
     }
 
