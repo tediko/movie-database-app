@@ -1,5 +1,5 @@
 // Flags
-const fetchDataEndpoint = `/.netlify/functions/api-fetchData`;
+const fetchDataEndpoint = `/.netlify/functions/api`;
 const endpoints = {
     fetchUpcomingMovies: `${fetchDataEndpoint}?action=fetchUpcomingMovies`,
     fetchTrailerSrcKey: `${fetchDataEndpoint}?action=fetchTrailerSrcKey`,
