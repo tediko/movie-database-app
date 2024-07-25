@@ -10,7 +10,7 @@ let formElement;
 let resultsWrapper;
 
 // Selectors
-const appRootSelector = `#root`;
+const appRootSelector = `[data-app-root]`;
 const wrapperSelector = `[data-search-wrapper]`;
 const formSelector = `[data-search-form]`;
 const resultsWrapperSelector = `[data-search-results-wrapper]`;
