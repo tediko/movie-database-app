@@ -170,6 +170,7 @@
         height: clamp(24px, 0.06rem + 5.076vw, 40px);
         border-radius: 50%;
         pointer-events: none;
+        object-fit: cover;
 
         &[src=""] {
             @extend %shimmer-effect;
