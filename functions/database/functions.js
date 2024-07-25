@@ -4,6 +4,7 @@ import { base64ToBlob, blobToBase64DataUrl } from "../shared";
 /**
  * Fetches bookmarks for the current user from the database.
  * @async
+ * @param {string} userUid - Unique user identifier
  * @throws {Error} Throws an error if there's an issue fetching the user or the bookmarks.
  * @returns {Promise<Array>} A promise that resolves to an array of bookmarked items.
  */
