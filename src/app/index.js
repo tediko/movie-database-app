@@ -12,11 +12,11 @@ const rootSelector = `#root`;
  * Initializes the Application
  */
 async function initApp() {
-    const user = await getUser();
     root = document.querySelector(rootSelector);
     
     // Check if root element exists.
     if (!root) return;
+    const user = await getUser();
     
     // Check if there is an existing user session, if not return and redirect to login page.
     if (!user) {
