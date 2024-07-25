@@ -2,14 +2,15 @@ import { getUser } from "../auth/authentication";
 import { blobToBase64 } from "../utilities";
 
 // Flags
+const databaseEndpoint = `/.netlify/functions/database`;
 const endpoints = {
-    getUserBookmarks: `/.netlify/functions/db-getUserBookmarks`,
-    getGenres: `/.netlify/functions/db-getGenres`,
-    getRandomMedia: `/.netlify/functions/db-getRandomMedia`,
-    downloadAvatar: `/.netlify/functions/db-getDownloadAvatar`,
-    updateUserBookmarks: `/.netlify/functions/db-postUpdateUserBookmarks`,
-    createRecord: `/.netlify/functions/db-postCreateRecord`,
-    uploadAvatar: `/.netlify/functions/db-postUploadAvatar`
+    getUserBookmarks: `${databaseEndpoint}?action=getUserBookmarks`,
+    getGenres: `${databaseEndpoint}?action=getGenres`,
+    getRandomMedia: `${databaseEndpoint}?action=getRandomMedia`,
+    downloadAvatar: `${databaseEndpoint}?action=downloadAvatar`,
+    updateUserBookmarks: `${databaseEndpoint}?action=updateUserBookmarks`,
+    createRecord: `${databaseEndpoint}?action=createRecord`,
+    uploadAvatar: `${databaseEndpoint}?action=uploadAvatar`
 };
 
 /**
@@ -23,7 +24,7 @@ async function getUserBookmarks() {
     try {
         // First await the getUser() function to get the userUid.
         const { id: userUid } = await getUser();
-        const response = await fetch(`${endpoints.getUserBookmarks}?userUid=${userUid}`);
+        const response = await fetch(`${endpoints.getUserBookmarks}&userUid=${userUid}`);
         const data = await response.json();
 
         if (!response.ok) {
@@ -71,6 +72,7 @@ async function getRandomMedia() {
         if (!response.ok) {
             throw new Error(data.error);
         }
+
         return data;
     } catch (error) {
         throw error;
@@ -85,7 +87,7 @@ async function getRandomMedia() {
 async function downloadAvatar() {
     // First await the getUser() function to get the userUid.
     const { id: userUid } = await getUser();
-    const response = await fetch(`${endpoints.downloadAvatar}?userUid=${userUid}`);
+    const response = await fetch(`${endpoints.downloadAvatar}&userUid=${userUid}`);
     const data = await response.json();
 
     if (!response.ok) {
@@ -126,24 +128,24 @@ async function updateUserBookmarks(updatedBookmarks) {
  * Creates a new record in the database by fetching the user ID and sending a POST request
  * to the `db-postCreateRecord` Netlify function
  * @async
+ * @param {string} userUid - Unique user identifier
  * @returns {Promise<void>} A promise that resolves when the record is created successfully.
  * @throws {Error} Throws an error if the fetch request fails or if the response is not ok.
  */
-async function createRecord() {
+async function createRecord(userUid) {
     try {
-        // First await the getUser() function to get the userUid.
-        const { id: userUid } = await getUser();
         const response = await fetch(endpoints.createRecord, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(userUid),
+            body: JSON.stringify({userUid}),
         });
 
         if (!response.ok) {
             throw new Error('Failed to send data');
         }
+
     } catch (error) {
         throw error;
     }
