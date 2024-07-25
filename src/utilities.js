@@ -319,6 +319,19 @@ const loadImageFromBlob = (blob, imageElement) => {
     imageElement.src = objectUrl;
 }
 
+/**
+ * Converts a Blob object to a Base64-encoded string.
+ * @param {Blob} blob - The Blob object to be converted.
+ * @returns {Promise<string>} A Promise that resolves to the Base64-encoded string representation of the Blob.
+ */
+const blobToBase64 = (blob) => {
+    return new Promise((resolve, _) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = () => resolve(reader.result);
+    });
+}
+
 export { 
     createHtmlElement,
     focusTrap,
@@ -335,5 +348,6 @@ export {
     attachLinkWithParamsEventListener,
     createUrlWithIdAndTypeParams,
     generateRandomName,
-    loadImageFromBlob
+    loadImageFromBlob,
+    blobToBase64
 };

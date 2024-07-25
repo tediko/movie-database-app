@@ -1,4 +1,4 @@
-import supabase from "../database/client";
+import supabase from "./client";
 import { generateRandomName } from "../utilities";
 
 /**

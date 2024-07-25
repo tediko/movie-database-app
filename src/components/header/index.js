@@ -23,21 +23,23 @@ const titlePageAttribute = '/app/title';
 async function initHeader() {
     headerContainer = document.querySelector(headerContainerSelector);
     const { id: userId } = await getUser();
-    const avatarBlob = await downloadAvatar(userId);
+    const avatar = await downloadAvatar(userId);
     
-    updateHeaderAvatar(avatarBlob);
+    updateHeaderAvatar(avatar);
     setupNavigation();
 }
 
 /**
  * Updates the avatar image in the header based on the provided avatar blob.
- * @param {Blob} avatarBlob - The Blob object representing the avatar image. 
+ * @param {string|Blob} avatar - Base64 string or Blob object representing the avatar image.
  */
-const updateHeaderAvatar = (avatarBlob) => {
+const updateHeaderAvatar = (avatar) => {
     const avatarElement = headerContainer.querySelector(avatarImageSelector);
 
-    if (avatarBlob) {
-        loadImageFromBlob(avatarBlob, avatarElement);
+    if (avatar && avatar instanceof Blob) {
+        loadImageFromBlob(avatar, avatarElement);
+    } else if (avatar) {
+        avatarElement.src = avatar;
     } else {
         avatarElement.src = noAvatarImg;
     }
