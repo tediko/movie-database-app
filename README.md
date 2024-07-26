@@ -371,7 +371,8 @@ const focusTrap = (container) => {
 
 ### Screenshot
 
-![xxx](./public/preview.jpg)
+![App preview](./public/app-preview.jpg)
+![Landing page preview](./public/landing-preview.jpg)
 
 ## Author
 
