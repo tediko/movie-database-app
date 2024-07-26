@@ -94,8 +94,8 @@ const handleTestAccountLogin = (event, loginFormElement) => {
     // Test account credentials.
     // No need to hide or secure these credentials as they are meant for public use
     const testAccount = {
-        email: 'test@example.com',
-        password: 'test123'
+        email: import.meta.env.VITE_TEST_ACCOUNT_LOGIN,
+        password: import.meta.env.VITE_TEST_ACCOUNT_PASSWORD
     }
 
     login(testAccount.email, testAccount.password, loginFormElement);
