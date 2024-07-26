@@ -1,6 +1,9 @@
 [build]
   functions = "functions"
   
+[functions]
+  node_bundler = "esbuild"
+
 [[redirects]]
   from = "/app/*"
   to = "/app/index.html"
