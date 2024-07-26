@@ -1,2 +1,18 @@
 [build]
   functions = "functions"
+  
+[[redirects]]
+  from = "/app/*"
+  to = "/app/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/login"
+  to = "/access/login.html"
+  status = 200
+
+[[redirects]]
+  from = "/register"
+  to = "/access/register.html"
+  status = 200
