@@ -370,7 +370,7 @@ const focusTrap = (container) => {
 - [**URLSearchParams**](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams) is a built-in JavaScript object that provides a convenient way to work with the query string of a URL.
 - [**Promise.all()**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) allows multiple fetch operations to be executed concurrently, rather than sequentially. This can significantly improve performance, especially when dealing with independent API calls
 - [**How to build router in vanilla JS**](https://accreditly.io/articles/how-to-build-a-router-in-vanilla-javascript) - Routers control the application's views based on the URL, without the need for full-page refreshes. While several libraries such as React Router for React offer robust solutions for managing routes in SPAs, you can build your own rudimentary router in Vanilla JavaScript to understand the underlying mechanics.
-- [**createObjectURL()**]() static method of the URL interface creates a string containing a URL representing the object given in the parameter (Blob in my case).
+- [**createObjectURL()**](https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL_static) static method of the URL interface creates a string containing a URL representing the object given in the parameter (Blob in my case).
 - [**Replacing switch statements with Object literals**](https://ultimatecourses.com/blog/deprecating-the-switch-statement-for-object-literals)
 
 ## Built with
