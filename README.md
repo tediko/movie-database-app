@@ -9,26 +9,27 @@ After logging in, the user is redirected to the app which is based on the **sing
 #### Demo:
 - Live Site URL: [moviedb.netlify.app](https://moviedb.netlify.app/)
 
-#### App Features:
-- **User Authentication**: Users can create an account by providing email and password  and then log in to the app using their credentials, providing a secure and personalized experience.
-- **Search**: The app includes a search functionality that allows users to search for movies or TV series by title. Upon submitting a search query, the app fetches and displays relevant search results, making it easy for users to find their desired content.
-- **Trending section**: Dedicated trending section where users can view a list of currently trending movies or TV series. This section is updated regularly, ensuring that users stay informed about the latest movies or TV series.
-- **Latest Trailers**: App showcases a selection of popular movie and TV series trailers in a slider. Users can watch them in a lightbox modal that includes accessibility features such as trapped focus for users who require it.
-- **Recommended for You**: Personalized feature that suggests movies and TV series based on the titles you have bookmarked ensuring that you discover new content that aligns with your tastes.
-- **Top rated page**: Features a list of the top 100 movies and TV series, ranked based on their overall user ratings.
-- **Bookmarks page**: Personalized space where users can store and manage their bookmarked movies and TV series. This feature allows users to keep track of their favorite titles and easily access them for future reference.
-- **Random title**: Fun and exciting way for users to discover new movies and TV series. With just a click, users can be introduced to a randomly selected title, complete with detailed information to help them decide if they want to watch it.
-- **Details page**: Each movie has a dedicated sub-page that provides users with a detailed informations, list of the actors involved, photos and similar titles recommendations.
-- **Profile**: Manage account settings and customize experience within the app. Here, users can upload a custom avatar to personalize their profile, update account information including name, email, and password.
-- **404 page**: The 404 page, also known as the "Page Not Found" with a little easter egg. Instead of a standard error message, users are greeted with a humorous message and a playful image.
-
 ## Table of contents
+- [App features](#app-features)
 - [My process](#my-process)
 - [What I learned](#what-i-learned)
 - [Built with](#built-with)
 - [Setup](#setup)
 - [Overview](#overview)
 - [Author](#author)
+
+## App Features:
+- **User Authentication**: Users can create an account by providing email and password and then log in to the app using their credentials, providing a secure and personalized experience.
+- **Search**: Functionality that allows to search for movies or TV series by title.
+- **Trending**: Dedicated section where users can view a list of currently trending movies or TV series.
+- **Latest Trailers**: Showcase of popular movie and TV series trailers in a slider. Users can watch them in a lightbox modal.
+- **Recommended for You**: Personalized feature that suggests movies and TV series based on the titles user have bookmarked.
+- **Top rated**: A list of the top 100 movies and TV series, ranked based on their overall user ratings.
+- **Bookmarks**: Personalized space where users can store and manage their bookmarked movies and TV series.
+- **Details page**: Each movie has a dedicated sub-page that provides users with a detailed informations, list of the actors involved, photos and similar titles recommendations.
+- **Random title**: Randomly selected movie/tv series displayed within details page.
+- **Profile**: Customizable account settings. Users can upload a custom avatar or update account information including name, email, and password.
+- **404 page**: "Page Not Found" with a little easter egg. Instead of a standard error message, users are greeted with a funny message and a playful image.
 
 ## My process
 
