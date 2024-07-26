@@ -1,4 +1,4 @@
-const supabase = require('./client.js');
+import supabase from "./client"
 import { base64ToBlob, blobToBase64DataUrl } from "../shared";
 
 /**
