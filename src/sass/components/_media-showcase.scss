@@ -103,7 +103,7 @@
         padding-bottom: 1rem;
         
         @include breakpoint('md') {
-            padding-right: 2rem;
+            padding-right: 1.2rem;
         }
 
         > .data-error {
