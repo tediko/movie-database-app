@@ -4,10 +4,10 @@
 
 With the integration of user authentication I've decided to elevate app functionality and user experience by **designing an landing page** that serves as the introduction to MovieDB App. This landing page streamlines the user authentication process by providing registration form and login cta button redirecting respectively to *register* and *login* sub-page. Moreover showcases selection of popular movie trailers in slider that users can watch in popping lightbox modal that has trapped focus for users that require accessibility features. Additionally, there is a placeholder section with mockup image that contain video within.
 
-After logging in, the user is redirected to the app which is based on the **single page application** (SPA) architecture with custom router. For handling bookmark state across SPA I created **central state management system** - bookmarkManager. This allows components to subscribe to bookmark updates and receive notifications when bookmarks change without the need of fetching it from database. If user navigate to route that doesn't exists router will **redirect to 404 page**. To improve user experience while fetching data I implemented **shimmer effect** which is simply visual feedback during data fetching. User can **login on test account** to explore app without the need to register, but test account is limited when it comes to updating profile with custom informations/avatar.
+After logging in, the user is redirected to the app which is based on the **single page application** (SPA) architecture with custom router. For handling bookmark state across SPA I created **central state management system** - bookmarkManager. This allows components to subscribe to bookmark updates and receive notifications when bookmarks change without the need of fetching it from database. If logged in user navigate to route that doesn't exists router will [**redirect to 404 page**](https://moviedb-tediko.netlify.app/app/404). To improve user experience while fetching data I implemented **shimmer effect** which is simply visual feedback during data fetching. User can **login on test account** to explore app without the need to register, but test account is limited when it comes to updating profile with custom informations/avatar.
 
 #### Demo:
-- Live Site URL: [moviedb.netlify.app](https://moviedb.netlify.app/)
+- Live Site URL: [moviedb-tediko.netlify.app](https://moviedb-tediko.netlify.app/)
 
 ## Table of contents
 - [App features](#app-features)
@@ -29,7 +29,7 @@ After logging in, the user is redirected to the app which is based on the **sing
 - **Details page**: Each movie has a dedicated sub-page that provides users with a detailed informations, list of the actors involved, photos and similar titles recommendations.
 - **Random title**: Randomly selected movie/tv series displayed within details page.
 - **Profile**: Customizable account settings. Users can upload a custom avatar or update account information including name, email, and password.
-- **404 page**: "Page Not Found" with a little easter egg. Instead of a standard error message, users are greeted with a funny message and a playful image.
+- **404 page**: ["Page Not Found"](https://moviedb-tediko.netlify.app/app/404) with a little easter egg. Instead of a standard error message, users are greeted with a funny message and a playful image. User need to be logged in.
 
 ## My process
 
