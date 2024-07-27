@@ -1,4 +1,6 @@
 import { getUserBookmarks, getGenres, getRandomMedia, downloadAvatar, updateUserBookmarks, createRecord, uploadAvatar } from './functions';
+import { Blob } from "buffer";
+const parser = require('lambda-multipart-parser');
 
 /**
  * Handler function for processing HTTP requests in a Netlify function.
@@ -18,7 +20,7 @@ const handler = async (event) => {
     if (isHttpMethodGet || isHttpMethodPost) {
         ({ action, ...params } = event.queryStringParameters || {});
 
-        if (isHttpMethodPost) {
+        if (isHttpMethodPost && action !== 'uploadAvatar') {
             requestBody = JSON.parse(event.body);
         }
     }
@@ -31,7 +33,7 @@ const handler = async (event) => {
         downloadAvatar: async () => await downloadAvatar(params.userUid),
         updateUserBookmarks: async () => await updateUserBookmarks(requestBody.updatedBookmarks, requestBody.userUid),
         createRecord: async () => await createRecord(requestBody.userUid),
-        uploadAvatar: async () => await uploadAvatar(requestBody.avatarFileName, requestBody.base64)
+        uploadAvatar: async (avatarFileName, avatarBlob) => await uploadAvatar(avatarFileName, avatarBlob)
     }
 
     try {
@@ -41,6 +43,20 @@ const handler = async (event) => {
             return {
                 statusCode: 400,
                 body: JSON.stringify({error: 'Invalid action'})
+            }
+        }
+
+        if (action === 'uploadAvatar') {
+            // Convert formDataObject to Blob
+            const formDataObject = await parser.parse(event);
+            const avatarBuffer = Buffer.from(formDataObject.files[0].content);
+            const avatarFileName = formDataObject.avatarFileName;
+            const avatarBlob = new Blob([avatarBuffer], { type: formDataObject.files[0].contentType });        
+
+            const response = await actionHandler(avatarFileName, avatarBlob);
+            return {
+                statusCode: 200,
+                body: JSON.stringify(response)
             }
         }
 

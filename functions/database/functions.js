@@ -1,5 +1,5 @@
 import supabase from "./client"
-import { base64ToBlob, blobToBase64DataUrl } from "../shared";
+import { blobToBase64DataUrl } from "../shared";
 
 /**
  * Fetches bookmarks for the current user from the database.
@@ -147,29 +147,28 @@ async function createRecord(userUid) {
  * Uploads an avatar file to the storage under the 'user-avatars' bucket.
  * @async
  * @param {string} avatarFileName - Unique identifier for the user, used as the name for the uploaded avatar file.
- * @param {string} base64 - Base64-encoded string representation of the avatar file.
+ * @param {string} avatarBlob - Blob object with the avatar file.
  * @returns {Promise<Object>} A promise that resolves to the response data from the upload operation.
  * @throws {Error} Throws an error if there is a problem during the upload process, including database errors or issues with the Blob conversion.
  */
-async function uploadAvatar(avatarFileName, base64) {
-  try {
-      const avatarBlob = base64ToBlob(base64);
-      const { data, error } = await supabase
-          .storage
-          .from('user-avatars')
-          .upload(`${avatarFileName}`, avatarBlob, {
-              cacheControl: 'no-cache',
-              upsert: true
-          });
-      
-      if (error) {
-          throw new Error(`Database error uploading avatar: ${error}`);
-      }
-
-      return data;
-  } catch (error) {
-      throw error;
-  }
+async function uploadAvatar(avatarFileName, avatarBlob) {
+    try {
+        const { data, error } = await supabase
+        .storage
+        .from('user-avatars')
+        .upload(`${avatarFileName}`, avatarBlob, {
+            cacheControl: 'no-cache',
+            upsert: true
+        });
+        
+        if (error) {
+            throw new Error(`Database error uploading avatar: ${error}`);
+        }
+        
+        return data;
+    } catch (error) {
+        throw error;
+    }
 }
 
 export { getUserBookmarks, getGenres, getRandomMedia, downloadAvatar, updateUserBookmarks, createRecord, uploadAvatar };

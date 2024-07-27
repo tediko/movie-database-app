@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.44.0",
+    "lambda-multipart-parser": "^1.0.1",
     "swiper": "^11.1.4"
   }
 }

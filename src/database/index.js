@@ -160,10 +160,13 @@ async function createRecord(userUid) {
  */
 async function uploadAvatar(avatarFileName, avatarFile) {
     try {
-        const base64 = await blobToBase64(avatarFile);
+        const formData = new FormData();
+        formData.append('avatarFileName', avatarFileName);
+        formData.append('avatarFile', avatarFile);
+
         const response = await fetch(endpoints.uploadAvatar, {
             method: 'POST',
-            body: JSON.stringify({avatarFileName, base64}),
+            body: formData,
         });
         
         if (!response.ok) {
@@ -173,6 +176,5 @@ async function uploadAvatar(avatarFileName, avatarFile) {
         throw error;
     }
 }
-
 
 export { getUserBookmarks, getGenres, getRandomMedia, downloadAvatar, updateUserBookmarks, createRecord, uploadAvatar };
