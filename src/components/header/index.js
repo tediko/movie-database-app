@@ -2,7 +2,6 @@ import { getUser, signOut } from '../../auth/authentication';
 import { getRandomMedia, downloadAvatar } from '../../database';
 import { createUrlWithIdAndTypeParams, loadImageFromBlob } from '../../utilities';
 import { router } from '../../app/router';
-import noAvatarImg from '../../assets/no-avatar.jpg';
 
 // Elements
 let headerContainer;
@@ -38,10 +37,8 @@ const updateHeaderAvatar = (avatar) => {
 
     if (avatar && avatar instanceof Blob) {
         loadImageFromBlob(avatar, avatarElement);
-    } else if (avatar) {
-        avatarElement.src = avatar;
     } else {
-        avatarElement.src = noAvatarImg;
+        avatarElement.src = avatar;
     }
 }
 

@@ -1,7 +1,6 @@
 import { emailValidation, generateRandomName, passwordValidation, showFormMessage, loadImageFromBlob } from "../../utilities";
 import { getUser, updateUser } from "../../auth/authentication";
 import { uploadAvatar, downloadAvatar } from "../../database";
-import noAvatarImg from '../../assets/no-avatar.jpg';
 import { updateHeaderAvatar } from "../header";
 
 // Elements
@@ -191,11 +190,8 @@ const handleAvatarUpload = (event) => {
  * @param {HTMLImageElement} imageElement - The image element where the avatar will be displayed.
  */
 const displayAvatar = (imageElement, avatar) => {
-    if (avatar === null) {
-        imageElement.src = noAvatarImg;
-    } else {
-        imageElement.src = avatar;
-    }
+    console.log(avatar);
+    imageElement.src = avatar;
 }
 
 /**
