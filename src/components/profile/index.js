@@ -190,7 +190,6 @@ const handleAvatarUpload = (event) => {
  * @param {HTMLImageElement} imageElement - The image element where the avatar will be displayed.
  */
 const displayAvatar = (imageElement, avatar) => {
-    console.log(avatar);
     imageElement.src = avatar;
 }
 
