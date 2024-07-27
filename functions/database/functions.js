@@ -91,7 +91,7 @@ async function downloadAvatar(avatarFileName) {
           .download(`${fullFileName}`);
 
       if (error) {
-        throw new Error(`Download error: ${error}`);
+        return '/assets/no-avatar.jpg';
       }
       
       const dataUrl = await blobToBase64DataUrl(data);
