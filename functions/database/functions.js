@@ -73,33 +73,40 @@ async function getRandomMedia() {
 }
 
 /**
- * Downloads avatar file from the 'user-avatars' storage bucket.
+ * Downloads an avatar URL from the 'user-avatars' storage bucket.
  * @async
- * @param {string} avatarFileName - Name of the avatar file to download (userUid)
- * @returns {Promise<Object|string>} A promise that resolves to an object containing the avatar buffer and type if successful, or a string path to the default avatar if not found.
+ * @param {string} avatarFileName - The name of the avatar file to download (userUid).
+ * @returns {Promise<string>} A promise that resolves to the public URL of the avatar if successful,
+ * or a string path to the default avatar if not found.
  * @throws {Error} If there is an error during the download process.
  */
 async function downloadAvatar(avatarFileName) {
     try {
-      const uniqueParam = `?t=${Date.now()}`; // Unique query parameter to prevent image caching
-      const fullFileName = `${avatarFileName}${uniqueParam}`;
+        const uniqueParam = `?t=${Date.now()}`; // Unique query parameter to prevent image caching
+        const fullFileName = `${avatarFileName}${uniqueParam}`;
 
-      const { data, error } = await supabase
-          .storage
-          .from('user-avatars')
-          .download(`${fullFileName}`);
+        const { data, error } = await supabase
+            .storage
+            .from('user-avatars')
+            .list('', {
+                search: avatarFileName
+            });
 
-      if (error) {
-        return '/assets/no-avatar.jpg';
-      }
-      
-      const arrayBuffer = await data.arrayBuffer();
-      const avatarBuffer = Buffer.from(arrayBuffer);
-      const avatarType = data.type;
-      
-      return { avatarBuffer, avatarType };
+        // Check if there was an error or if no data was returned
+        if (error || data.length === 0) {
+            console.log('/assets/no-avatar.jpg');
+            return '/assets/no-avatar.jpg';
+        }
+
+        // Get the public URL for the avatar using the filename
+        const { data: { publicUrl } } = supabase
+            .storage
+            .from('user-avatars')
+            .getPublicUrl(fullFileName);
+            
+        return publicUrl;
     } catch (error) {
-      throw error;
+        throw error;
     }
 }
 

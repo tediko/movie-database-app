@@ -320,17 +320,20 @@ const loadImageFromBlob = (blob, imageElement) => {
 }
 
 /**
- * Converts a Blob object to a Base64-encoded string.
- * @param {Blob} blob - The Blob object to be converted.
- * @returns {Promise<string>} A Promise that resolves to the Base64-encoded string representation of the Blob.
+ * Preloads image and returns a Promise that resolves when the image is successfully loaded.
+ * @param {string} src - The URL of the image to preload.
+ * @returns {Promise<HTMLImageElement>} A Promise that resolves with the loaded image element.
  */
-const blobToBase64 = (blob) => {
+const preloadImage = (src) => {
     return new Promise((resolve, _) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = () => resolve(reader.result);
+        const img = new Image();
+        img.src = src;
+        
+        img.onload = () => {
+            resolve(img);
+        };
     });
-}
+};
 
 export { 
     createHtmlElement,
@@ -349,5 +352,5 @@ export {
     createUrlWithIdAndTypeParams,
     generateRandomName,
     loadImageFromBlob,
-    blobToBase64
+    preloadImage
 };

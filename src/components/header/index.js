@@ -29,7 +29,7 @@ async function initHeader() {
 }
 
 /**
- * Updates the avatar image in the header based on the provided avatar blob.
+ * Updates the avatar image in the header based on the provided avatar blob or URL.
  * @param {string|Blob} avatar - The avatar to display. Can be: Blob object or string representing the image source path
  */
 const updateHeaderAvatar = (avatar) => {
