@@ -184,22 +184,27 @@ const attachBookmarkEventListener = (container, callingComponentName) => {
     const bookmarkCtaSelector = '[data-bookmark-cta]';
     const bookmarkCtaAttribute = 'data-bookmark-cta';
     const bookmarkedAttribute = 'data-bookmarked';
+    let throttle = false;
 
     // Toggles the bookmark state of an item.
-    const toggleBookmark = (eventTarget) => {
+    const toggleBookmark = async (eventTarget) => {
         const { title } = JSON.parse(eventTarget.dataset.bookmarkInfo);
         const bookmark = JSON.parse(eventTarget.dataset.bookmarkInfo);
         const isBookmarked = eventTarget.hasAttribute(bookmarkedAttribute);
 
-        // Updates bookmarks by either add new bookmark if it doesn't exist or remove if it does.
-        bookmarkManager.toggleBookmark(bookmark);
+        if (throttle) return;
+        throttle = true;
 
+        // Updates bookmarks by either add new bookmark if it doesn't exist or remove if it does.
+        await bookmarkManager.toggleBookmark(bookmark);
+        
         if (isBookmarked) {
             removeBookmark(eventTarget, title);
         } else {
             addBookmark(eventTarget, title);
         }
 
+        throttle = false;
     }
 
     // Removes bookmark styles and the bookmarked attribute from the event target and update the aria-label.
