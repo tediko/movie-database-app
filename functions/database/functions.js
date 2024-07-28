@@ -88,10 +88,8 @@ async function downloadAvatar(avatarFileName) {
         
         // Check if there was an error or if no data was returned
         if (error || !data) {
-            console.log(error);
             return '/assets/no-avatar.jpg';
         }
-        console.log(data.signedUrl);
         
     return data.signedUrl;
 }
