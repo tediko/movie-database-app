@@ -81,32 +81,19 @@ async function getRandomMedia() {
  * @throws {Error} If there is an error during the download process.
  */
 async function downloadAvatar(avatarFileName) {
-    try {
-        const uniqueParam = `?t=${Date.now()}`; // Unique query parameter to prevent image caching
-        const fullFileName = `${avatarFileName}${uniqueParam}`;
-
-        const { data, error } = await supabase
-            .storage
-            .from('user-avatars')
-            .list('', {
-                search: avatarFileName
-            });
-
+    const { data, error } = await supabase
+        .storage
+        .from('user-avatars')
+        .createSignedUrl(avatarFileName, 60);
+        
         // Check if there was an error or if no data was returned
-        if (error || data.length === 0) {
+        if (error || !data) {
+            console.log(error);
             return '/assets/no-avatar.jpg';
         }
-
-        // Get the public URL for the avatar using the filename
-        const { data: { publicUrl } } = supabase
-            .storage
-            .from('user-avatars')
-            .getPublicUrl(fullFileName);
-            
-        return publicUrl;
-    } catch (error) {
-        throw error;
-    }
+        console.log(data.signedUrl);
+        
+    return data.signedUrl;
 }
 
 /**

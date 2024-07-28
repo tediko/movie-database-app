@@ -447,7 +447,7 @@ VALUES (
 ```
 
 ### 6. Configure Supabase storage
-Storage is used to keep users avatar. Navigate to dashboard -> storage and **create new bucket**. Name it `user-avatars`. Within edit options make bucket public by ticking **public bucket** option and then in additional configuration set **restrict file upload for bucket to 250 KB** and set **allowed mime type** to: `image/jpeg, image/png`
+Storage is used to keep users avatar. Navigate to dashboard -> storage and **create new bucket**. Name newly created bucket `user-avatars` and in additional configuration set **restrict file upload for bucket to 250 KB** and set **allowed mime type** to: `image/jpeg, image/png`
 
 ### 7. Start a local web server:
 ```
