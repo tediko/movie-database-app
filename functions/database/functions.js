@@ -94,7 +94,6 @@ async function downloadAvatar(avatarFileName) {
 
         // Check if there was an error or if no data was returned
         if (error || data.length === 0) {
-            console.log('/assets/no-avatar.jpg');
             return '/assets/no-avatar.jpg';
         }
 
