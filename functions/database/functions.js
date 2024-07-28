@@ -1,5 +1,4 @@
 import supabase from "./client"
-import { blobToBase64DataUrl } from "../shared";
 
 /**
  * Fetches bookmarks for the current user from the database.
@@ -77,8 +76,8 @@ async function getRandomMedia() {
  * Downloads avatar file from the 'user-avatars' storage bucket.
  * @async
  * @param {string} avatarFileName - Name of the avatar file to download (userUid)
- * @returns {Promise<Object>} A promise that resolves to the response data if successful.
- * @throws {Error} - If there is an error retrieving the data from the database.
+ * @returns {Promise<Object|string>} A promise that resolves to an object containing the avatar buffer and type if successful, or a string path to the default avatar if not found.
+ * @throws {Error} If there is an error during the download process.
  */
 async function downloadAvatar(avatarFileName) {
     try {
@@ -94,8 +93,11 @@ async function downloadAvatar(avatarFileName) {
         return '/assets/no-avatar.jpg';
       }
       
-      const dataUrl = await blobToBase64DataUrl(data);
-      return dataUrl;
+      const arrayBuffer = await data.arrayBuffer();
+      const avatarBuffer = Buffer.from(arrayBuffer);
+      const avatarType = data.type;
+      
+      return { avatarBuffer, avatarType };
     } catch (error) {
       throw error;
     }

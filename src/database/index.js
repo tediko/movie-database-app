@@ -80,9 +80,12 @@ async function getRandomMedia() {
 }
 
 /**
- * Asynchronously retrieves base64 string containing user avatar by making request to Netlify function `db-getUserAvatar`
+ * Asynchronously retrieves the user's avatar by making a request to the Netlify function `db-getUserAvatar`.
  * @async
- * @returns {Promise<String|null>} A promise that resolves to string or null.
+ * @returns {Promise<Blob|string|null>} A promise that resolves to:
+ *   - A Blob containing the avatar image if successful and the response includes avatarBuffer and avatarType.
+ *   - A string '/assets/no-avatar.jpg' if the response is not ok.
+ *   - The raw response data if avatarBuffer and avatarType are not present.
  */
 async function downloadAvatar() {
     // First await the getUser() function to get the userUid.
@@ -92,6 +95,15 @@ async function downloadAvatar() {
 
     if (!response.ok) {
         return '/assets/no-avatar.jpg';
+    }
+
+    if (typeof data === 'object' && 'avatarBuffer' in data && 'avatarType' in data) {
+        // Convert the avatarBuffer to a Uint8Array and create Blob object
+        const { avatarBuffer, avatarType } = data;
+        const uint8Array = new Uint8Array(avatarBuffer.data);
+        const blob = new Blob([uint8Array], { type: avatarType });
+
+        return blob;
     }
 
     return data;

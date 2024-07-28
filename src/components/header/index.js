@@ -30,7 +30,7 @@ async function initHeader() {
 
 /**
  * Updates the avatar image in the header based on the provided avatar blob.
- * @param {string|Blob} avatar - Base64 string or Blob object representing the avatar image.
+ * @param {string|Blob} avatar - The avatar to display. Can be: Blob object or string representing the image source path
  */
 const updateHeaderAvatar = (avatar) => {
     const avatarElement = headerContainer.querySelector(avatarImageSelector);

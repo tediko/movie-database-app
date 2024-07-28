@@ -185,12 +185,16 @@ const handleAvatarUpload = (event) => {
 }
 
 /**
- * Displays an avatar image in an imageElement.
- * @param {string|null} avatar - Base64 string representing the avatar image, or null if no avatar is available.
+ * Displays an avatar image in an image element.
  * @param {HTMLImageElement} imageElement - The image element where the avatar will be displayed.
+ * @param {Blob|string|null} avatar - The avatar to display. Can be: Blob object or string representing the image source path
  */
 const displayAvatar = (imageElement, avatar) => {
-    imageElement.src = avatar;
+    if (avatar && avatar instanceof Blob) {
+        loadImageFromBlob(avatar, imageElement);
+    } else {
+        imageElement.src = avatar;
+    }
 }
 
 /**
