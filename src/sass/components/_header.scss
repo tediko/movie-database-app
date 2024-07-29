@@ -164,18 +164,26 @@
         }
     }
 
-    &__profile-image {
-        position: relative;
+    &__profile-image-wrapper {
         width: clamp(24px, 0.06rem + 5.076vw, 40px);
         height: clamp(24px, 0.06rem + 5.076vw, 40px);
         border-radius: 50%;
-        pointer-events: none;
-        object-fit: cover;
+        overflow: hidden;
 
-        &[src=""] {
+        &:has([src=""]) {
             @extend %shimmer-effect;
             border-radius: 50%;
-            border: 1px solid transparent; // Remove border when there is no src
+        }
+    }
+
+    &__profile-image {
+        pointer-events: none;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+
+        &[src=""] {
+            opacity: 0;
         }
     }
 

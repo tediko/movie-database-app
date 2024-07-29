@@ -132,7 +132,9 @@ const getHeaderHtml = () => {
             </nav>
             <div class="header__profile">
                 <a href="/app/profile" class="header__profile-cta" aria-label="Profile settings" data-link="/app/profile">
-                    <img class="header__profile-image" src="" alt="" data-header-avatar>
+                    <div class="header__profile-image-wrapper">
+                        <img class="header__profile-image" src="" alt="" data-header-avatar>
+                    </div>
                 </a>
                 <button type="button" class="header__logout-cta fs-450 text-blue-grayish" aria-label="Logout from app" data-logout-cta></button>
             </div>
