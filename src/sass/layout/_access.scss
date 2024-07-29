@@ -97,6 +97,20 @@
                 opacity: 1;
             }
         }
+
+        // Autofill styles
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover, 
+        &:-webkit-autofill:focus {
+            -webkit-text-fill-color: hsl(var(--c-white));
+            -webkit-box-shadow: 0 0 0px 1000px hsl(var(--c-blue-dark-semi)) inset;
+            transition: background-color 600000s 0s, color 600000s 0s;
+            border-bottom: 1px solid hsl(222, 26.3%, 29.8%) !important;
+        }
+    
+        &:-webkit-autofill:focus {
+            border-bottom: 1px solid hsl(var(--c-white)) !important;
+        }
     }
 
     &__info {
